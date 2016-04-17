@@ -1,0 +1,359 @@
+-- SAMPLE 1: mitm 12 --
+timing on
+count only on
+time 100
+i
+   RYB
+   RWY
+   YWG
+GGOBOYRGWRRW
+BGGORRWBGWOY
+YYGOOBYBBWRG
+   WBR
+   OYW
+   OBO
+judge 1
+mitm 12
+** NOTE: Nr = 6 Ns = 6
+** NOTE: Allocated 628.762 megabytes of data
+** NOTE: Computing record group 1 of 18 groups
+** NOTE: Computing record group 2 of 18 groups
+** NOTE: Computing record group 3 of 18 groups
+** NOTE: Computing record group 4 of 18 groups
+** NOTE: Computing record group 5 of 18 groups
+** NOTE: Computing record group 6 of 18 groups
+** NOTE: Computing record group 7 of 18 groups
+** NOTE: Computing record group 8 of 18 groups
+** NOTE: Computing record group 9 of 18 groups
+** NOTE: Computing record group 10 of 18 groups
+** NOTE: Computing record group 11 of 18 groups
+** NOTE: Computing record group 12 of 18 groups
+** NOTE: Computing record group 13 of 18 groups
+** NOTE: Computing record group 14 of 18 groups
+** NOTE: Computing record group 15 of 18 groups
+** NOTE: Computing record group 16 of 18 groups
+** NOTE: Computing record group 17 of 18 groups
+** NOTE: Computing record group 18 of 18 groups
+** NOTE: Computing records took 2.03858 CPU seconds
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: 0.265526 compare failures per search
+** NOTE: 0 same face failures per search
+** NOTE: Searching took 2.40906 CPU seconds
+There are 1 solutions.
+** NOTE: CPU Time = 4.45 CPU seconds
+
+seed 924812503
+random 12
+i
+   GBB
+   GWR
+   YYR
+WOBRRBWGYOOR
+GGBWRYOBWOOY
+GBOWRYOWWOBY
+   GWG
+   YYG
+   RRB
+judge 28
+mitm 12
+** NOTE: Nr = 6 Ns = 6
+** NOTE: Allocated 628.762 megabytes of data
+** NOTE: Computing record group 1 of 18 groups
+** NOTE: Computing record group 2 of 18 groups
+** NOTE: Computing record group 3 of 18 groups
+** NOTE: Computing record group 4 of 18 groups
+** NOTE: Computing record group 5 of 18 groups
+** NOTE: Computing record group 6 of 18 groups
+** NOTE: Computing record group 7 of 18 groups
+** NOTE: Computing record group 8 of 18 groups
+** NOTE: Computing record group 9 of 18 groups
+** NOTE: Computing record group 10 of 18 groups
+** NOTE: Computing record group 11 of 18 groups
+** NOTE: Computing record group 12 of 18 groups
+** NOTE: Computing record group 13 of 18 groups
+** NOTE: Computing record group 14 of 18 groups
+** NOTE: Computing record group 15 of 18 groups
+** NOTE: Computing record group 16 of 18 groups
+** NOTE: Computing record group 17 of 18 groups
+** NOTE: Computing record group 18 of 18 groups
+** NOTE: Computing records took 2.02759 CPU seconds
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: 0.232104 compare failures per search
+** NOTE: 2.92638e-07 same face failures per search
+** NOTE: Searching took 2.34718 CPU seconds
+There are 28 solutions.
+** NOTE: CPU Time = 4.37 CPU seconds
+
+seed 236748910
+random 12
+i
+   WYB
+   WWB
+   GRY
+GGOYGBRYYOGO
+GGRWRBOBBROO
+OWWRYYGBBROW
+   GRR
+   OYW
+   BYW
+judge 56
+mitm 12
+** NOTE: Nr = 6 Ns = 6
+** NOTE: Allocated 628.762 megabytes of data
+** NOTE: Computing record group 1 of 18 groups
+** NOTE: Computing record group 2 of 18 groups
+** NOTE: Computing record group 3 of 18 groups
+** NOTE: Computing record group 4 of 18 groups
+** NOTE: Computing record group 5 of 18 groups
+** NOTE: Computing record group 6 of 18 groups
+** NOTE: Computing record group 7 of 18 groups
+** NOTE: Computing record group 8 of 18 groups
+** NOTE: Computing record group 9 of 18 groups
+** NOTE: Computing record group 10 of 18 groups
+** NOTE: Computing record group 11 of 18 groups
+** NOTE: Computing record group 12 of 18 groups
+** NOTE: Computing record group 13 of 18 groups
+** NOTE: Computing record group 14 of 18 groups
+** NOTE: Computing record group 15 of 18 groups
+** NOTE: Computing record group 16 of 18 groups
+** NOTE: Computing record group 17 of 18 groups
+** NOTE: Computing record group 18 of 18 groups
+** NOTE: Computing records took 2.01632 CPU seconds
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: 0.284712 compare failures per search
+** NOTE: 2.34111e-06 same face failures per search
+** NOTE: Searching took 2.44649 CPU seconds
+There are 56 solutions.
+** NOTE: CPU Time = 4.46 CPU seconds
+
+-- SAMPLE 2: mitm 13 --
+timing on
+count only on
+time 1000
+seed 738457625
+random 13
+i
+   GYY
+   RWW
+   BYO
+WWWROWBORGRR
+GGRGRBOBWBOY
+RBBOBOWWYOOY
+   YRG
+   YYG
+   BGG
+judge 6
+mitm 13
+** NOTE: Nr = 6 Ns = 7
+** NOTE: Allocated 628.762 megabytes of data
+** NOTE: Computing record group 1 of 18 groups
+** NOTE: Computing record group 2 of 18 groups
+** NOTE: Computing record group 3 of 18 groups
+** NOTE: Computing record group 4 of 18 groups
+** NOTE: Computing record group 5 of 18 groups
+** NOTE: Computing record group 6 of 18 groups
+** NOTE: Computing record group 7 of 18 groups
+** NOTE: Computing record group 8 of 18 groups
+** NOTE: Computing record group 9 of 18 groups
+** NOTE: Computing record group 10 of 18 groups
+** NOTE: Computing record group 11 of 18 groups
+** NOTE: Computing record group 12 of 18 groups
+** NOTE: Computing record group 13 of 18 groups
+** NOTE: Computing record group 14 of 18 groups
+** NOTE: Computing record group 15 of 18 groups
+** NOTE: Computing record group 16 of 18 groups
+** NOTE: Computing record group 17 of 18 groups
+** NOTE: Computing record group 18 of 18 groups
+** NOTE: Computing records took 2.01037 CPU seconds
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: 0.233778 compare failures per search
+** NOTE: 0 same face failures per search
+** NOTE: Searching took 36.5915 CPU seconds
+There are 6 solutions.
+** NOTE: CPU Time = 38.6 CPU seconds
+
+seed 658360980
+random 13
+i
+   ORR
+   WWY
+   ORR
+WGWBBBWGWGGG
+BGWRRYOBWOOY
+YWYBGBYYYGBG
+   OOR
+   BYR
+   OOR
+judge 4
+mitm 13
+** NOTE: Nr = 6 Ns = 7
+** NOTE: Allocated 628.762 megabytes of data
+** NOTE: Computing record group 1 of 18 groups
+** NOTE: Computing record group 2 of 18 groups
+** NOTE: Computing record group 3 of 18 groups
+** NOTE: Computing record group 4 of 18 groups
+** NOTE: Computing record group 5 of 18 groups
+** NOTE: Computing record group 6 of 18 groups
+** NOTE: Computing record group 7 of 18 groups
+** NOTE: Computing record group 8 of 18 groups
+** NOTE: Computing record group 9 of 18 groups
+** NOTE: Computing record group 10 of 18 groups
+** NOTE: Computing record group 11 of 18 groups
+** NOTE: Computing record group 12 of 18 groups
+** NOTE: Computing record group 13 of 18 groups
+** NOTE: Computing record group 14 of 18 groups
+** NOTE: Computing record group 15 of 18 groups
+** NOTE: Computing record group 16 of 18 groups
+** NOTE: Computing record group 17 of 18 groups
+** NOTE: Computing record group 18 of 18 groups
+** NOTE: Computing records took 1.98177 CPU seconds
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: 0.276206 compare failures per search
+** NOTE: 0 same face failures per search
+** NOTE: Searching took 33.5793 CPU seconds
+There are 4 solutions.
+** NOTE: CPU Time = 35.57 CPU seconds
+
+seed 536178435
+random 13
+i
+   RWR
+   YWO
+   GWB
+WGWORYOBYBOB
+RGGWROYBBWOY
+OORYGGWROBYY
+   GRR
+   GYB
+   GBW
+judge 2
+mitm 13
+** NOTE: Nr = 6 Ns = 7
+** NOTE: Allocated 628.762 megabytes of data
+** NOTE: Computing record group 1 of 18 groups
+** NOTE: Computing record group 2 of 18 groups
+** NOTE: Computing record group 3 of 18 groups
+** NOTE: Computing record group 4 of 18 groups
+** NOTE: Computing record group 5 of 18 groups
+** NOTE: Computing record group 6 of 18 groups
+** NOTE: Computing record group 7 of 18 groups
+** NOTE: Computing record group 8 of 18 groups
+** NOTE: Computing record group 9 of 18 groups
+** NOTE: Computing record group 10 of 18 groups
+** NOTE: Computing record group 11 of 18 groups
+** NOTE: Computing record group 12 of 18 groups
+** NOTE: Computing record group 13 of 18 groups
+** NOTE: Computing record group 14 of 18 groups
+** NOTE: Computing record group 15 of 18 groups
+** NOTE: Computing record group 16 of 18 groups
+** NOTE: Computing record group 17 of 18 groups
+** NOTE: Computing record group 18 of 18 groups
+** NOTE: Computing records took 2.05796 CPU seconds
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: 0.27037 compare failures per search
+** NOTE: 0 same face failures per search
+** NOTE: Searching took 37.4371 CPU seconds
+There are 2 solutions.
+** NOTE: CPU Time = 39.49 CPU seconds

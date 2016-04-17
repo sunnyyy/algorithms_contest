@@ -1,0 +1,45 @@
+-- SAMPLE SEARCH 1: Simple Case --
+limit 0
+ss
+1B
+3R
+2O
+judge 2
+search 3
+There are 2 solutions.
+judge 0
+search 2
+There are 0 solutions.
+-- SAMPLE SEARCH 2: Single Solution Case --
+limit 10
+i
+   WGY
+   WWY
+   WWY
+OGGRRGOOOBOB
+GGOBRYBBWOOR
+WBBYGGRRRWWO
+   RYY
+   RYY
+   GBB
+judge 1
+search 6
+2W 2G 2W 1O 3Y 3B
+There are 1 solutions.
+-- SAMPLE SEARCH 3: Multiple Solution Case --
+limit 0
+seed 648903542
+random 6
+i
+   ROY
+   RWB
+   WGO
+GGOGYYGWRGGW
+GGYRRRBBBOOW
+RRBWWRBBBOOB
+   OOY
+   WYY
+   WYY
+judge 2
+search 6
+There are 2 solutions.

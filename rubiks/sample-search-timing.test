@@ -1,0 +1,311 @@
+-- SAMPLE SEARCH TIMING 1: search 6 --
+timing on
+count only on
+seed 764890356
+random 6
+i
+   RRB
+   RWO
+   OWG
+BGGWRYRGOWYY
+YGOYRWBBYBOG
+RBOYOWBBGYWW
+   BWR
+   OYR
+   GGO
+search 6
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: Searching took 0.414564 CPU seconds
+There are 2 solutions.
+** NOTE: CPU Time = 0.41 CPU seconds
+random 6
+i
+   GWW
+   YWW
+   YGB
+RGGOROWGRBBY
+BGGOROWBYROO
+OOYRRRGROWBB
+   BWW
+   YYB
+   YYG
+search 6
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: Searching took 0.408213 CPU seconds
+There are 1 solutions.
+** NOTE: CPU Time = 0.41 CPU seconds
+random 6
+i
+   RWG
+   BWR
+   BWY
+YOOWGGOBRWOG
+YGGRRGOBRWOG
+BBRWWBOOWGRR
+   BBY
+   YYY
+   YYO
+search 6
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: Searching took 0.419019 CPU seconds
+There are 2 solutions.
+** NOTE: CPU Time = 0.42 CPU seconds
+-- SAMPLE SEARCH TIMING 2: search 7 --
+timing on
+count only on
+time 100
+seed 378576384
+random 7
+i
+   YGR
+   YWR
+   RWG
+BBGYOOYBBWRO
+GGYRROBBGYOW
+GGYRROBBWROW
+   BWW
+   OYW
+   OYG
+search 7
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: Searching took 6.0482 CPU seconds
+There are 2 solutions.
+** NOTE: CPU Time = 6.05 CPU seconds
+random 7
+i
+   RWR
+   OWR
+   WYY
+BGRBRGOWWGBY
+RGBYRWOBGYOB
+GBOWRWOYYBGY
+   GGB
+   OYO
+   RWO
+search 7
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: Searching took 5.96236 CPU seconds
+There are 2 solutions.
+** NOTE: CPU Time = 5.96 CPU seconds
+random 7
+i
+   RWY
+   RWY
+   YYW
+GGBRROGGGORW
+GGBRROGBBWOW
+GBBOOWBBBWOY
+   YWR
+   YYO
+   RYO
+search 7
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: Searching took 6.13574 CPU seconds
+There are 26 solutions.
+** NOTE: CPU Time = 6.14 CPU seconds
+-- SAMPLE SEARCH TIMING 3: search 8 --
+timing on
+count only on
+time 600
+seed 932107563
+random 8
+i
+   YOR
+   OWR
+   RBW
+OGBWROGWWGWG
+YGBWRWGBGYOR
+YYWOROYYYROR
+   BGB
+   OYB
+   GBB
+search 8
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: Searching took 90.4808 CPU seconds
+There are 2 solutions.
+** NOTE: CPU Time = 90.48 CPU seconds
+random 8
+i
+   YYO
+   RWW
+   OWW
+GBWBRRBBGWRR
+GGOGRRGBGWOY
+YWOGOOYYGWBB
+   YBB
+   OYO
+   RYR
+search 8
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: Searching took 90.0459 CPU seconds
+There are 2 solutions.
+** NOTE: CPU Time = 90.04 CPU seconds
+random 8
+i
+   YGO
+   WWR
+   GWW
+BBOYGGRWGWYO
+YGGRRRBBBOOO
+BOOBOGRRRBBW
+   WGY
+   WYY
+   RYY
+search 8
+** NOTE: Searching group 1 of 18 groups
+** NOTE: Searching group 2 of 18 groups
+** NOTE: Searching group 3 of 18 groups
+** NOTE: Searching group 4 of 18 groups
+** NOTE: Searching group 5 of 18 groups
+** NOTE: Searching group 6 of 18 groups
+** NOTE: Searching group 7 of 18 groups
+** NOTE: Searching group 8 of 18 groups
+** NOTE: Searching group 9 of 18 groups
+** NOTE: Searching group 10 of 18 groups
+** NOTE: Searching group 11 of 18 groups
+** NOTE: Searching group 12 of 18 groups
+** NOTE: Searching group 13 of 18 groups
+** NOTE: Searching group 14 of 18 groups
+** NOTE: Searching group 15 of 18 groups
+** NOTE: Searching group 16 of 18 groups
+** NOTE: Searching group 17 of 18 groups
+** NOTE: Searching group 18 of 18 groups
+** NOTE: Searching took 91.2086 CPU seconds
+There are 2 solutions.
+** NOTE: CPU Time = 91.21 CPU seconds

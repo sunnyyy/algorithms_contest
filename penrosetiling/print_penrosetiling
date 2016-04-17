@@ -1,0 +1,57 @@
+#! /bin/sh
+#
+# Print penrose tilings.
+#
+# File:		print_penrosetiling
+# Author:	Bob Walton <walton@deas.harvard.edu>
+# Date:		Sat Oct 16 04:49:32 EDT 2010
+#
+# The authors have placed this program in the public
+# domain; they make no warranty and accept no liability
+# for this program.
+
+case "$1" in
+   -doc* )
+   	echo "
+print_penrosetiling filename
+
+    Prints a graphical representation of a penrosetiling
+    problem .in file.
+
+    If ~/.hpcm_contest/who_where is readable the name of
+    the current account is mapped so this account's
+    WHERE field is printed in the page header in place
+    of the current account name, unless the WHERE field
+    is \`WHERE' or \`where' or the account does not
+    match any line in ~/.hpcm_contest/who_where.
+
+    The \`printer_pipe' program is used to locate the
+    printer and update ~/.hpcm_contest/printer_jobs."
+
+    	exit 1
+	;;
+esac
+
+
+
+# Compute `where' from who_where if that exists.
+#
+user=`id -un`
+
+if test -r ${HOME}/.hpcm_contest/who_where; then
+    whowhere=`grep "^$user:" \
+                   ${HOME}/.hpcm_contest/who_where`
+    where=`echo "$whowhere" | cut -d: -f2`
+    case "$where" in
+    "" | WHERE | where )
+        where="$user"
+	;;
+    esac
+else
+    where="$user"
+fi
+
+pipe_penrosetiling "$where $1" \
+    printer_pipe "$where" $1$ < $1
+
+exit 0

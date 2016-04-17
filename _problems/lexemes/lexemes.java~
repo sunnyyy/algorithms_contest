@@ -1,0 +1,87 @@
+import java.util.Scanner;
+import java.util.HashMap;
+
+public class lexemes {
+
+    public static void lex(String in) {
+        HashMap<char,char> hm = new HashMap<char,char>();
+	char[] s = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+	char[] o = "+-*/=.".toCharArray();
+	char[] n = "1234567890".toCharArray();
+	char[] p = "(),;".toCharArray();
+	for (int i = 0; i < s.length; i++) {
+	    hm.put(s[i],'s');
+	}
+	for (int i = 0; i < o.length; i++) {
+            hm.put(o[i],'o');
+        }
+	for (int i = 0;i < n.length; i++) {
+            hm.put(n[i],'n');
+        }
+	for (int i = 0;i < p.length; i++) {
+            hm.put(p[i],'p');
+        }
+	//String nin = "";
+	String out = "";
+	boolean quote = false;
+	boolean num = false;
+	boolean diff = true;
+	for (int i = 0; i < in.length(); i++) {
+
+	    if (quote) {
+		if (in.charAt(i) == '"') {
+		    quote = false;
+		} else {
+		    out += "q";
+		    continue;
+		}
+	    } else if (in.charAt(i) == '"') {
+		out += "q";
+		quote = true;
+	    } else if (number) {
+		if (n.get(in.charAt(i)) != null) {
+		    // i is number
+		    out += "n";
+		} else if (in.charAt(i)=='.') {
+		    if (i < in.length()-1 && n.get(in.charAt(i+1)) != null) {
+			// . is number
+			out += "n";
+		    } else {
+			// . is not number
+			out += "o";
+		    }
+		} else {
+		    num = false;
+		}
+	    } else if (o.get(in.charAt(i)) != null) {
+		out += "o";
+	    } else {
+		out += "i";
+	    }
+	}
+	int osize = out.length();
+	for (int j = osize-2; j >= 0; j++) {
+	    if (out.charAt(j) != out.charAt(j+1)) {
+		out = out.substring(0,j) + " " + out.substring(j+1, out.length());
+		nin = nin.substring(0,j) + "|" + nin.substring(j+1, nin.length());
+	    }
+	}
+	System.out.println(nin);
+	System.out.println(out);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextLine()) {
+            String[] a = sc.nextLine().split(" ");
+            if (a.length == 3) {
+
+            } else {
+
+            }
+        }
+    }
+
+}
+
+

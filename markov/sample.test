@@ -1,0 +1,9 @@
+-- SAMPLE 1 --
+f[1] = 1.000 persistent period 2
+f[2] = 1.000 persistent period 2
+-- SAMPLE 2 --
+f[1] = 0.500 transient aperiodic
+f[2] = 1.000 persistent aperiodic
+-- SAMPLE 3 --
+f[1] = 0.000 transient no-return
+f[2] = 1.000 persistent aperiodic

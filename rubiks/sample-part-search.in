@@ -1,0 +1,63 @@
+-- SAMPLE PART SEARCH 1 --
+limit 0
+ss
+1B
+3R
+2O
+judge 2
+search 3
+judge 385
+search 3 BR/BR
+judge 26
+search 3 BR/BR RW/RW
+judge 18
+search 3 BR/BR RW/RW RY/RY
+judge 9
+search 3 BR/BR RW/RW RY/RY GR/GR
+judge 4
+search 3 BRW/BRW RW/RW RY/RY GR/GR
+judge 4
+search 3 BRW/BRW GWR/GWR RY/RY GR/GR
+judge 4
+search 3 BRW/BRW GWR/GWR BYR/BYR GR/GR
+judge 4
+search 3 BRW/BRW GWR/GWR BYR/BYR GRY/GRY
+judge 2
+search 3 BRW/BRW GWR/GWR BYR/BYR GRY/GRY GOW/GOW
+judge 2
+search 3 BRW/BRW BYR/BYR GRY/GRY GOW/GOW
+-- SAMPLE PART SEARCH 2: Single Solution Case --
+limit 10
+i
+   YYY
+   WWY
+   GGG
+OBWOORWOOBGG
+BGGRRRWBBROO
+BRRBBRWGYGOO
+   YYB
+   YYW
+   WWR
+search 5
+limit 0
+judge 128600
+search 5 GR/GR
+judge 13347
+search 5 GR/GR BR/BR
+judge 1009
+search 5 GR/GR BR/BR OW/OW
+judge 104
+search 5 GR/GR BR/BR OW/OW OY/OY
+judge 3
+search 5 GR/GR BR/BR OW/OW OY/OY GOW/GOW
+limit 10
+judge 1
+search 5 GR/GR BR/BR OW/OW OY/OY GOW/GOW BYR/BYR
+limit 0
+judge 2
+search 5 BR/BR OW/OW OY/OY GOW/GOW BYR/BYR
+limit 10
+judge 1
+search 5 BRW/BRW OW/OW OY/OY GOW/GOW BYR/BYR
+judge 1
+search 5 BRW/BRW OY/OY GOW/GOW BYR/BYR

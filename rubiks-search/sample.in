@@ -1,0 +1,30 @@
+-- SAMPLE SEARCH 1: Simple Case --
+limit 0
+ss
+1B
+3R
+2O
+judge 2
+search 3
+judge 0
+search 2
+-- SAMPLE SEARCH 2: Single Solution Case --
+limit 10
+i
+   WGY
+   WWY
+   WWY
+OGGRRGOOOBOB
+GGOBRYBBWOOR
+WBBYGGRRRWWO
+   RYY
+   RYY
+   GBB
+judge 1
+search 6
+-- SAMPLE SEARCH 3: Multiple Solution Case --
+limit 0
+seed 648903542
+random 6
+judge 2
+search 6

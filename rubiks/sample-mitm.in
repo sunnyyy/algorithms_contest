@@ -1,0 +1,45 @@
+-- SAMPLE 1 --
+limit 10
+i
+   WGY
+   WWY
+   WWY
+OGGRRGOOOBOB
+GGOBRYBBWOOR
+WBBYGGRRRWWO
+   RYY
+   RYY
+   GBB
+judge 1
+mitm 6
+-- SAMPLE 2 --
+limit 0
+time 30
+seed 387598479
+random 8
+judge 0
+mitm 7
+judge 4
+mitm 8
+-- SAMPLE 3 --
+limit 10
+i
+   OWO
+   YWO
+   BWR
+GOOWRWGBBYOY
+BGYGRRYBWGOY
+BRWGGRYRBYWW
+   OOG
+   GYB
+   RBR
+time 30
+judge 1
+mitm 10
+-- SAMPLE 4 --
+limit 0
+time 30
+seed 545971849
+random 9
+judge 2
+mitm 9

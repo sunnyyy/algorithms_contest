@@ -1,0 +1,34 @@
+-- SAMPLE 1: 6 searches --
+count only on
+ss
+judge 1570652
+search 6 BR/BR
+There are 1570652 solutions.
+judge 351026
+search 6 BR/BR RW/RW
+There are 351026 solutions.
+judge 71662
+search 6 BR/BR RW/RW GR/GR
+There are 71662 solutions.
+judge 14612
+search 6 BR/BR RW/RW GR/GR RY/RY
+There are 14612 solutions.
+-- SAMPLE 2: 10 searches --
+count only on
+time 100
+ss
+judge 87442064
+mitm 10 BR/BR RW/RW GR/GR RY/RY
+There are 87442064 solutions.
+judge 633856230
+mitm 10 BR/BR RW/RW GR/GR
+There are 633856230 solutions.
+-- SAMPLE 3: 8 searches --
+count only on
+time 100
+judge 39858482
+mitm 8 BR/BR RW/RW
+There are 39858482 solutions.
+judge 260757294
+mitm 8 BR/BR
+There are 260757294 solutions.

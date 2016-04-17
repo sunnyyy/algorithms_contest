@@ -1,0 +1,32 @@
+-- SAMPLE SEARCH TIMING 1: search 6 --
+timing on
+count only on
+seed 764890356
+random 6
+search 6
+random 6
+search 6
+random 6
+search 6
+-- SAMPLE SEARCH TIMING 2: search 7 --
+timing on
+count only on
+time 100
+seed 378576384
+random 7
+search 7
+random 7
+search 7
+random 7
+search 7
+-- SAMPLE SEARCH TIMING 3: search 8 --
+timing on
+count only on
+time 600
+seed 932107563
+random 8
+search 8
+random 8
+search 8
+random 8
+search 8
