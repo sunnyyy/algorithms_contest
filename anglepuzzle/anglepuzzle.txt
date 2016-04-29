@@ -1,0 +1,118 @@
+Angle Puzzle
+----- ------
+An angle puzzle consists of a finite set of vertices in
+the plane and a set of equations of the form
+
+xyz = some angle
+or
+xyz = ?
+
+where x, y, and z are vertices and x != y != z != x.
+xyz is interpreted as the angle at vertex y in the
+triangle with vertices x, y, and z, if x, y, and z are
+not all on the same infinite line, with this angle being
+positive if traversing from x to y to z goes in the
+counter-clockwise direction about the triangle, and
+negative if clockwise.
+
+But if x, y, and z are on the same infinite line, xyz =
+0 if x and z are on the same side of y, and xyz = 180
+if x and z are on opposite sides of y. These are useful
+ways of saying that x, y, and z are on the same line.
+
+Note that xyz = - zyx always and adding multiples of
+360 to an angle does not change the angle (so 180 and
+-180 are equal as angles). All input and output angles
+are measured in degrees and are in the range (-180,180],
+so +180 is allowed for input/output but -180 is NOT
+allowed and must be replaced by +180.
+
+The puzzle requires you to solve for the ?'s in the
+the equations.
+
+Sample 1 below is actually solvable using elementary
+geometry without trigonometry, but in general you will
+need to use trigonometry to solve these puzzles, as is
+done in sample 2.
+
+Input
+-----
+
+For each of several test cases, first a line with the
+test case name, and then a sequence of lines with equations
+as above, and then a line containing just '.'.
+
+The vertex names are all single capital letters. The
+angles are all in degrees. The only space characters
+in any input line other than the test case name line
+are the two surrounding the '='. No line is longer
+than 80 characters.
+
+No two vertices with different names are identical.
+Input ends with an end of file.
+
+Output
+------
+
+For each test case, a copy of the input but with ALL
+'?'s replaced by numbers. All output angles should have
+exactly 3 decimal places and be in the range
+(-180,+180]. The output should be an exact copy of the
+input except for the replacement of '?'s by the numbers
+and the rounding of input angles to 3 decimal places.
+
+This problem is actually open ended in that we do not
+expect you to find all the angles that might be
+determined from the given input. But you must find the
+angles you are asked to find. These can be found by
+using only non-trigonometric constraints on angles plus
+trigonometrically computed relative positions of the
+vertices of any triangle two of whose angles are known.
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+ABC = 60.000000000
+BCA = 60.000000000
+DBC = 30.000000000
+ADC = 180
+DAB = ?
+ADB = ?
+.
+-- SAMPLE 2 --
+ABD = 60.000000000
+DBC = 20.000000000
+ADC = 180.000000000
+EAB = 70.000000000
+CAE = 10.000000000
+CEB = 180.000000000
+AED = ?
+AEB = ?
+EDB = ?
+CBE = ?
+.
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+ABC = 60.000
+BCA = 60.000
+DBC = 30.000
+ADC = 180.000
+DAB = 60.000
+ADB = -90.000
+.
+-- SAMPLE 2 --
+ABD = 60.000
+DBC = 20.000
+ADC = 180.000
+EAB = 70.000
+CAE = 10.000
+CEB = 180.000
+AED = 20.000
+AEB = -30.000
+EDB = 110.000
+CBE = 0.000
+.

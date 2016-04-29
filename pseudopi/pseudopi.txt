@@ -1,0 +1,141 @@
+Pseudo-Random Computation of PI
+-------------------------------
+
+One of the classic demonstrations of probability is the
+following. The professor draws a large square on the
+blackboard, and draws its inscribed circle. Then standing
+with her back to the board, she throws pieces of
+chalk at the square. After this she counts the number M
+of hits in the circle and the number N >= M of hits in
+the square (including those in the circle), and demonstrates
+that M/N is about PI/4. This is because PI/4 is
+the area of the inscribed circle divided by the area of
+the square, and the probability of hitting any small
+part of the square is roughly identical to hitting any
+other small part of the square.
+
+You have been asked to simulate the demonstration in the
+computer. The square is to be simulated by the unit
+square in the XY-plane, [0,1]x[0,1], which has (0,0) as
+its lower left corner and (1,1) as its upper right
+corner. To simulate throwing the chalk, two random
+integers X and Y are ‘drawn uniformly’ (see below for
+details) from the range 0 .. S-1, where S > 0 is some
+integer. Then the coordinates where the chalk strikes
+are set at ((X + 0.5)/S, (Y + 0.5)/S ). These are
+inside the square, so all our ‘throws’ count toward N.
+They are inside the circle, and count toward M, if and
+only if the chalk strikes at a distance of 0.5 or less
+from the center of the circle, (0.5, 0.5).
+
+Thus if S = 100 and the first two random integers drawn
+are 37 and 69, the chalk point is (0.375,0.695) which
+is distance 0.23 from (0.5,0.5), and is therefore in the
+circle and counts toward both M and N.
+
+Drawing Random Numbers
+------- ------ -------
+You are asked to draw pseudo-random numbers according to
+the equation:
+
+	RANDOM = ( RANDOM * MULTIPLIER ) mod MODULUS
+
+where RANDOM is the value of the pseudo-random number,
+the equation steps from the the last pseudo-random
+number to the next pseudo-random number, and MULTIPLIER
+and MODULUS are fixed values that determine the pseudorandom
+number sequence.
+
+To get started, RANDOM is initialized to a value called
+SEED. The first pseudo-random number in the sequence
+is not SEED, but the first number after SEED in the
+sequence.
+
+If MULTIPLIER and MODULUS have good values for this
+purpose, the resulting sequence of numbers appears when
+tested to be truly random and uniformly distributed in
+the range from 1 through MODULUS - 1. Uniformly distributed
+means all values in this range are equally probable. The choices
+
+	MULTIPLIER = 7**5 = 16807
+	MODULUS = 2**31 - 1 = 2147483647
+
+are very good for this purpose.
+
+For example, if MULTIPLIER and MODULUS are as just
+given, and the SEED is 374332679, then the first two
+random numbers are 1429733890 and 1342962947.
+A remaining difficulty is how to convert uniformly
+distributed integers from 1 through MODULUS - 1 to
+uniformly distributed integers from 0 through S-1. An
+easy solution, which we will adopt, is to set
+
+S = MODULUS - 1
+
+and subtract 1 from each value of RANDOM. Thus ‘a chalk
+throw’ is simulated by executing
+
+	RANDOM = ( MULTIPLIER * RANDOM ) mod MODULUS
+	X = RANDOM - 1
+	X = (X + 0.5 ) / S
+	RANDOM = ( MULTIPLIER * RANDOM ) mod MODULUS
+	Y = RANDOM - 1
+	Y = (Y + 0.5 ) / S
+
+to yield (X,Y) in the unit square.
+
+Implementation of the above algorithm requires integers
+longer than 32 bits. In C or C++ you can use doubles
+and the fmod function. Or you can use ‘long long’s and
+the % operator. In JAVA you can use ‘long’s and the %
+operator. Remember, ‘long’s are only 32 bits in C and
+C++, but are 64 bits in JAVA. ‘long long’s are 64 bits
+in C and C++.
+
+Input
+-----
+
+For each of several test cases, one line containing
+four numbers in the order:
+
+	N MULTIPLIER MODULUS SEED
+
+The numbers may be separated by spaces or tabs. All
+input numbers are positive integers below 2**31 (but
+some products computed by intermediate computations will
+be larger).
+
+Input ends with an end of file.
+
+The simulation is to be done with RANDOM initialized to
+SEED (SEED is NOT the first pseudo-random number) and
+S = MODULUS - 1.
+
+Output
+------
+
+For each test case one line containing five numbers in
+the order:
+
+N MULTIPLIER MODULUS SEED PI_ESTIMATE
+
+where the first four numbers are copied from the input,
+and PI_ESTIMATE equals 4*M/N expressed as a decimal
+number with exactly 5 decimal places.
+
+Example Input
+------- -----
+100     16807 2147483647 374332679
+1000    16807 2147483647 374332679
+10000   16807 2147483647 374332679
+100000  16807 2147483647 374332679
+1000000 16807 2147483647 374332679
+
+Example Output
+------- ------
+100 16807 2147483647 374332679 3.20000
+1000 16807 2147483647 374332679 3.13600
+10000 16807 2147483647 374332679 3.15960
+100000 16807 2147483647 374332679 3.13888
+1000000 16807 2147483647 374332679 3.14167
+

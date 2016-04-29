@@ -1,0 +1,69 @@
+Changing Point of View
+-------- ----- -- ----
+TeffalHead FatBody has stayed out too late on the planet
+BadTrash and is in danger of being consumed by a Larger
+BageGarLectorCol. To get to safety TeffalHead must get
+to base A or base B or the ZoomTube that connects them.
+He knows his own position, C, and the ZoomTube is a
+perfectly straight line between A and B (woe betide a
+zoomer in a curved ZoomTube). TeffalHead needs to know
+immediately which he is closest to, A, B, or some point
+on the ZoomTube between A and B.
+
+TeffalHead knows the xy-coordinates of points A, B, and
+C. Like any good robotminded soul, he expects to translate
+and rotate the xy-coordinate system to make a new
+x’y’-coordinate system in which A has x’y’-coordinates
+(0,0) and B has x’y’-coordinates (L,0), where L is the
+distance from A to B. Then the answer can be easily
+read from the x’ coordinate of C.
+
+Unfortunately, living up to his first name, which means
+‘forgetful in emergencies’, TeffalHead has forgotten the
+program that finds the x’y’-coordinate system. He as
+put out a call for help, and as the only emergency proggrammer
+within range, you must send him a program tout
+de suite.
+
+Note you are permitted to translate and rotate the
+xy-coordinates, but NOT to reflect across a coordinate
+axis. Unnecessary reflections are a terrible breech
+of robot etiquette. Thus the y’ coordinate of C is
+unambiguous.
+
+Input
+-----
+For each of several cases, one line, containing
+
+Ax Ay Bx By Cx Cy
+
+where the xy-coordinates of points A, B, and C are respectively
+(Ax,Ay), (Bx,By), and (Cx,Cy). Input ends
+with an end of file.
+
+Output
+------
+For each case one line containing:
+
+(Cx’,Cy’) L ANS
+
+where (Cx’,Cy’) are the x’y’-coordinates of C, L is
+the length of AB, and ANS is one of the following:
+
+A If TeffalHead is closest to A.
+B If TeffalHead is closest to B.
+ZoomTube If TeffalHead is closest to a point on the ZoomTube between A and B.
+
+The x’y’-coordinates and L must be accurate to plus or minus 0.001.
+
+Sample Input
+------ -----
+0 0 1 0 0.5 -6
+5.0 3.0 5.5 2.5 5.0 4.0
+5.0 3.0 5.5 2.5 5.0 1.0
+
+Sample Output
+------ ------
+(0.500,-6.000) 1.000 ZoomTube
+(-0.707,0.707) 0.707 A
+(1.414,-1.414) 0.707 B

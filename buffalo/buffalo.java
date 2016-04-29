@@ -17,21 +17,21 @@ public class buffalo {
 	int p31 = (x1 - x3) * (yi - y3) - (y1 - y3) * (xi - x3);
 	int[] b = {p12, p23, p31};
 	for (int i = 0; i < 3; i++) {
-	    if (b[i] < 0) {
-		s += "R";
-	    } else {
-		s += "L";
-	    }
+		if (b[i] < 0) {
+			s += "R";
+		} else {
+			s += "L";
+		}
 	}
 	return s;
     }
 
-    public static void main(String[] args) {
-	Scanner s = new Scanner(System.in);
-	while (s.hasNextLine()) {
-	    String[] a = s.nextLine().split(" ");
-	    System.out.println(buf(a));
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		while (s.hasNextLine()) {
+			String[] a = s.nextLine().split(" ");
+			System.out.println(buf(a));
+		}
 	}
-    }
 
 }

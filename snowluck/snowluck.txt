@@ -1,0 +1,96 @@
+Snow Maze Luck
+---- ---- ----
+The scouts have a fun winter game called 'Snow Maze'.
+They find a bunch of trees and put a target on each.
+Next to each targeted tree they place two arrows, one
+red and one green, each pointing at another targeted
+tree, though this second tree can often not be seen
+from the first tree, due to the other non-targeted
+trees in the woods. One of the trees is designated
+as the start, and another as the goal.
+
+To progress through the maze a scout fires a snowball
+at the target on the tree the scout is currently at. If
+the scout hits the bulls eye, the scout goes next to the
+targeted tree pointed at by the green arrow beside the
+tree the scout is at. If the scout misses, the scout
+follows the red arrow. In each case, the scout must use
+a compass to go in a straight line through the forest
+until the scout finds the next targeted tree.
+
+When setting up the contest, the organizers want to
+know the minimum distance a scout would travel if
+the scout hit H bulls eyes and missed the rest of the
+time and was maximally lucky as to which targets the
+scout hit.
+
+The first step is computing the distances between each
+targeted tree and its red and green arrow next targeted
+trees. The second step is computing the minimum
+distances for each H. The first step has been done for
+you: you must do the second step.
+
+Input
+-----
+For each test case:
+Line 1: The test case name.
+
+Line 2:
+The number N of targeted trees. The trees are
+numbered 1, 2, ..., N. Tree 1 is always the
+start tree, and tree N the goal. 2 <= N <= 50.
+
+Lines 3..N+1:
+One line for each tree T in the order from tree
+T=1 to tree T=N-1. Tree T’s line contains the
+red target next tree number R, the distance from
+T to R, the green target next tree number G, and
+the distance from T to G, in order. All numbers
+are integers. Distances are from 1 through 10.
+Note there is no line for T=N.
+
+The input ends with and end of file.
+
+In the data that will be use to test your solution,
+the distances between trees are not required to make
+geometric sense: e.g., tree 1 can be 1 unit from
+tree 2 and tree 2 can be 2 units from tree 3 while tree
+1 is 8 units from tree 3. Also, the red and green
+arrows of a tree can both point at the same tree.
+
+Output
+------
+Two lines for each test case. The first line is an
+exact copy of the test case name line. The second line
+contains N+1 values that correspond to H=0, H=1, ...,
+H=N from left to right. For each H, the corresponding
+value is the the minimum distance of a path with H bulls
+eyes; or is ‘X’ if no such path exists.
+
+Note that a path can loop back on itself. However,
+once a path arrives at tree N, the path must stop.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+4
+2 1 4 8
+1 10 3 1
+4 10 4 10
+-- SAMPLE 2 --
+5
+3 1 2 1
+4 2 1 1
+5 4 2 6
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+X 8 12 X X
+-- SAMPLE 2 --
+5 9 7 11 9 13
+1 1 3 2

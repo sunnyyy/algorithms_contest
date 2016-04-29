@@ -1,0 +1,153 @@
+Mirrors
+-------
+Rosie the Robot has heard that every isometry of a plane
+can be constructed by at most 3 reflections. She's not
+sure what this means, but she's determined to find out.
+Her first thought is to find out what a reflection is.
+
+She finds that a reflection about a straight line L in
+the plane is a map taking a point (x,y) in the plane to
+a point (x',y') such that
+
+(1) (x',y') == (x,y) if and only if (x,y) is on L
+
+(2) if (x,y) is NOT on L, the straight line between (x,y)
+and (x',y') is perpendicular to L and L bisects this line
+
+Rosie decides to see how this works by computing (x',y')
+given (x,y) and L for some examples. The next question
+is how to specify L. She decides to do this by giving
+two points, (x1,y1) and (x2,y2) on L.
+
+Your task is to write the program Rosie will use to
+compute (x',y') given (x,y), (x1,y1), (x2,y2).
+
+The following picture visualizes the situation:
+
+          (x,y)
+            |
+            |      (x1,y1)             (x2,y2)
+L ----------+---------*-------------------*------
+            |
+            |
+         (x',y')
+
+If L is a mirror and you are on the same side as (x,y)
+looking at L and seeing (x,y) reflected in the mirror,
+then this mirror reflection of (x,y) will appear to be
+at (x',y').
+
+Input
+-----
+For each of several test cases, a line containing just
+the test case name, followed by a line containing
+
+x1 y1 x2 y2
+
+giving the points (x1,y1), (x2,y2) that specify the
+line L, followed by one or more lines each containing
+
+x y
+
+giving a point (x,y) that is to be reflected about
+L, followed by a line containing just '*'.
+
+All numbers are decimals with no more than 3 decimal
+places and an absolute value not greater than 10. No
+line will be longer than 80 characters. Input ends
+with an end of file.
+
+Output
+------
+For each test case, first an exact copy of the test case
+name line, then a line of the form
+
+x1 y1 x2 y2
+
+that is the same as the test case second input line
+except generally with a different number of decimal
+places and different spacing, and then for each x y
+test case input line one line of the form:
+
+x y x' y'
+
+repeating x and y and giving the point (x',y') that
+is (x,y) reflected about L. Output for the test case
+ends with a line containing just '*'.
+
+Each number output should take exactly 8 columns and
+have exactly 3 decimal places.
+
+Sample Input
+------ -----
+
+-- X-AXIS --
+0 0 1 0
+0 0
+0 1
+1 0
+-1 0
+0 -1
+*
+-- HORIZONTAL LINE --
+0 1 1 1
+0 0
+0 1
+1 0
+-1 0
+0 -1
+-4 -10
+*
+-- 45 DEGREE DIAGONAL --
+0 0 1 1
+0 0
+0 1
+1 0
+-1 0
+0 -1
+*
+-- ARCTAN 3/4 = 36.86989765 DEGREE DIAGONAL --
+0 0 4 3
+0 0
+0.5 0
+-0.333 0.667
+0.25 9.125
+-7.359 8.004
+*
+
+Sample Output
+------ ------
+
+-- X-AXIS --
+   0.000   0.000   1.000   0.000
+   0.000   0.000   0.000   0.000
+   0.000   1.000   0.000  -1.000
+   1.000   0.000   1.000   0.000
+  -1.000   0.000  -1.000   0.000
+   0.000  -1.000   0.000   1.000
+*
+-- HORIZONTAL LINE --
+   0.000   1.000   1.000   1.000
+   0.000   0.000   0.000   2.000
+   0.000   1.000   0.000   1.000
+   1.000   0.000   1.000   2.000
+  -1.000   0.000  -1.000   2.000
+   0.000  -1.000   0.000   3.000
+  -4.000 -10.000  -4.000  12.000
+*
+-- 45 DEGREE DIAGONAL --
+   0.000   0.000   1.000   1.000
+   0.000   0.000   0.000   0.000
+   0.000   1.000   1.000   0.000
+   1.000   0.000   0.000   1.000
+  -1.000   0.000  -0.000  -1.000
+   0.000  -1.000  -1.000  -0.000
+*
+-- ARCTAN 3/4 = 36.86989765 DEGREE DIAGONAL --
+   0.000   0.000   4.000   3.000
+   0.000   0.000   0.000   0.000
+   0.500   0.000   0.140   0.480
+  -0.333   0.667   0.547  -0.506
+   0.250   9.125   8.830  -2.315
+  -7.359   8.004   5.623  -9.306
+*
