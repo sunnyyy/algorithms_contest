@@ -1,6 +1,27 @@
 import java.util.Scanner;
 import java.util.Math;
 
+/* ********************************************************************************
+Input
+-----
+
+For each of several test cases, one line containing
+four numbers in the order:
+
+	N MULTIPLIER MODULUS SEED
+
+Output
+------
+
+For each test case one line containing five numbers in
+the order:
+
+N MULTIPLIER MODULUS SEED PI_ESTIMATE
+
+where the first four numbers are copied from the input,
+and PI_ESTIMATE equals 4*M/N expressed as a decimal
+number with exactly 5 decimal places.
+******************************************************************************** */
 public class pseudopi {
 
 	public static void pi(String line) {
@@ -24,7 +45,8 @@ public class pseudopi {
 				m++;
 			}
 		}
-		double est = ((double) m)/n;
+		double est = 4* ((double) m)/n;
+		
 		System.out.println(n+" "+mult+" "+mod+" "+seed+" "+est);
 	}
 
