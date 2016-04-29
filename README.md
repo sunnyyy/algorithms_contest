@@ -8,19 +8,26 @@ My solutions to practice problems for ACM & other contests.
 - spoonerisms _(Balgorfest 2016)_
 
 ##Done but needs testing:
+- changeview
 - piglatin
+- pseudopi
+- simplefsm
+- snowluck
 - turtledraw
+- 
+- 
 
 ##Partway done:
+- anglepuzzle
 - drunkard ?
 - lexemes ?
+- mirrors
+- xmole
 
 ##To-do:
-- anglepuzzle
 - betterbias
 - birthday
 - blowfish
-- changeview
 - convoy
 - delaunay
 - fractals
@@ -31,7 +38,4 @@ My solutions to practice problems for ACM & other contests.
 - pseudopi
 - reflect
 - rubiks - **ALL**
-- simplefsm
-- snowluck
 - trends
-- xmole
