@@ -1,4 +1,4 @@
-# algorithms_contest
+# algorithms_contes]\['[p=]]]']
 My solutions to practice problems for ACM & other contests.
 
 ##Solved & accurate:
@@ -14,8 +14,6 @@ My solutions to practice problems for ACM & other contests.
 - simplefsm
 - snowluck
 - turtledraw
-- 
-- 
 
 ##Partway done:
 - anglepuzzle
@@ -39,3 +37,8 @@ My solutions to practice problems for ACM & other contests.
 - reflect
 - rubiks - **ALL**
 - trends
+
+###CCSCNE 2016:
+2. lcddisplay
+6. electriccars
+7. emirp

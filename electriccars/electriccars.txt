@@ -1,0 +1,45 @@
+CCSCNE 2016 - Programming Contest
+
+Problem 6: Electric Cars
+
+The availability of charging stations is a factor that needs to be considered
+when planning a trip in an electric car. In this problem, compute the minimum
+trip distance between two points.
+
+A graph which represents a road network will be provided, you may assume that
+a charging station is at each node. What is the length of the shortest path
+between two nodes, taking into account the range restriction of the car?
+
+Input
+-----
+1. A non-negative integer describing the range of the car.
+2. The program should exit if the range is zero.
+3. A comma-separated list of the nodes. Each node is described by a single
+   uppercase letter.
+4. The next line has a positive integer describing how many edges are in the
+   graph.
+5. Each edge is described by a comma-separated list of the two vertices, and
+   the distance. Edges are bi-directional.
+6. After the edges, comma-separated pairs of edges denote potential trips.
+7. Queries about this graph will be terminated by a period ('.') on a line by
+   itself.
+8. The program should continue accepting graphs and queries until the range
+   of the car is 0.
+
+Output
+------
+1. The program should output the shortest distance of the path that a car with
+   that range can take to get between the two points.
+2. If there is no path possible for that car, then the program should output
+   -1.
+
+
+Sample Input
+------ -----
+50
+A,B,C
+3
+A,B,75
+C,A,25
+C,B,30
+A,B
