@@ -1,0 +1,213 @@
+The 1D Drunkard
+--- -- --------
+
+Some scientific algorithms require random numbers as
+input.  However, with modern inexpensive computers,
+which do not have error detecting RAM memory, it is
+also important to be able to repeat computer runs,
+in order to check that they are correct.
+
+A solution is to use a pseudo-random number generator
+that produces an apparently random but actually repeat-
+able series of numbers.
+
+The following is a classic pseudo-random number genera-
+tor:
+
+	r(0) = seed	/* must not be zero */
+	r(i+1) =  r(i) * (7**5) mod (2**31 - 1)
+
+where
+
+	7**5 = 16807
+	2**31 - 1 = 2147483647
+	0 < seed < 2147483647
+
+Here r(0), r(1), r(2), ... is the sequence of pseudo-
+random numbers generated.  Because 2**31 - 1 is prime,
+this sequence is 2**31 - 2 numbers long before it re-
+peats.  This particular sequence has been extensively
+tested and found to do very well in common tests of
+randomness.
+
+You are asked to use this random number generator to
+simulate a drunkard's walk in a one dimensional world.
+The drunkard starts at position zero.  A random number
+is acquired.  If that is odd, the drunkard `steps right'
+by adding 1 to his current position.  If it is even, the
+drunkard `steps left' by subtracting 1 from his current
+position.  Successive steps are taken as successive ran-
+dom numbers are acquired.  The first random number
+acquired is the seed, and thereafter the equation
+
+  next_number =  ( last_number * 16807 ) mod 2147483647
+
+is used to produce more random numbers.  The current
+position can become a negative integer.
+
+Note
+----
+
+When programming this in C or C++ use the `long long'
+number type, as in:
+
+       long long multiplier = 16807;
+       long long modulus = 2147483647;
+       int seed, next;
+       . . . .
+       next = seed;	// First random number.
+       . . . .
+       // Compute next random number.
+       next = (int)
+              ( ( multiplier * next ) % modulus );
+
+The JAVA code is the same but `long long' is replaced by
+`long'.
+
+Input
+-----
+
+Lines each of which contains one command.  There are two
+kinds of command.
+
+The   	 W m seed
+
+command, where m > 0 and seed are integers and W is the
+character `W', causes the output of a graph of an m step
+drunken walk, with the first random number being seed.
+
+The	      H m n seed
+
+command, where m > 0, n > 0, and seed are integers, out-
+puts a histogram of the position the drunkard ends up in
+after after m steps.  The drunkard's m-step walk is sim-
+ulated n times, and H(p) is computed to be the number of
+those times that the drunkard's final position after m
+steps is p.  The random number is NOT reset after each
+walk simulation, so except for the first walk, the first
+random number of a walk is the next random number after
+the last random number of the previous walk.  The first
+random number of the first walk is of course the seed.
+You can assume m <= 1000.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+The first thing each command outputs is a line contain-
+ing exactly one `-' and nothing else.  This separates
+the command output from the previous output.
+
+The graph output for the `W' command consists of m+1
+lines, each outputting one position.  The first position
+output is 0, and the next m lines output the position
+after each of the m steps.  The line outputting a posi-
+tion p consists of exactly p + 35 space characters
+followed by a single `*' character, and nothing else.
+The input will be such that the position never gets
+outside the range from -35 to +35 for a `W' command.
+
+The histogram output by the `H' command consists of one
+line for p = -m, -m+2, -m+4, ..., m-4, m-2, m.  This
+line contains
+
+	p           H(p)           P(p)
+
+where p is the position, H(p) is the number of times the
+drunkard ended in position p after m steps starting in
+position 0, and P(p) is a theoretical estimate of H(p)
+computed by
+
+	     P(p) = 2 * n * N(p,m)
+
+	         N(p,m) =   exp ( - p**2 / ( 2 * m ) )
+		 	     / sqrt ( 2 * PI * m )
+
+Here p and H(p) are integers, but P(p) is a floating
+point number.  p, H(p), and P(p) must be each be printed
+right adjusted in 15 columns, and P(p) must have exactly
+1 decimal place.
+
+Note that for p equal -m+1, -m+3, ..., m-3, m-1, P(p) is
+zero, which is why no lines are printed for these p.  If
+m is even p must be even, and if m is odd p must be odd,
+for the drunkard at an even position must step to an odd
+position, and at an odd position must step to an even
+position.
+
+N(p,m) is the normal probability distribution with mean
+0 and standard deviation sqrt(m).  p can be shown to be
+a random variable with the same mean and standard devia-
+tion.  The reason for the `2 *' in the equation for P(p)
+is that H(p) is zero for every other value of p, so
+H(p) is approximated by the integral of n * N(p,m) over
+an interval of length 2.  Another way of putting this
+is that the sum of all the H(p) for different p is n,
+and to make the sum of the P(p) for p = -m, -m+2, ...,
+m-2, m be approximately n, we have to add the factor 
+`2 *'.
+
+
+Sample Input
+------ -----
+
+W 20 7456353
+H 10 1000 276089259
+
+
+Sample Output
+------ ------
+
+-
+                                   *
+                                    *
+                                     *
+                                      *
+                                       *
+                                        *
+                                       *
+                                      *
+                                       *
+                                      *
+                                     *
+                                      *
+                                     *
+                                    *
+                                   *
+                                    *
+                                     *
+                                    *
+                                     *
+                                      *
+                                     *
+-
+            -10              4            1.7
+             -8              7           10.3
+             -6             41           41.7
+             -4            106          113.4
+             -2            223          206.6
+              0            254          252.3
+              2            193          206.6
+              4            120          113.4
+              6             43           41.7
+              8              9           10.3
+             10              0            1.7
+
+
+File:	        drunkard.txt
+Author:		   Bob Walton <walton@deas.harvard.edu>
+Date:		      Fri Oct 29 06:22:50 EDT 2004
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: hc3-judge $
+    $Date: 2004/10/29 10:23:16 $
+    $RCSfile: drunkard.txt,v $
+    $Revision: 1.6 $
+

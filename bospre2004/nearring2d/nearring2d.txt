@@ -1,0 +1,95 @@
+Drop by When You are Near the Ring
+---- -- ---- --- --- ---- --- ----
+
+Oliver lives on a ring, a rather large spinning circle
+of metal in space.  He and his fellow Dogplovians get
+around in one-time-spaceships, which are discarded
+after a single use.  Typically, to get home Oliver aims
+his current ship more or less at the ring, fires the
+motor till its empty, then waits till he is closest to
+the ring, hops in his personal spacepod, and motors
+straight home in it.
+
+Oliver has lost his computer programs and desperately
+needs you to write him one that will calculate when
+he is closest to his ring.  In Dogplovian coordinates,
+the ring is in the xy plain centered on the origin.  The
+input is the point where Oliver fired his motor and the
+velocity achieved (instantaneously for computational
+purposes).  For convenience assume the motor is fired
+at time 0.
+
+Note that distance to the ring is measured from the
+spaceship to the nearest point on the ring, as once
+Oliver gets to the ring he takes the `circle train' to
+his domicile.  Note also that all distances are in
+dogbounds, and times in dogbarks, but you do not really
+need to use this knowledge.
+
+Ah, and we almost forgot to mention.  Luckily for you,
+Oliver lives in two dimensional space, and not three
+dimensional space.
+
+
+Input
+-----
+
+For each case, a single line containing the 5 numbers
+
+    r x y vx vy
+
+where r is the radius of the ring, (x,y) the point where
+the motor is fired at time 0, and (vx,vy) the velocity
+achieved at time 0.  The velocity is constant after time
+0.
+
+An end of file terminates the input.
+
+
+Output
+------
+
+For each case, a single line containing the 2 numbers
+
+    t d
+
+where t is the time Oliver's spaceship is closest to the
+ring and d is the distance between the spaceship and the
+ring at that time.  Both numbers must be printed with
+exactly 3 decimal places.
+
+The input will be such that t > 0 is always true; i.e.,
+the spaceship will never be headed away from the ring.
+
+
+Example Input
+------- -----
+
+1.0 -1.00 2.00 1 0
+1.0 0 2 0.5 -0.5
+10.0 1 1 1 1
+10.0 1 1 -0.1 -0.1
+
+Example Output
+------- ------
+
+1.000 1.000
+2.000 0.414
+6.071 0.000
+80.711 0.000
+
+
+File:     nearring.txt
+Author:	     Bob Walton <walton@deas.harvard.edu>
+Date:	        Thu Oct 21 07:23:18 EDT 2004
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2004/10/21 11:24:04 $
+    $RCSfile: nearring2d.txt,v $
+    $Revision: 1.5 $

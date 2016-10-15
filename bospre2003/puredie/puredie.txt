@@ -1,0 +1,90 @@
+Pure Dice
+---- ----
+
+Olvk is very concerned by bias on dice, and wants to
+make an unbiased 6-sided dice.  He does this by taking
+an N sided dice and throwing it 3 times.  If the 3
+values thrown are different, they can come out in one of
+6 orderings, and each ordering has the same probability.
+By assigning a number from 1 through 6 to each of the 6
+orderings, Olvk effectively has an unbiased 6-sided
+dice.
+
+For example, if S represents the smallest of three
+different values, M the middle value, and L the largest
+value, then the 6 orderings might be assigned values by
+
+       SML  1
+       SLM  2
+       MSL  3
+       MLS  4
+       LSM  5
+       LMS  6
+
+One problem is that the three values may not all be
+different: if N were 6, one might throw 115 or even 111.
+In this case Olvk choses to ignore the three values he
+just threw, and throw 3 more times.  If we call a set of
+3 throws a `round', Olvk keeps throwing rounds until he
+gets 3 different values.  Olvk must throw M rounds to
+get an 1 unbiased throw if the first M-1 rounds each
+have 2 or 3 equal values and the M'th round does not.
+
+You are asked to compute the probability that Olvk will
+need exactly M rounds to get 1 unbiased value, given N
+and the probabilities that each of the N faces of the
+biased dice will be thrown.
+
+
+Input
+-----
+
+For each case, 1 line containing
+
+    M N p1 p2 ... pN
+
+where M and N are as above and p1, p2, ..., pN are the N
+probabilities that each of the N faces of the biased die
+will be thrown.  1 <= M <= 100.  4 <= N <= 20.
+0.0 <= pI <= 1.0, for I from 1 through N.  The sum of
+the pI's is 1.0.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+One line per case containing the probability that it
+will take Olvk exactly M rounds to get his first un-
+biased value.  This probability must have exactly 6
+decimal places.
+
+
+Example Input
+------- -----
+
+1 4 0.2 0.2 0.2 0.4
+3 4 0.2 0.2 0.2 0.4
+
+Example Output
+------- ------
+
+0.336000
+0.148141
+
+
+File:	   puredie.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Sat Oct 18 22:07:29 EDT 2003
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2003/10/19 02:07:56 $
+    $RCSfile: puredie.txt,v $
+    $Revision: 1.7 $

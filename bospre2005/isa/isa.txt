@@ -1,0 +1,154 @@
+Is It or Isn't It?
+-- -- -- ----- ---
+
+The `Is A' relation follows some very simple rules.  For
+example, if
+
+	 x is a Y
+	 Y is a Z
+then
+	x is a Z
+
+Here x is a proper noun, like `Jill' or `Jack', denoting
+a particular object, and Y and Z are generic nouns, like
+`mammal' or `animal', denoting properties.  So the above
+is like
+
+   Jack is a mammal
+   mammal is a animal
+
+therefore
+
+	Jack is a animal
+
+all of which, of course, needs further editing to be
+good English, but is good enough for the internal
+thoughts of a computer.
+
+You are given some data consisting of nothing but `is a'
+relations in which all objects are named by single lower
+case letters and all properties are named by single
+upper case letters.  You are then asked questions like
+
+      x is a Z?
+
+which according to the above data has the answer `true'.
+However, if you cannot deduce that something is true,
+then it is not necessarily false, so given the above
+data if you are asked
+
+     x is a W?
+
+the answer should be `unknown', and NOT `false'.
+
+
+Input
+-----
+
+A sequence of test cases.
+
+Each test begins with a sequence of data lines, each of
+the form
+
+    x is a Y
+
+or the form
+
+   X is a Y
+
+where x can be replaced by any lower case letter and
+X and Y can be replaced by any upper case letters.
+
+Following the data lines is a sequence of question
+lines, each of the form
+
+       x is a Y?
+
+or the form
+
+   X is a Y?
+
+where x can be replaced by any lower case letter and
+X and Y can be replaced by any upper case letters.
+
+The question lines are followed by a single end line
+containing just `.', which ends the test case
+
+The input terminates with an end of file.
+
+To make input easy, each data line is exactly 8 charac-
+ters, each question line exactly 9 characters, charac-
+ters 2 through 7 of each line are ` is a ', characters
+1 and 8 of each line are letters, and character 9 of
+each question line is `?'.  Character 8 must be upper
+case, while character 1 may be lower or upper case.
+
+Also to make the algorithm easier, each test case will
+be such that if you can deduce that `X is a Y' is true,
+then you CANNOT also deduce that `Y is a X' is true.
+Thus there are no `loops' in the deductions.
+
+
+Example Input
+------- -----
+
+x is a P
+P is a Q
+Q is a R
+R is a S
+P is a M
+M is a N
+x is a P?
+x is a S?
+R is a P?
+Q is a N?
+.
+B is a C
+B is a D
+B is a E
+x is a D
+C is a E?
+E is a B?
+x is a B?
+.
+
+Output
+------
+
+For each test case, a sequence of answer lines that
+correspond to the test case question lines, followed by
+a single end line containing nothing but `.'.
+
+An answer line contains nothing but `true' or `unknown',
+according to whether or not the statement in the corres-
+ponding question line can be deduced from the data or
+not.
+
+
+Example Output
+------- ------
+
+true
+true
+unknown
+unknown
+.
+unknown
+unknown
+unknown
+.
+
+File:	   isa.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Mon Oct 17 00:00:54 EDT 2005
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2005/10/17 04:01:09 $
+    $RCSfile: isa.txt,v $
+    $Revision: 1.5 $

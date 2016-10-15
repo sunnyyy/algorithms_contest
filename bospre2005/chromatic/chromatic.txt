@@ -1,0 +1,121 @@
+Chromatic Polynomials
+--------- -----------
+
+Given an undirected graph G (a set of vertices and
+edges) let P(G,n) be the number of ways to color G with
+n colors so no adjacent vertices have the same color.
+
+If e is an edge of G between vertices x and y, then
+
+    P(G,n) = number of ways to color G such that no 2
+             adjacent vertices OTHER THAN x or y have
+	          the same color
+
+		     - number of ways to color G such that no 2
+             adjacent vertices OTHER THAN x or y have
+	          the same color, AND x and y do have the
+		       same color
+
+		          = P(G',n) - P(G'',n)
+
+where G' is the graph made from G by deleting edge e,
+and G'' is the graph made from G by merging x and y,
+deleting e, and deleting any duplicates of edges in
+the resulting graph.  That is, if in G e1 is an edge
+from x to z and e2 is an edge from y to z then in G''
+x and y become the same vertex so e1 and e2 are now the
+same edge and one of these must be deleted to avoid
+duplicate edges.
+
+G' and G'' both have fewer edges than G.  By repeating
+this process you can reduce the problem to computing
+the number of ways of coloring a graph with no edges
+with n colors.  This is just n**d, where d is the number
+of vertices in the graph with no edges.
+
+Therefore P(G,n) is a polynomial in n of degree |G|,
+where |G| is the number of vertices in G.  You are asked
+to compute P(G,n) for various G.
+
+
+Input
+-----
+
+For each of several test cases, a specification of a
+graph G as follows:
+
+   A line containing the number V of vertices.
+   1 <= V <= 10.
+
+   V lines each containing V binary digits
+     (`0's and `1's).
+
+Vertices are identified by integers i, 1 <= i <= V.
+Lines of digits are numbered 1, 2, 3, from the first
+line to the last line.  Digits in a line are numbered
+1, 2, 3, from left to right. 
+
+For 1 <= i,j <= V, digit j of line i is `1' if vertex
+i is adjacent to vertex j, and `0' otherwise.  Digit
+j of line i equals digit i of line j, and digit i of
+line i is `0' (a vertex is NOT adjacent to itself).
+
+No lines contain any spaces.  The input terminates
+with an end of file.
+
+Output
+------
+
+For each case, a single line containing V+1 integers,
+which are the coefficients of P(G,n) from high order
+to low order.
+
+
+Example Input
+------- -----
+
+3
+000
+000
+000
+3
+011
+101
+110
+5
+01000
+10100
+01010
+00101
+00010
+5
+01001
+10100
+01010
+00101
+10010
+
+
+Example Output
+------- ------
+
+1 0 0 0
+1 -3 2 0
+1 -4 6 -4 1 0
+1 -5 10 -10 4 0
+
+
+File:	   chromatic.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Mon Oct 17 03:05:49 EDT 2005
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2005/10/17 07:06:04 $
+    $RCSfile: chromatic.txt,v $
+    $Revision: 1.3 $

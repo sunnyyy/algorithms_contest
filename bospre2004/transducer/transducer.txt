@@ -1,0 +1,205 @@
+Transducer Problem
+---------- -------
+
+An NDFT, or non-deterministic finite transducer, is an
+NDFA, a non-deterministic finite automaton, with output.
+We will first describe NDFA's and introduce the notation
+we will use, and then we will describe NDFT's.  You
+will be asked to simulate the execution of NDFT's.
+
+An NDFA consists of a labeled directed graph, with nodes
+called `states' and arrows called `transitions', and two
+designated nodes of the graph: the start and stop state.
+We will use strictly positive integers, 1, 2, 3, ..., as
+labels of states, and lower case letters, a, b, c, ...,
+as labels of transitions.  We will denote a transition
+as
+
+	LABEL : ORIGIN -> TARGET
+
+where LABEL is the transition label, ORIGIN is the label
+of the transition origin state, and TARGET is the label
+of the transition target state.  An NDFA can be describ-
+ed by a sequence of such transition denotations and the
+labels of the start and stop states.
+
+A path through an NDFA is a sequence of transitions with
+the target of each but the last being the origin of the
+next transition in the sequence.  The origin of the path
+is the origin of the first transition, and the target of
+the path is the target of the last transition.  The
+label of the path is the sequence of labels of the
+transitions in the path.
+
+Thus given the NDFA transitions:
+
+     a : 1 -> 2
+     b : 2 -> 3
+     c : 3 -> 2
+     c : 3 -> 4
+
+we have the paths
+
+   abc : 1 -> 2 -> 3 -> 2
+   abc : 1 -> 2 -> 3 -> 4
+
+A single state can be the origin of several transitions
+with the same label.
+
+An NDFA computes for each path label whether or not
+there is a path from the start state of the NDFA to
+the stop state of the NDFA.
+
+An NDFT is an NDFA plus a value for each transition.  An
+NDFT computes a value for each path, and computes a
+value for a path label from all the paths with that
+label between the start state and the stop state of the
+NDFT.  In this problem all values will be floating point
+numbers in the range from 0 to 1, which represent proba-
+bilities.  Thus for us an NDFT assigns probabilities to
+strings of transition labels.
+
+We will use the notation
+
+   LABEL : ORIGIN -> TARGET : VALUE
+
+to denote a transition LABEL : ORIGIN -> TARGET with the
+given VALUE.
+
+The value of a path is the product of the values of the
+transitions in the path.  The value of a path label is
+the sum of the values of all paths with that label from
+the start state to the stop state.
+
+Thus given the NDFT:
+
+     a : 1 -> 2 : 0.4
+     a : 1 -> 4 : 0.6
+     b : 2 -> 3 : 1.0
+     b : 4 -> 5 : 1.0
+     c : 3 -> 6 : 0.3
+     c : 5 -> 6 : 1.0
+
+     start state: 1
+     stop state: 6
+
+the following are the two possible paths from 1 to 6:
+
+    abc : 1 -> 2 -> 3 -> 6 : 0.12    (= 0.4 * 1.0 * 0.3)
+    abc : 1 -> 4 -> 5 -> 6 : 0.60    (= 0.6 * 1.0 * 1.0)
+
+and the transducer computes the value 0.12+0.60 = 0.72
+for the path label abc.
+
+
+
+
+Input
+-----
+
+For each of several cases:
+
+    a line containing:	 N M START STOP
+    N lines each denoting a transition
+    M lines each containing a path label
+
+where N, M, START, and STOP are integers greater than
+zero.   Each case defines an NDFT with N transitions
+and gives M path labels.  START and STOP are the
+state labels of the start and stop states.  Input
+ends with an end of file.
+
+    1 <= N <= 1000
+    1 <= M
+    1 <= S <= 100 for any state label S
+    transition labels are lower case letters
+    path labels are 1 to 80 lower case letters
+    0 <= VALUE <= 1.0 for any transition value
+
+
+Output
+------
+
+For each case:
+
+    a line containing nothing but a single `-'
+    M lines each containing:  LABEL : VALUE
+
+where the M lines correspond in order to the M input
+lines containing path labels, LABEL is the path label
+copied from the input line, and VALUE is the value
+computed for that label by the NDFT.  Each VALUE
+must have exactly 3 decimal places.
+
+
+Sample Input
+------ -----
+
+6 2 1 6
+a : 1 -> 2 : 0.4
+a : 1 -> 4 : 0.6
+b : 2 -> 3 : 1.0
+b : 4 -> 5 : 1.0
+c : 3 -> 6 : 0.3
+c : 5 -> 6 : 1.0
+abc
+abb
+2 5 1 2
+a : 1 -> 2 : 0.9
+b : 2 -> 2 : 0.8
+a
+ab
+abb
+abbb
+abbba
+
+Sample Output
+------ ------
+
+-
+abc : 0.720
+abb : 0.000
+-
+a : 0.900
+ab : 0.720
+abb : 0.576
+abbb : 0.461
+abbba : 0.000
+
+
+Note
+----
+
+Our definitions of NDFA and NDFT are a more restrictive
+simplification of the standard definitions.  The stan-
+dard definitions allow empty labels on transitions
+(these do not appear in labels of paths containing the
+transition), and permit more than one stop state.  Also
+the sum of the values of all transitions with the same
+origin and label is constrained to be equal to, or equal
+to or less than, 1.  Lastly, values other than numbers
+may be used as long as multiplication, addition, 0, and
+1 are defined (such a set of values is called a semi-
+ring).  An example is sets of strings, where addition is
+set union, and multiplication of X and Y is the set of
+all strings made by concatenating a string from X and a
+string from Y.  Addition must be commutative and associ-
+ative, but multiplication must be merely associative.
+Multiplication must distribute over addition.
+
+
+
+File:	          transducer.txt
+Author:		     Bob Walton <walton@deas.harvard.edu>
+Date:		        Thu Oct 21 10:15:38 EDT 2004
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2004/10/21 14:15:51 $
+    $RCSfile: transducer.txt,v $
+    $Revision: 1.6 $

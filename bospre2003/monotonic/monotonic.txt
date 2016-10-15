@@ -1,0 +1,104 @@
+Solving Monotonic Functions
+------- --------- ---------
+
+The Department of Monotonic Functions (DMF) will, among
+other things, solve equations of the form F(x) = 0,
+where F is a strictly monotonic function.  `F(x) is
+strictly monotonic' means that whenever x < y,
+F(x) < F(y).
+
+You are asked to write a program to perform this task
+for fairly arbitrary F.  F is input in polish notation.
+That is, F(x) is calculated by a stack machine as
+follows.
+
+The stack machine has a stack of double precision
+floating point numbers.  Initially the stack is empty.
+
+The function is a sequence of symbols and numbers.  A
+number means: push the number into the top of the stack.
+All numbers begin with a digit: there are no signed
+numbers.  The following are the possible symbols and
+their meanings:
+
+      x	push x into the stack
+
+      +	pop the top 2 members of the stack,
+      	and push their sum onto the stack
+
+	-   pop the top 2 members of the stack,
+	    and push the second value popped minus
+	    	the first value popped onto the stack
+
+		*   pop the top 2 members of the stack,
+		    and push their product onto the stack
+
+		    /	pop the top 2 members of the stack,
+		    	and push onto the stack the second value
+			    popped divided by the first value
+			    	   popped
+
+Thus `2.4 x * 1.2 x / -' represents the monotonic func-
+tion
+
+	F(x) = 2.4 * x - 1.2 / x
+
+Input:
+-----
+
+							
+    For each of several cases, one line containing
+
+    	L H TOKEN ... ;
+
+    where [L,H] is the range of x values over which F(x)
+    is monotonic and in which the solution is to be
+    found, and `TOKEN ...' is the sequence of symbols
+    and numbers representing the function F.  A TOKEN is
+    just one symbol or number.  L, H, TOKENs, and ; are
+    all separated by spaces or tabs.  There are at most
+    80 TOKENs.
+
+    It is guaranteed that F(L) < 0 < F(H) and that no
+    value of x in the range [L,H] will cause the
+    computation of F to overflow double precision
+    floating point arithmetic.
+
+    Input ends with an end of file.
+
+Output:
+------
+
+    For each case, a single line containing nothing but
+    the value of x such that F(x) = 0.  The value of x
+    must be accurate to within 10**-9.
+
+Example Input:
+------- -----
+
+1E-9 1E+9 2.4 x * 1.2 x / - ;
+1 1E+9 3 x x x * * * 6 x x * * - 4 x * + 10 - ;
+
+
+
+Example Output:
+------- ------
+
+0.707106781
+2.114827162
+
+
+File:	   monotonic.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Sun Oct 19 08:17:38 EDT 2003
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2003/10/19 12:20:29 $
+    $RCSfile: monotonic.txt,v $
+    $Revision: 1.5 $

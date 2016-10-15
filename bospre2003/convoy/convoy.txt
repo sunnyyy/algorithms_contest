@@ -1,0 +1,182 @@
+Convoy
+------
+
+The Safe and Speedy Driver Company makes robot drivers.
+They have been asked to provide drivers for convoys of
+trucks, but are unsure if their basic traveling algor-
+ithm will work.  You have been asked to simulate it,
+so see under what circumstances it will cause crashes.
+
+The simulation is of N trucks traveling from right to
+left.  In the beginning, all trucks are separated by
+exactly L0 feet and are traveling a velocity V0 ft/s.
+The simulation lasts for some number of seconds.
+
+Each driver decides at the beginning of each second
+whether to accelerate during the second, decelerate
+(brake) during the second, or maintain velocity during
+the second.  All acceleration is by A0 ft/s/s.  All
+deceleration is by -A0 ft/s/s unless the current truck
+velocity V ft/s is less than A0, in which case the de-
+celeration is by -V ft/s/s so the truck velocity will be
+0 at the end of the second.  Maintaining velocity, of
+course, involves an acceleration of 0 ft/s/s during the
+second.
+
+During each second, the acceleration in ft/s/s of each
+truck is constant, the velocity of the truck is a linear
+function of time, and the distance traveled by the truck
+is a quadratic function of time.
+
+The algorithm each driver of a non-lead truck follows
+to determine the truck's acceleration at the beginning
+of a second is:
+
+    if the truck is approaching the truck it is follow-
+    ing at a relative velocity of at least dV ft/s, then
+    decelerate
+
+    else if the truck is receding from the truck it is
+    following at a relative velocity of at least
+    dV ft/s, then accelerate
+
+    else if the truck is at least L0+dL ft from the
+    truck it is following, accelerate
+
+    else if the truck is at at most L0-dL ft from the
+    truck it is following, decelerate
+
+    else maintain speed
+
+The lead truck receives instructions that tell its
+driver what to do for each second.
+
+
+Input
+-----
+
+For each of several cases,
+
+    One line containing the numbers
+
+    N L0 dL V0 dV A0
+
+    One line containing the instructions for the lead
+    driver.
+    
+The instructions are a sequence of +, 0, and - charac-
+ters, one character per second.  Each is interpreted as
+an instruction for the lead driver to
+
+    +	       accelerate
+    0	       maintain speed
+    -	       decelerate
+
+for one second.  The leftmost character is for the first
+second, the rightmost for the last second, and the num-
+ber of instruction characters is the number of seconds
+in the simulation.  There are no spaces in the instruc-
+tions line.
+
+Simulations are limited to at most 100 seconds and at
+most 11 trucks.  Input ends with an end of file.
+
+Output
+------
+
+For each case
+
+    One line containing just `Case #', where # is the
+    number of the case, 1, 2, 3, etc, and there is
+    exactly one space in the line.
+
+    Lines containing the distances between the non-lead
+    trucks and the truck they are following.  Each line
+    contains N-1 distances, each in exactly 8 columns
+    with exactly 3 decimal places.  Each distance is the
+    distance between a truck and the truck it is follow-
+    ing.  The distances are for the trucks from left to
+    right: the first is for the truck after the lead
+    truck.
+
+    One line with the initial distances is printed,
+    followed by one line for each second of simulation
+    with the distances at the end of the second.
+
+    If any output line has a negative distance, the
+    simulation terminates, and a next line containing
+    just `CRASH' is output.
+
+Example Input
+------- -----
+
+3 88 11 44 11 44
+-----
+3 88 11 44 11 44
++++++0000---------------
+5 88 11 44 11 44
++-----
+
+
+
+Example Output
+------- ------
+
+Case 1
+  88.000  88.000
+  66.000  88.000
+  44.000  66.000
+  44.000  44.000
+  44.000  44.000
+  44.000  44.000
+Case 2
+  88.000  88.000
+ 110.000  88.000
+ 154.000 110.000
+ 198.000 154.000
+ 242.000 198.000
+ 286.000 242.000
+ 308.000 286.000
+ 286.000 330.000
+ 264.000 330.000
+ 242.000 330.000
+ 198.000 330.000
+ 154.000 286.000
+ 110.000 242.000
+  66.000 198.000
+  22.000 154.000
+ -22.000 110.000
+CRASH
+Case 3
+  88.000  88.000  88.000  88.000
+ 110.000  88.000  88.000  88.000
+ 110.000 110.000  88.000  88.000
+  66.000 110.000 110.000  88.000
+  44.000  66.000 110.000 110.000
+  44.000  44.000  66.000 110.000
+  44.000  44.000  44.000  66.000
+
+
+Postscript
+----------
+
+Driving safety experts recommend drivers maintain a
+at least 3 seconds separation between themselves and
+the car in front of them in good weather.
+
+
+
+File:	   convoy.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Sat Oct 18 08:56:00 EDT 2003
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2003/10/18 12:58:04 $
+    $RCSfile: convoy.txt,v $
+    $Revision: 1.8 $

@@ -1,0 +1,107 @@
+Dice Quiz
+---- ----
+
+You have become involved in writing software for a game
+that is played with 6-sided dice.  A die is placed on
+a board so that one of its faces is North, and the die
+is then moved by rolling it to the North, East, South,
+or West, so different faces are then on the top, bottom,
+and sides.
+
+A data base is needed to answer queries such as
+
+  T1 N6 E?
+
+which means, if 1 is on Top and 6 is to the North, what
+digit is to the East?  Note that the order in which the
+first two items are written does not matter, and
+
+      N6 T1 E?
+
+is the same query.
+
+To make matters dicier, the die involved are non-stan-
+dard.  They are described by lines such as
+
+       D T1 B9 N4 E8 W3 S2
+
+which says that in one of its positions, the die has
+1 on top, 9 on the bottom, 4 to the North, 8 to the
+East, 3 to the West, and 2 to the South.  Note that
+the order of items (except for the D) does not matter,
+so
+
+	D E8 N4 W3 B9 S2 T1
+
+describes the same die.  Also, a die has 24 possible
+positions, and can be described in any one of these.
+
+
+
+Input
+-----
+
+Lines each of which either describes a die or is a
+query.  Each query is to be answered for the last die
+described (the first line describes a die).  The faces
+of the die can only have single digits, 0 through 9.
+Two items in a line are separated by a single space,
+and there are no spaces or tabs before the first item
+or after the last.  Input ends with an end of file.
+
+
+Output
+------
+
+The output is a exact copy of the input with each query
+?  replaced with the face digit that is the answer to
+the query.  In making the copy you can assume that the
+`?' in each input query is the last character of the
+query line.  You can also assume each query describes
+a possible position of the current die.
+
+
+Sample Input
+------ -----
+
+D T1 B9 N4 E8 W3 S2
+T1 N3 E?
+N3 T1 E?
+D E8 N4 W3 B9 S2 T1
+T1 N3 E?
+N3 T1 E?
+N3 T1 W?
+N3 T1 S?
+N3 T1 B?
+
+
+Sample Output
+------ ------
+
+D T1 B9 N4 E8 W3 S2
+T1 N3 E4
+N3 T1 E4
+D E8 N4 W3 B9 S2 T1
+T1 N3 E4
+N3 T1 E4
+N3 T1 W2
+N3 T1 S8
+N3 T1 B9
+
+
+
+
+File:    dicequiz.txt
+Author:	    Bob Walton <walton@deas.harvard.edu>
+Date:	       Wed Oct 20 10:21:47 EDT 2004
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2004/10/20 14:24:31 $
+    $RCSfile: dicequiz.txt,v $
+    $Revision: 1.7 $
