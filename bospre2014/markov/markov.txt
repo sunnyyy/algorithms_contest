@@ -1,0 +1,153 @@
+Markov Recurrence
+------ ----------
+
+A finite Markov Chain is a finite set of N states S1,
+S2, ..., SN and a matrix p[i,j] of probabilities,
+1 <= i,j <= N, such that if the `system' is in state Si,
+the next state of the system will be Sj with probability
+p[i,j].  It is required that
+
+	 0 <= p[i,j] <= 1
+	 sum (1 <= j <= N) p[i,j] = 1
+
+Thus the `transition' of the system from Si to Sj has
+probability p[i,j].
+
+If a state sequence starts from Si it may or may not
+return to Si; such a return is called a `recurrence'.
+Let f[i,t] be the probability that the sequence returns
+to Si for the FIRST time after the t'th transition (so
+f[i,1] == p[i,i]).  Here t => 1 is thought of as `time'.
+Then
+
+	f[i] = sum ( 1 <= t ) f[i,t]
+
+is the probability that the system returns to Si at
+some future time (the probability that Si ever recurs).
+
+A state Si is said to be persistent if f[i] == 1, and to
+be transient if f[i] < 1.
+
+A state Si is said to be no-return if f[i] == 0.
+
+A state Si is said to be periodic if it is NOT no-return
+and there is an integer s > 1 such that f[i,t] == 0 if
+t mod s != 0.  The largest such s is the period of Si.
+
+A state Si that is NEITHER no-return or periodic is said
+to be aperiodic.
+
+You have been asked to compute f[i] for the states Si of
+a Markov Chain and determine if Si is transient or per-
+sistent and if Si is no-return, periodic, or aperiodic.
+In the periodic case you are to determine the period.
+
+
+Input 
+-----
+
+For each of several test cases, first a line containing
+just the test case name, then a line containing just N,
+and then N lines containing the probabilities in the
+layout
+
+	p[1,1] p[1,2] ... p[1,N]
+	p[2,1] p[2,2] ... p[2,N]
+	. . . . . . . . . . . . 
+	p[N,1] p[N,2] ... p[N,N]
+
+1 <= N <= 100,  0 <= p[i,j] <= 1, and for each i,
+sum p[i,j] over all j = 1.
+
+Input probabilities may have many decimal places and
+the lines containing them may be long.  Double precision
+floating point will suffice for input and computation.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, the first a line containing an exact
+copy of the test case name input line, then N lines each
+with the format:
+
+     f[#] = #.### X Y
+
+where # denotes a digit, X is either `persistent' or
+`transient', Y is either `no-return', `period #' or
+`aperiodic'.
+
+The only whitespace in the output are 4 single spaces,
+2 surrounding the =, 1 before X, and 1 before Y.  The
+N lines are in order of increasing f[#] index, i.e.,
+f[1], f[2], ..., f[N].
+
+The input will be such that a state i will be persistent
+if and only if f[i] >= 0.9995, and there will be no
+ambiguous cases.
+
+WARNING: f[i] < 0.0005 does NOT mean the state is
+no-return.  You must use a calculation not involving
+f[i] to determine whether a state is no-return (use
+your period calculation).
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+2
+0 1
+1 0
+-- SAMPLE 2 --
+2
+0.5 0.5
+0 1
+-- SAMPLE 3 --
+2
+0 1
+0 1
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+f[1] = 1.000 persistent period 2
+f[2] = 1.000 persistent period 2
+-- SAMPLE 2 --
+f[1] = 0.500 transient aperiodic
+f[2] = 1.000 persistent aperiodic
+-- SAMPLE 3 --
+f[1] = 0.000 transient no-return
+f[2] = 1.000 persistent aperiodic
+
+
+Note
+----
+
+For finite markov chains, persistent aperiodic states
+are called `ergodic'.  For infinite markov chains,
+persistent aperiodic states with finite expected time
+of return are called `ergodic', but there are also
+persistent aperiodic states with infinite expected time
+of return which called `null states'.
+
+
+File:	     markov.txt
+Author:	        Bob Walton <walton@seas.harvard.edu>
+Date:		   Wed Oct 15 07:30:03 EDT 2014
+
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2014/10/15 11:30:37 $
+    $RCSfile: markov.txt,v $
+    $Revision: 1.9 $
