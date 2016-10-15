@@ -1,0 +1,208 @@
+Fractals
+--------
+
+One way of making fractals is to take a line drawing and
+repeatedly perform a self-similar replacement operation
+on the line segments.  A self-similar operation is one
+that is invariant under scaling, rotation, and transla-
+tion (and sometimes reflection).
+
+To be specific, the line segment replacement operation
+is defined by giving the line segments that will replace
+a unit line segment.  The sequence of line segments that
+replace the unit line segment is called a `generator'.
+Any line segment can be made by scaling, rotating, and
+translating the unit line segment, so the replacement
+of any line segment L can be calculated by scaling,
+rotating, and translating the generator in the same way
+that the unit line segment was scaled, rotated, and
+translated to make L.  When scaling, all dimensions must
+be scaled equally, and reflections are not allowed.
+
+The line segments are directed; each has a beginning and
+an end, and these CANNOT be switched.
+
+To be even more specific, suppose the unit line
+segment
+		(0,0) - (1,0)
+
+is replaced by the generator
+
+    (0,0) - (1/3,0) - (1/2,sqrt(3)/6) - (2/3,0) - (1,0)
+
+This is the `Koch generator', and consists of dividing
+the unit line segment into thirds, constructing an
+equilateral triangle with the middle third as a side,
+and erasing the middle third of the original line.
+
+To apply the Koch generator to the line segment
+
+   L = (5,-2) - (7,0)
+
+we first make L from the unit segment by scaling the
+unit line segment by sqrt(8), then rotating counter-
+clockwise by 45 degrees, and lastly translating by
+(5,-2).  Then we do the same to the Koch generator, and
+get 4 replacement line segments for L.  See the first
+sample below.
+
+Fractals are made by applying generator defined replace-
+ments to all the line segments in a line drawing, and
+then repeating this entire operation an infinite number
+of times.  You have been asked to do this, but just a
+finite number of times.
+
+The Koch generator is oriented.  This means that if a
+line drawing segment has its beginning and ending
+switched, its Koch generator generated replacement will
+be a reflection of the original replacement.  Specific-
+ally, the triangle will move to the other side of the
+original line.  An oriented generator cannot sensibly be
+applied to a line drawing whose lines are not orien-
+table.  Some generators a not oriented, and can be
+applied to any line drawing.
+
+Note also that the Koch generator is a connected curve
+from (0,0) to (1,0), but this is not required; a gener-
+ator can be any set of line segments, possibly disjoint
+and possibly intersecting.
+
+
+Input
+-----
+
+For each of several test cases, first a line containing
+the test case name.  Then one or more lines of the
+format
+	x1 y1 x2 y2
+
+each describing one line segment (x1,y1) - (x2,y2) of
+the generator that replaces (0,0) - (1,0).  Then a line
+containing just `*' to signal the end of the generator.
+Next, more lines of the above format describing the
+line segments of the line drawing, followed by another
+line containing just `*'.  The test case ends with
+a line containing just a single integer N, specifying
+the number of iterations of the replacement operation.
+
+The generator will contain between 1 and 100 line seg-
+ments, the line drawing will contain between 1 and 100
+line segments, N will be between 0 and 10, and no line
+will longer than 80 characters.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, first a copy of the test case name
+line, then lines describing the line segments resulting
+from N replacements, and then a line containing just
+`*'.  Each line that describes a line segment has the
+same format as in the input, and the numbers output
+in the line must be accurate to least 3 decimal places.
+
+Initially the line drawing segments input are the
+current line segments, and these are in an ordered
+sequence.  One iteration replaces EACH current line
+segment in order by the generator defined replacement.
+ORDER MUST BE MAINTAINED.  There are N iterations.  Note
+that N == 0 is possible (usable to display the input:
+see next paragraph).
+
+The output may be printed as a graph or displayed in an
+X-window by the commands:
+
+	 print_fractals
+	 display_fractals
+
+provided the output of your program has been stored in
+the file `fractals.out'.  To see the sample output
+instead use the commands
+
+	print_fractals sample.test
+	display_fractals sample.test
+
+(here sample.test is the output for sample.in).
+
+
+Sample Input
+------ -----
+
+-- KOCH CURVE; scale sqrt(8); rotate 45 deg --
+0 0 0.3333333333 0
+0.3333333333 0 0.5 0.28867513
+0.5 0.28867513 0.6666666667 0
+0.6666666667 0 1 0
+*
+5.00000000 -2.00 7 0
+*
+1
+-- KOCH CURVE; 4 iterations --
+0 0 0.3333333333 0
+0.3333333333 0 0.5 0.28867513
+0.5 0.28867513 0.6666666667 0
+0.6666666667 0 1 0
+*
+0 0 1 0
+*
+4
+-- KOCH FLAKE; 0 iterations --
+[See sample.in file for rest of input]
+
+
+Sample Output
+------ ------
+
+-- KOCH CURVE; scale sqrt(8); rotate 45 deg --
+5.000 -2.000 5.667 -1.333
+5.667 -1.333 5.423 -0.423
+5.423 -0.423 6.333 -0.667
+6.333 -0.667 7.000 0.000
+*
+-- KOCH CURVE; 4 iterations --
+0.000 0.000 0.012 0.000
+0.012 0.000 0.019 0.011
+0.019 0.011 0.025 0.000
+0.025 0.000 0.037 0.000
+0.037 0.000 0.043 0.011
+0.043 0.011 0.037 0.021
+0.037 0.021 0.049 0.021
+[see sample.test file for rest of output]
+
+
+Reference
+---------
+
+See Chapter 1 of `Fractals, Chaos, and Power Laws' by
+Manfred Schroeder.
+
+The formal definition of a `fractal' is `a set whose
+fractal dimension exceeds its topological dimension'.
+However, the term `fractal dimension' refers to one of
+many not exactly equivalent ways of computing dimension.
+If we use generators that are connected curves and
+apply them an infinite number of times we can generate
+a fractal whose topological dimension is 1.  If we
+use Hausdorff dimension and the Koch generator the
+fractal dimension is log(4)/log(3).  There are many
+other ways of generating fractals of topological
+dimension 1.
+
+
+
+File:	     fractals.txt
+Author:	        Bob Walton <walton@seas.harvard.edu>
+Date:		   Wed Oct 10 04:20:40 EDT 2012
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2012/10/10 08:22:04 $
+    $RCSfile: fractals.txt,v $
+    $Revision: 1.10 $

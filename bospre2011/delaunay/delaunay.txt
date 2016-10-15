@@ -1,0 +1,131 @@
+Delaunay Triangulation
+-------- -------------
+
+You have been asked to find the Delaunay Triangulation
+of a set S of points in the plane.
+
+The Delaunay Triangulation of a set S of points in the
+plane is a triangulation of the convex hull of S such
+that the circumcircle of each triangle has no points of
+S in its interior.  As long as there is no circle with 4
+or more points of S on its boundary and no points of S
+in its interior, the Delaunay Triangulation of S is
+unique, and the edges of the triangulation are just the
+edges of triangles with vertices in S which have no
+points of S in the interior of their circumcircle.
+
+The Delaunay Triangulation of S is coveted because among
+all the possible triangulations of S it is the one that
+maximizes the minimum angle between edges of the triang-
+ulation.
+
+
+Input
+-----
+
+For each of several test cases, first a line containing
+nothing but the name of the test case, and then lines
+containing the numbers
+
+    N x[1] y[1] x[2] y[2] ... x[N] y[N]
+
+where (x[i],y[i]) is the i'th point of S for 1 <= i <=
+N.  3 <= N <= 100.  The xy coordinates are floating
+point.
+
+To simplify things, the input will be such that the
+Delaunay triangulation is unique; that is, no 4 points
+of S will be on the same circle if that circle contains
+no points of S in its interior.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, first a line that is an exact copy
+of the test case name input line.  Then one line for
+each edge of the Delaunay Triangulation of S, this line
+having the format
+
+       i j
+
+to specify that there is an edge from (x[i],y[i]) to
+(x[j],y[j]).  Here 1 <= i,j <= N.  Do NOT output any
+edge more than once.
+
+The output may be printed as a graph or displayed in an
+X-window by the commands:
+
+	 print_graph
+	 display_graph
+
+provided the input and output of your program has been
+stored in the files
+
+       delaunay.in
+       delaunay.out
+
+and the test case name lines in these files do not have
+a digit as their first non-whitespace character.  To see
+the sample output instead use the commands
+
+    print_graph sample.in sample.test
+    display_graph sample.in sample.test
+
+(here sample.test is the output for sample.in).
+
+Note: The relative neighbor graph computed in the
+Relative Neighbor Graphs problem is a subgraph of the
+Delaunay Triangulation.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+3 1 4 3 2 5 8
+-- SAMPLE 2 --
+7 -1.01 0 -1.01 5 1.01 2.01 3.04 3.02
+  5.05 2.003 8.21 0 8.22 5.03
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+1 2
+2 3
+1 3
+-- SAMPLE 2 --
+1 2
+2 3
+1 3
+3 5
+1 5
+5 6
+1 6
+3 4
+2 4
+4 7
+2 7
+4 5
+5 7
+6 7
+
+
+File:	   delaunay.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Mon Oct  3 05:59:33 EDT 2011
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2011/10/03 10:53:48 $
+    $RCSfile: delaunay.txt,v $
+    $Revision: 1.5 $

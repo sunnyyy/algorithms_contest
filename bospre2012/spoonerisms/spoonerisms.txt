@@ -1,0 +1,90 @@
+Spoonerisms
+-----------
+
+You have been asked to write a program that will produce
+simple Spoonerisms.  The Reverend William Archibald
+Spooner (1844-1930) was reputed to have the tendency to
+switch consonants and vowels in words, and thus to turn
+sentences like
+
+	  You have missed all my history lectures.
+
+into
+
+	You have hissed all my mystery lectures.
+
+Although the Reverend was prone to such slips of the
+tongue, most `Spoonerisms' attributed to him were
+actually made up by the Reverend's students and
+colleagues for the fun of it.
+
+You have been asked to write a program that will create
+simple Spoonerisms by taking a sequence of words and
+switching the consonant strings at the beginnings of
+the first and last word.
+
+Input
+-----
+
+For each of several test cases, one line containing
+two or more words.  The words, which will consist solely
+of lower case letters (for simplicity), are separated by
+a single space character.  No other characters are on
+the input line.  No line will be longer than 80
+characters.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, a copy of the test case input line
+with the consonant strings beginning the first and last
+words switched (see samples below).  The longest strings
+of consonants at the beginnings of the two words should
+be switched.  A `y' should be treated as a consonant if
+it begins a word, and as a vowel otherwise (this is also
+for simplicity and is not a generally valid rule).  It
+is possible that a string of consonants will be of zero
+length.
+
+
+Sample Input
+------ -----
+
+ease my tears
+pack of lies
+oiled bicycle
+lighting a fire
+dental receptionist
+selling yaks
+mystery house
+
+
+Sample Output
+------ ------
+
+tease my ears
+lack of pies
+boiled icycle
+fighting a lire
+rental deceptionist
+yelling saks
+hystery mouse
+
+
+File:	   spoonerisms.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Mon Oct  1 05:19:11 EDT 2012
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2012/10/01 09:19:56 $
+    $RCSfile: spoonerisms.txt,v $
+    $Revision: 1.8 $

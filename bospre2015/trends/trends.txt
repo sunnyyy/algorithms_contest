@@ -1,0 +1,82 @@
+Trends
+------
+
+Jack plays a solitary game in which he flips a coin and
+gives himself a point on heads but removes a point on
+tails.  He starts with a score of zero, and keeps score
+as he flips coins.  You would think that his score would
+not remain strictly positive for long, or strictly
+negative for long, but you would be wrong.  Such long
+periods of being strictly positive or strictly negative
+are often mis-identified as trends that supposedly prove
+the coin is biased.
+
+You have been asked to find the probability of a trend
+of length >= m in a sequence of n coin flips.  Here a
+`trend' is defined as a sequence of consecutive flips
+such that at the end of each flip Jack's score is
+strictly positive, or, at the end of each flip Jack's
+score is strictly negative.  For comparison purposes,
+you are also asked to do this for both unbiased and
+biased coins.
+
+
+Input 
+-----
+
+For each of several test cases, a line containing
+
+    n m p
+
+where n and m are as above and p is the probability of
+heads.
+
+ 0 < m,n   m <= n   (m**2)*n <= 50,000,000   0 <= p <= 1
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, a single line containing 
+
+    n m p ptrend
+
+where n, m, p are copied from the input line and ptrend
+is the probability of finding a trend of length >= m in
+a sequence of n flips.  p and ptrend are to be printed
+with exactly 3 decimal places (even if p is input with
+fewer decimal places), whereas n and m are integers.
+
+
+Sample Input
+------ -----
+
+10 5 0.5
+10 5 0.55
+10 8 0.5
+10 10 0.5
+20 10 0.5
+20 10 0.55
+20 20 0.5
+
+Sample Output
+------ ------
+
+10 5 0.500 0.703
+10 5 0.550 0.712
+10 8 0.500 0.410
+10 10 0.500 0.246
+20 10 0.500 0.666
+20 10 0.550 0.688
+20 20 0.500 0.176
+
+
+File:    trends.txt
+Author:	    Bob Walton <walton@seas.harvard.edu>
+Date:	       Thu Aug 13 06:26:42 EDT 2015
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

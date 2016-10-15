@@ -1,0 +1,40 @@
+-- SAMPLE 1 --
+1001100
+21 - World
+20 - Angle
+19 - Sun
+18 - Moon
+17 - Star
+16 - Tower
+15 - Devil
+.
+-- SAMPLE 2 --
+1
+21 - World
+20 - Angle
+19 - Sun
+18 - Moon
+17 - Star
+16 - Tower
+15 - Devil
+.
+-- SAMPLE 3 --
+0
+21 - World
+20 - Angle
+19 - Sun
+18 - Moon
+17 - Star
+16 - Tower
+15 - Devil
+.
+-- SAMPLE 4 --
+0101010101010101010101010101010
+21 - World
+20 - Angle
+19 - Sun
+18 - Moon
+17 - Star
+16 - Tower
+15 - Devil
+.

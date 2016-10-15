@@ -1,0 +1,149 @@
+Reflect
+-------
+
+Every isometry of N-dimensional space can be represented
+as the composition of at most N+1 reflections.  You are
+given isometries, and must find representations of each
+as a composition of at most N+1 reflections.
+
+You are given isometries in the form
+
+    v |---> T + Mv
+
+where v and T are N-vectors and M is an NxN orthogonal
+matrix.
+
+You must output equivalent representations of the form
+
+    v |---> R[1]R[2]R[3]...R[K]v
+
+where R[i] is a reflection across the hyperplane
+
+      { v : U[i].v = C[i] },
+
+U[i] is a unit vector, C[i] a real number, and U[i].v is
+the scalar product of U[i] and v, so that R[i] is char-
+acterized by U[i] and C[i].  It is required that K <=
+N+1 and that C[i] not be too large.
+
+An isometry may have many different equivalent represen-
+tations as such compositions of reflections, and you are
+being asked to output just one.
+      
+
+
+Input 
+-----
+
+For each of several test cases, a line containing just
+the test case name, followed by a line containing
+
+    N T[1] T[2] ... T[N]
+
+where T = (T[1], T[2], ..., T[N]) is the translation
+vector, followed by N lines containing M in the
+format
+
+    M[1,1] M[1,2] ... M[1,N]
+    M[2,1] M[2,2] ... M[2,N]
+    ........................
+    M[N,1] M[N,2] ... M[N,N]
+
+The isometry is
+
+    (T+Mv)[i] = T[i] + sum over j of M[i,j]*v[j]
+
+or in other words, vectors are to be viewed as column
+vectors.
+
+N is an integer, and the other numbers are floating
+point.  2 <= N <= 20.  T[.] has an absolute value not
+greater than 10.  Because M is an orthogonal matrix,
+M[.,.] cannot have an absolute value greater than 1.
+The test case name line is not longer than 80 charac-
+ters, but other lines may be longer.  Input ends with
+an end of file.
+
+
+Output
+------
+
+For each test case, first an exact copy of the test case
+name line, then a line containing just K, and then K
+lines, the i'th representing R[i], of the form
+
+       C[i] U[i][1] U[i][2] ... U[i][N]
+
+In this line each number should take exactly 10 columns
+and have exactly 6 decimal places.  U[i] must be a unit
+vector and the absolute value of C[i] must not be
+greater than 10*N.
+
+The equivalence required is
+
+    R[1]R[2]...R[K]v = T + Mv
+
+The judge will check that this equation holds to 3 deci-
+mal places for v equal to each of the N+1 points:
+
+    (0,0,...,0)	 [Origin]
+    (1,0,...,0)	 [N Unit Vectors]
+    (0,1,...,0)
+    ..........
+    (0,0,...,1)
+
+Here the judge is using the fact that if two isometries
+agree on N+1 points, and the points span an N-dimension-
+al affine subspace, the two isometries are identical on
+that subspace.  This in turn follows from the fact that
+any point P on the straight line through two distinct
+points P1 and P2 is uniquely determined by its distances
+from P1 and P2.
+
+Solutions are not unique, you are to output any one.
+You are NOT required to find a solution with a minimum
+number of reflections.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+2 0 0
+0 -1
+1 0
+-- SAMPLE 2 --
+2 1 0
+0 -1
+1 0
+-- SAMPLE 3 --
+2 1 0
+0 1
+1 0
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+2
+  0.000000 -0.707107  0.707107
+  0.000000  0.000000  1.000000
+-- SAMPLE 2 --
+2
+  0.500000  1.000000  0.000000
+  0.000000 -0.707107  0.707107
+-- SAMPLE 3 --
+3
+  0.500000  1.000000  0.000000
+  0.000000 -0.707107  0.707107
+  0.000000  0.000000  1.000000
+
+
+File:	       reflect.txt
+Author:	          Bob Walton <walton@seas.harvard.edu>
+Date:		     Mon Aug 17 14:04:50 EDT 2015
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

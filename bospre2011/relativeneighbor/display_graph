@@ -1,0 +1,20 @@
+#!/bin/sh
+
+case "$1" in
+   -doc* ) echo "display_graph [foo.in foo.out]"
+           echo "for more details execute" \
+	        "\`hpcm_display_graph -doc | less'"
+           exit 1;;
+    "" ) in=relativeneighbor.in
+         out=relativeneighbor.out;;
+    *  ) in="$1"
+         out="$2";;
+esac
+
+case "$out" in
+    "" ) echo "display_graph [foo.in foo.out]"
+         echo "wrong number of arguments"
+         exit 1;;
+esac
+
+hpcm_display_graph -X "$in" "$out"

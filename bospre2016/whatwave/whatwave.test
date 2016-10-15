@@ -1,0 +1,10 @@
+-- SAMPLE 1 --
+square 12
+-- SAMPLE 2 --
+sine 16
+-- SAMPLE 3 --
+sine 10
+-- SAMPLE 4 --
+sine 20
+-- SAMPLE 5 --
+square 20

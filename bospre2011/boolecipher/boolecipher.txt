@@ -1,0 +1,138 @@
+Boole Ciphers
+----- -------
+
+A Boole Cipher consists of a list of all the characters
+that can be used in a message in the form of a binary
+tree which has the syntax:
+
+    tree ::= leaf | [left-child  right-child]
+    left-child ::= tree
+    right-child ::= tree
+    leaf ::= character other than `[' or `]'
+
+For example,
+
+    [[[eH][r ]][h[Ti]]]
+
+represents the binary tree
+
+	             _________*________
+                     /                  \
+                 ___*___              ___*___
+                /       \            /       \ 
+               *         *          h         *
+              / \       / \                  / \
+             e   H     r                    T   i
+
+     
+An encrypted message is a sequence of 0's and 1's that
+is interpreted by the following process:
+
+  (1) Start at the tree root.
+  (2) On reading a 0, move to the left child of the
+      current tree node.
+  (3) On reading a 1, move to the right child of the
+      current tree node.
+  (4) On reaching a leaf in (2) or (3), output the label
+      character on the leaf and move back to the tree
+      root.
+
+In other words, each character is represented by the
+label of the path from the root to the character, where
+the path label is a sequence of 0's and 1's, with 0
+meaning `move to the left child' and 1 meaning `move to
+the right child'.
+
+For example, the message `Hi There' is encrypted using
+the above Boole Cipher as `00111101111010000010000'.
+
+
+You are given Boole Ciphers and messages encrypted with
+these ciphers and are being asked to decrypt the
+messages.
+
+
+
+Input
+-----
+
+For each of several test cases, first a line containing
+the test case name, second a line containing a Boole
+Cipher, and third a line containing a message encrypted
+using that cipher.  The input ends with an end
+of file.
+
+WARNING: The input lines can be up to 1000 characters
+long!
+
+The characters `[' and `]' do not appear in messages or
+as leaves in ciphers, but any other ASCII character that
+prints a mark, and the single space character, can
+appear.  No character appears more than once as a cipher
+leaf.  At least two characters will appear in each
+cipher.
+
+
+Output
+------
+
+For each test case, first an exact copy of the test case
+name line, second an exact copy of the encrypted test
+case message line copied from the input, and third the
+decrypted test case message on a line by itself.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+[[[eH][r ]][h[Ti]]]
+00111101111010000010000
+-- SAMPLE 2 --
+[[[t[h?]][[ s]a]]W]
+100100110000101010000000100110000011
+-- SAMPLE 3 --
+[o[ H]]
+11010110
+-- SAMPLE 4 --
+[[h[[[e ][st]]a]][[oW][?g]]]
+1010001101011010011111000100001010110
+-- SAMPLE 5 --
+[[eB][[[io]g][[sl][[ a][t[!r]]]]]]
+01100011110110011100101111011101100111111100111110
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+00111101111010000010000
+Hi There
+-- SAMPLE 2 --
+100100110000101010000000100110000011
+Whats that?
+-- SAMPLE 3 --
+11010110
+Ho Ho
+-- SAMPLE 4 --
+1010001101011010011111000100001010110
+What goes?
+-- SAMPLE 5 --
+01100011110110011100101111011101100111111100111110
+Bits galore!
+
+
+File:	   boolecipher.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Mon Oct 10 21:36:00 EDT 2011
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2011/10/11 01:36:51 $
+    $RCSfile: boolecipher.txt,v $
+    $Revision: 1.9 $

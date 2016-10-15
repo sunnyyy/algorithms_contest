@@ -1,0 +1,8 @@
+-- SAMPLE 1 --
+((\x.x)y)
+-- SAMPLE 2 --
+((\1x.x)y)
+-- SAMPLE 3 --
+((\6x.(x(xy)))((\3z.(zw))w))
+-- SAMPLE 4 --
+((\2x.(x(xy)))((\3z.(zw))w))

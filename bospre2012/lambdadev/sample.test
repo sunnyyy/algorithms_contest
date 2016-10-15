@@ -1,0 +1,13 @@
+-- SAMPLE 1 --
+((\x.x)y)
+-- SAMPLE 2 --
+((\1x.x)y)=>1
+y
+-- SAMPLE 3 --
+((\6x.(x(xy)))((\3z.(zw))w))=>3
+((\6x.(x(xy)))(ww))=>6
+((ww)((ww)y))
+-- SAMPLE 4 --
+((\2x.(x(xy)))((\3z.(zw))w))=>2
+(((\3z.(zw))w)(((\3z.(zw))w)y))=>3
+((ww)((ww)y))

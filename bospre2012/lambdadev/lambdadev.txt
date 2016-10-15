@@ -1,0 +1,180 @@
+Lambda Developments
+------ ------------
+
+The beta reduction rule in the lambda calculus can lead
+to infinite reductions, as in the case
+
+    (\x.xx)(\x.xx) => (\x.xx)(\x.xx)
+
+where we use `\' in place of the Greek letter lambda.
+
+Recall that a lambda term of the form \x.M is called an
+`abstraction' and one of the form (\x.M)N is called a
+`redux' because it can be beta reduced to M[x:=N] which
+denotes the result of substituting N for x in M.  Also
+a term of the form MN is called an `application'.
+
+But if we mark the reduxes in a lambda term and only
+reduce the marked reduxes and copies of the marked
+reduxes made by previous reduction steps, then infinite
+reductions are no longer possible.
+
+You have been asked to check this out in some important
+special cases.
+
+We will mark a redux with an integer put just after the
+`\' in the abstraction term of the redux.  Thus we have
+
+    (\1x.xx)(\x.xx) => (\x.xx)(\x.xx)
+
+but after this one reduction there are no marked reduxes
+left, because the redux on the right is `created' when
+the argument of the redux on the left, (\x.xx), is
+substituted for the first x in the xx in the abstraction
+of the redux on the left, and created reduxes are not
+marked.  Created reduxes are never marked, but copied
+ones are, as in
+
+    (\1x.xx)((\2x.x)(\y.y)) =>
+    ((\2x.x)(\y.y))((\2x.x)(\y.y)) =>
+    ((\y.y)((\2x.x)(\y.y)) =>
+    ((\y.y)(\y.y))
+
+Note that only reduxes and not abstractions are being
+marked, even though the mark is put in the abstraction
+part of the redux.  Thus (\1x.xx)(\2x.xx) is NOT syntac-
+tically legal because (\2x.xx) is not the ABSTRACTION
+TERM IN A REDUX (it is the argument term in a redux).
+
+Suppose we start with an initial unreduced term that
+obeys the following:
+
+(A) The marked reduxes of the term have distinct marks.
+
+(B) Every abstraction in the term (marked or unmarked)
+    has a different bound variable name.
+    
+(C) All free variable names in the term are distinct
+    from all bound variable names in the term.
+    
+Then it can be proved that if we reduce only marked
+reduxes then:
+
+(1) At any stage all reduxes with the same mark are
+    disjoint.
+
+(2) In any marked redux reduction ((\nV.M)N)===>M[V=N]
+    the free variables of N are distinct from the bound
+    variables of (\nV.M), so bound variable names do NOT
+    need to be changed in order to avoid `variable
+    capture'.
+
+(3) The reduction is terminating, meaning that reduction
+    of only marked reduxes cannot continue indefinitely.
+
+Let =>N denote the beta reduction of all reduxes with
+mark N (see Sample Output).  You are given a marked
+lambda term obeying (A), (B), (C) above and are being
+asked to compute the results of using first =>1 to
+eliminate \1 reduxes, then =>2 to eliminate \2 reduxes,
+etc., until all marked reduxes are eliminated.  Thus you
+can empirically test the theorem.
+
+
+Input
+-----
+
+For each of several test cases, first a test case name
+line, and then one line containing just a marked lambda
+term obeying (A), (B), (C).
+
+The formal syntax of the marked lambda terms is
+
+    T ::= V | (TT) | (\V.T) | ((\NV.T)T)     [terms]
+    V ::= a | b | c | ... | x | y | z        [variables]
+    N ::= 1 | 2 | 3 | ... | 7 | 8 | 9        [marks]
+
+Note that abstractions and applications are surrounded
+by parentheses (unlike in the examples above).
+
+There are no spaces in any input line other than the
+test case name lines.  Lines are at most 80 characters
+long.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, first an exact copy of the test case
+name line, and then K+1 lines where K is the number of
+different marks in the case input term.  The first line
+contains the input term followed by ` =>N' where N is
+the first marker in the input term, and markers are
+ordered numerically (1 before 2, etc.).  The second line
+contains the term that results after doing all =>N
+reductions in the input term.  If there is a second
+marker P in the input term, this is followed by ` =>P'
+and on the next line the result of doing all the =>P
+reductions after all the =>N reductions have been done.
+And so forth until all marked reductions have been done.
+The last line just contains the final unmarked term by
+itself (NOT followed by =>...).
+
+IMPORTANT: You need not and MUST NOT make arbitrary
+substitutions for bound variables when computing
+reductions.  As a result, the terms in the output are
+unique, and your output must match exactly the unique
+correct answer.  Also, you must use the same syntax as
+in the input, and therefore include parentheses sur-
+rounding applications and abstractions.  Lastly, you
+must not include any whitespace in your output lines
+(other than the test case name lines).
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+((\x.x)y)
+-- SAMPLE 2 --
+((\1x.x)y)
+-- SAMPLE 3 --
+((\6x.(x(xy)))((\3z.(zw))w))
+-- SAMPLE 4 --
+((\2x.(x(xy)))((\3z.(zw))w))
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+((\x.x)y)
+-- SAMPLE 2 --
+((\1x.x)y)=>1
+y
+-- SAMPLE 3 --
+((\6x.(x(xy)))((\3z.(zw))w))=>3
+((\6x.(x(xy)))(ww))=>6
+((ww)((ww)y))
+-- SAMPLE 4 --
+((\2x.(x(xy)))((\3z.(zw))w))=>2
+(((\3z.(zw))w)(((\3z.(zw))w)y))=>3
+((ww)((ww)y))
+
+
+File:	   lambdadev.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Sat Oct  6 03:52:01 EDT 2012
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2012/10/06 10:08:55 $
+    $RCSfile: lambdadev.txt,v $
+    $Revision: 1.9 $

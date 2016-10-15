@@ -1,0 +1,113 @@
+Breaking Boole Ciphers
+-------- ----- -------
+
+The enemy is using Boole Ciphers (see the Boole Cipher
+problem).  Your spies have intercepted some messages in
+both encrypted and unencrypted form, and you have been
+asked to find the Boole Ciphers used to encrypt these
+messages.
+
+
+Input
+-----
+
+For each of several test cases, three lines.  First a
+line containing the test case name, second a line con-
+taining the encrypted message, and third a line contain-
+ing the unencrypted message.  The input ends with an
+end of file.
+
+The characters `[', `]', and `@' do not appear in
+unencrypted messages, but any other ASCII character
+that prints a mark, and the single space character,
+can appear.
+
+WARNING: The input lines can be up to 1000 characters
+long!
+
+
+Output
+------
+
+For each test case, three lines.  First, an exact copy
+of the test case name line, second a line containing the
+Boole Cipher used to encrypt the message, and third a
+line copied from the input containing of the encrypted
+message.
+
+The Boole Cipher may be under-determined.  You are to
+output the cipher which gives the smallest cipher tree
+depth (i.e., length of longest path from the root), and
+among these the shortest encoding for the first charac-
+ter of the message, and among these the shortest encod-
+ing for the second character, etc.  No character may
+label two leaves of the cipher.
+
+The cipher tree depth MUST NOT be greater than 8.  If
+no cipher with depth <= 8 can be found, output
+`FAILED' in place of the cipher.
+
+Also some subtrees of the cipher tree may be undeter-
+mined, and these are represented by the single character
+`@'.
+
+The output file is formatted so it can be input to the
+boolecipher problem solution to reproduce the input
+file (if FAILED cases are excluded).
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+00111101111010000010000
+Hi There
+-- SAMPLE 2 --
+100100110000101010000000100110000011
+Whats that?
+-- SAMPLE 3 --
+1101101101
+Ho Ho
+-- SAMPLE 4 --
+1010001101011010011111000100001111111
+What goes?
+-- SAMPLE 5 --
+01100011110110011100101111011101100111111100111111
+Bits galore!
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+[[[eH][r ]][h[Ti]]]
+00111101111010000010000
+-- SAMPLE 2 --
+[[[t[h?]][[ s]a]]W]
+100100110000101010000000100110000011
+-- SAMPLE 3 --
+[[@o][ H]]
+1101101101
+-- SAMPLE 4 --
+FAILED!
+1010001101011010011111000100001111111
+-- SAMPLE 5 --
+FAILED!
+01100011110110011100101111011101100111111100111111
+
+
+
+File:	   boolebreak.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Tue Oct  4 04:57:27 EDT 2011
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2011/10/04 08:58:30 $
+    $RCSfile: boolebreak.txt,v $
+    $Revision: 1.7 $

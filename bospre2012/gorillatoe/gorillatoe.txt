@@ -1,0 +1,115 @@
+Gorilla Toe
+------- ---
+
+Gorilla Toe is a game just like Tic Tac Toe with the
+following differences.  First, the game is played on
+a board with N rows and M columns of squares, where
+3 <= N,M <= 6.  Second, to win you must occupy min(N,M)
+adjacent squares in a row or a column or a diagonal
+(so on a board with 3 rows and 5 columns you must
+occupy 3 adjacent squares in a row, a column, or a
+diagonal).  Third, just before the game beings, a bunch
+of gorillas rushes out and occupies some squares, where
+they sit quietly during the rest of the game.  You
+cannot occupy a square occupied by a gorilla - you just
+will not fit!
+
+You have been asked to write a player's assistant which,
+when given a board state with P being the next player to
+move, will label each unoccupied square according to the
+fate of P if P moves next to that square and then both
+players play optimally.
+
+As in Tic Tac Toe, the players are X who moves first and
+O who moves second.
+
+
+Input
+-----
+
+For each of several test cases, first a line with the
+test case name, then N lines of M columns, where N is
+the number of rows and M the number of columns, and
+then a single line containing just `.'.
+
+The characters of the N lines of M columns describe the
+state of the board, with one character for each square
+containing:
+
+	X	If the square is occupied by X.
+	O	If the square is occupied by O.
+	G	If the square is occupied by a gorilla.
+	.	If the square is unoccupied.
+
+No input line is longer than 80 characters.  Input ends
+with an end of file.
+
+
+
+Output
+------
+
+For each test case, an exact copy of the input, but with
+the `.'s replaced by one of the following indicators of
+what will happen if P moves to the `.'ed square and then
+both players play optimally:
+
+     W	     if P will win
+     L	     if P will lose
+     T	     if the game will tie
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 -
+...
+.XO
+...
+.
+-- SAMPLE 2 --
+...G.
+.OX.G
+.....
+.
+-- SAMPLE 3 --
+...GO
+.GXOG
+...XG
+.
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 -
+WWW
+TXO
+WWW
+.
+-- SAMPLE 2 --
+TWTGL
+LOXLG
+TLTLL
+.
+-- SAMPLE 3 --
+LWLGO
+LGXOG
+LLWXG
+.
+
+
+File:	   gorillatoe.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Sat Sep  1 08:12:28 EDT 2012
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2012/09/01 12:16:39 $
+    $RCSfile: gorillatoe.txt,v $
+    $Revision: 1.4 $

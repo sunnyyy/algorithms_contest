@@ -1,0 +1,267 @@
+Logical Abduction
+------- ---------
+
+Abduction is the process of finding hypotheses that
+explain observed facts.  Suppose p, q, r, s, t, etc
+represent propositions that are either true or false.
+Let `p&q=>r' be an `implication' that means `p and q
+together imply r'.  Suppose you know
+
+	 p&q=>r
+	 p&s=>r
+	 q&s=>p
+
+and you want to explain
+
+    r
+
+The `hypotheses' of an implication are the propositions
+appearing before the `=>', and the conclusion is the
+proposition appearing after the `=>'.  E.g., in `p&q=>r'
+p and q are the hypotheses and r is the conclusion.
+
+An `abduction' is a set of implications that are used to
+derive the propositions to be explained.  The hypotheses
+of the abduction are the hypotheses of used implications
+that are NOT the conclusions of any used implication,
+and also any propositions to be explained that are NOT
+conclusions of any used implication.
+
+For example, if just
+
+    p&q=>r
+
+is used in an abduction of r, then p and q are the
+hypotheses of the abduction.  If
+
+	   p&s=>r
+	   q&s=>p
+
+are used instead, q and s are the hypotheses of the
+abduction.  If NO implications are used, r is the sole
+hypothesis of the abduction.
+
+In order to decide which abduction is best we assign a
+cost for assuming each proposition and try to minimize
+the total cost of all the hypotheses of the abduction.
+For each possible abduction costs are assigned according
+to the following rules:
+
+(R1) The propositions to be explained are assigned a
+     cost directly.  These costs are strictly positive.
+
+     For example, we will write `r[10]' to indicate that
+     r is assigned the cost 10.
+
+(R2) For an implication like `p&q=>r', the hypotheses
+     of the implication are assigned a weight, typically
+     a small positive fraction.  If the implication is
+     used in the abduction, the cost of each hypothesis
+     is assigned to be the cost of the conclusion times
+     the weight of the hypothesis.  Note that an impli-
+     cation may not be used in the abduction if its
+     conclusion has not been assigned a cost.
+
+     For example, the above implications might be
+     written:
+
+     p[0.5]&q[0.6]=>r
+     p[0.4]&s[0.2]=>r
+     q[0.3]&s[0.7]=>p
+
+     to indicate, for example, that if the first
+     implication is used, p is assigned a cost equal
+     to 0.5*cost-of-r.  If r costs 10 and the first
+     implication is used in an abduction, this implica-
+     tion assigns 0.5*10 = 5 to p and 0.6*10 = 6 to q.
+
+(R3) If a proposition is assigned more than one cost,
+     the minimum cost is used for that proposition in
+     ALL calculations.
+
+     Thus if the abduction to explain r[10] uses the
+     implications
+
+     p[0.4]&s[0.2]=>r
+     q[0.3]&s[0.7]=>p
+
+     the costs are r = 10, p = 0.4*10 = 4, s = 0.2*10 =
+     2, q = 0.3*4 = 1.2, s = 0.7*4 = 2.8, and as s has
+     been assigned two costs, 2 and 2.8, the MINIMUM
+     s = 2 is used.
+
+     If a cost is reduced according to this rule, all
+     costs calculated from this cost are correspondingly
+     reduced.  Thus if the abduction also used a third
+     implication
+
+	p[0.3]&q[0.8]=>r
+
+     that assigned p = 3, then the last implication
+
+     q[0.3]&s[0.7]=>p
+
+     would have to be revisited to assign q = 0.3*3 =
+     0.9 and s = 0.7*3 = 2.1, and in the case of q
+     this would reduce its previous cost of 1.2 to the
+     new minimum 0.9.
+
+(R4) After assigning proposition costs according to the
+     above rules, the cost of the abduction is the sum
+     of the costs of its HYPOTHESES plus 0.1 times the
+     number of implications used in the abduction.
+
+     Thus if just the first implication above is used in
+     the abduction the cost is
+
+       5 (i.e., cost of q) + 6 (i.e., cost of p)
+       + 0.1 * 1 (number of implications) = 11.1
+
+     and if instead the second two implications are used
+     the cost is
+
+       1.2 (i.e., cost of q) + 2 (i.e., cost of s)
+       + 0.1 * 2 (number of implications) = 3.4
+
+     Its also possible to use NO implications, in which
+     case the cost is 10, i.e., the cost of directly
+     assuming r.
+
+     Lastly it is possible to use all three implica-
+     tions, in which case the cost is
+
+       1.2 (i.e., cost of q) + 2 (i.e., cost of s)
+       + 0.1 * 3 (number of implications) = 3.5
+
+     Notice that the hypothesis cost would be the same
+     as the hypothesis cost of using just the last two
+     implications, that is, addition of the first
+     implication to the last two does not change the
+     hypothesis cost, but we have added 0.1 times the
+     number of implications as a penalty for such
+     superfluous implications.
+
+     If a minimum cost abduction is sought, the second
+     two implications would be used.
+
+You are being asked to find minimum cost abductions.
+
+
+Input
+-----
+
+Propositions are denoted by single LOWER CASE letters,
+and numbers are non-negative floating point numbers.
+In the following P denotes any proposition letter and #
+any number.
+
+The input consists of any number of test cases.  Each
+test case begins with a single line containing the test
+case name.  This is followed by any number of lines of
+the formats:
+
+    P[#]
+    P[#]=>P
+    P[#]&...&P[#]=>P
+
+and these are followed by a line containing just `.'.
+
+A line of the first above format defines a proposition
+to be explained for which # is its cost.  A line of the
+second format defines an implication with a single
+hypothesis, and a line of the third format defines an
+implication with two or more hypotheses.  In these last
+two cases the #'s are the weights of the implication
+hypotheses.
+
+There are no space or tab characters in the input
+outside the test case name lines.
+
+There are at most 100 implications in a test case.  No
+proposition can be in more than one `P[#]' line speci-
+fying a proposition to be explained, so there can be
+at most 26 such lines.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case first an exact copy of the test case
+name line and then lines with similar formats to those
+used in the input, terminated by a line containing just
+`.'.  The output describes the minimum cost abduction
+for the given test case input.  There is one line for
+every abduction hypothesis, and one line for every
+implication in the abduction.
+
+The output line for each abduction hypothesis has the
+format `P[#]' which means that P has minimum cost #.
+
+The output line for each implication in the abduction
+has the format `P[#]=>P[#]' or `P[#]&...&P[#]=>P[#]',
+where the #'s have the following meanings.  The # for
+the conclusion is the minimum cost assigned to the
+conclusion.  The # for each hypotheses is the cost
+assigned to the hypothesis by the implication, i.e.,
+the hypothesis weight times the cost of the conclusion.
+This last may NOT be the minimum cost assigned to the
+hypothesis by all implications.
+
+The numbers output must must have exactly 2 decimal
+places.  There may be no spaces in any output line other
+than the test case name lines.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+r[10]
+p[0.5]&q[0.6]=>r
+p[0.4]&s[0.2]=>r
+q[0.3]&s[0.7]=>p
+.
+-- SAMPLE 2 --
+b[10]
+c[20]
+n[0.3]=>p
+q[1.4]&i[0.2]=>n
+r[0.5]&n[0.2]=>b
+s[1.3]&n[0.7]&j[0.2]=>p
+p[0.9]=>c
+.
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+q[1.20]
+s[2.00]
+p[4.00]&s[2.00]=>r[10.00]
+q[1.20]&s[2.80]=>p[4.00]
+.
+-- SAMPLE 2 --
+n[2.00]
+r[5.00]
+n[5.40]=>p[18.00]
+r[5.00]&n[2.00]=>b[10.00]
+p[18.00]=>c[20.00]
+.
+
+
+File:	   abduction.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Mon Oct 10 21:44:43 EDT 2011
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2011/10/11 01:45:32 $
+    $RCSfile: abduction.txt,v $
+    $Revision: 1.11 $
