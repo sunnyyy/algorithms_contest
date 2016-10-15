@@ -1,0 +1,155 @@
+American SOUNDEX
+----------------
+
+SOUNDEX is a system of translating words into crude
+phonetic approximations that may be used to suggest
+spellings for misspelled words.  For example, `Tymczak'
+and `Timsack' both translate to `T522', and so if a
+writer writes `Timsack' and that is not in the
+dictionary, but `Tymczak' is, a spell checker can
+suggest `Tymczak' as a possible correct spelling.
+
+The SOUNDEX rules for translating a word are as follows:
+
+(1) Apply a translation table to translate every
+    character to a digit, -, or *.
+(2) Delete all occurrences of *.
+(3) Delete any digit that follows an identical digit.
+    (Alternatively, replace any string of identical
+    digits by a single digit.)
+(4) Delete all occurrences of -.
+(5) If the first letter of the original word translated
+    to a digit, replace that digit, which now begins
+    the translated word, by the letter; otherwise pre-
+    pend the letter to the translated word (prepend is
+    to `beginning' as append is to `end').
+(6) The translated word now consists of a letter
+    followed by zero or more digits.  Discard all digits
+    but the first three.  If there are less than 3
+    digits, append `0's until there are 3 digits.
+
+The translation table used for American English is
+
+    a, e, i, o, u, and y each translate to -
+    h and w each translate to *
+    b, f, p, and v each translate to 1
+    c, g, j, k, q, s, x, and z each translate to 2
+    d and t each translate to 3
+    l translates to 4
+    m and n each translate to 5
+    r translates to 6
+
+If you study these rules, you will find that sequences
+of similar consonants are translated to a single digit
+unless they are separated by vowels, vowels are other-
+wise ignored, and `h' and `w' are completely ignored.
+In addition, the first character is kept, and only the
+first three dissimilar or vowel separated consonant
+sequences are kept.
+
+
+Input 
+-----
+
+For each of several test cases, one line containing just
+the word to be translated.  To keep things simple, each
+word contains only lower case letters and has at most
+25 letters.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, one line of the form
+
+    WORD-TO-BE-TRANSLATED => TRANSLATED-WORD
+
+
+Sample Input
+------ -----
+
+robert
+rupert
+rubin
+ashcraft
+ashcroft
+tymczak
+timsack
+pfister
+how
+
+Sample Output
+------ ------
+
+robert => r163
+rupert => r163
+rubin => r150
+ashcraft => a261
+ashcroft => a261
+tymczak => t522
+timsack => t522
+pfister => p236
+how => h000
+
+Tips:
+----
+
+Input consists of lines read from the standard input.
+Input ends when an end-of-file is read from the standard
+input.  Output consists of lines written to the standard
+output.  For example input/output code see
+
+    ~/demos/solutions/reverser/reverser.EXT
+
+where EXT is c, cc, or java.
+
+You may find it beneficial to add code so that if your
+program is being run in debug mode it outputs
+
+    WORD => TWORD1 => TWORD2 => ... => TWORD6
+
+where WORD is the original word, TWORD1 the word after
+the first translation step, TWORD2 the word after the
+second step, and TWORD6 the word after the 6'th and
+final step.  Some examples from `make debug' using the
+judge's solution are
+
+robert => 6-1-63 => 6-1-63 => 6-1-63 => 6163
+    => r163 => r163
+rubin => 6-1-5 => 6-1-5 => 6-1-5 => 615
+    => r15 => r150
+ashcraft => -2*26-13 => -226-13 => -26-13 => 2613
+    => a2613 => a261
+tymczak => 3-522-2 => 3-522-2 => 3-52-2 => 3522
+    => t522 => t522
+pfister => 11-23-6 => 11-23-6 => 1-23-6 => 1236
+    => p236 => p236
+how => *-* => - => - => 
+    => h => h000
+
+where we added some extra line feeds to conform to this
+current document's 56 column width limit.
+
+
+Reference
+---------
+
+    http://en.wikipedia.org/wiki/Soundex
+
+
+File:	   soundex.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Mon Oct  7 11:18:31 EDT 2013
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2013/10/07 15:19:23 $
+    $RCSfile: soundex.txt,v $
+    $Revision: 1.6 $

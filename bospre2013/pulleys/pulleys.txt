@@ -1,0 +1,117 @@
+Pulley Belts
+------ -----
+
+You have been asked to determine the length of a belt
+that connects two pulleys from the XY coordinates of
+the pulley centers and the radii of the pulleys.
+
+
+Input
+-----
+
+For each of several test cases, first one line con-
+taining just the test case name, and then one line
+with six floating point numbers in the format:
+
+     X1 Y1 R1 X2 Y2 R2
+
+where the first pulley has center at (X1,Y1) and radius
+R1, and the second pulley has center at (X2,Y2) and
+radius R2.  
+
+    -10,000 <= X1, Y1, X2, Y2 <= +10,000
+    0 < R1, R2 <= 1,000
+    distance between (X1,Y1) and (X2,Y2) > R1 + R2
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, first a copy of the test case name
+line from the input, and then one line with the belt
+length as a floating point number with exactly 3 decimal
+places.  The belt may NOT cross itself.
+
+
+Sample Input
+------ -----
+
+-- SHOULD BE PI + 10 --
+0 0 0.5 0 5 0.5
+-- SHOULD BE PI + 10 --
+8 -7.5 0.5 4 -4.5 0.5
+-- SHOULD BE NEAR PI --
+0 0 0.5 0 0.500002 0.000001
+-- RANDOM SAMPLE 1 --
+8.56 -0.23 3.289 -5.738 17.290 7.387
+-- RANDOM SAMPLE 2 --
+356 782 256 753 -219 74
+
+
+Sample Output
+------ ------
+
+-- SHOULD BE PI + 10 --
+13.142
+-- SHOULD BE PI + 10 --
+13.142
+-- SHOULD BE NEAR PI --
+3.142
+-- RANDOM SAMPLE 1 --
+79.512
+-- RANDOM SAMPLE 2 --
+3221.263
+
+
+Tips
+----
+
+Input consists of lines read from the standard input.
+Input ends when an end-of-file is read from the standard
+input.  Output consists of lines written to the standard
+output.  For example input/output code see
+
+    ~/demos/solutions/summer/summer.EXT
+
+where EXT is c, cc, or java.
+
+To solve the problem you, of course, draw a diagram,
+draw one or more extra lines, and apply the fundamental
+ideas of plane geometry and trigonometry to compute a
+bunch of line segment lengths and angles.  Thus you can
+add debugging code to print these.  Some of what is out-
+put when we run `make debug' on the judge's solution is:
+
+-- SHOULD BE PI + 10 --
+... |BD| = 5 CAB = 1.5708 ACD = 1.5708
+13.142
+-- SHOULD BE PI + 10 --
+... |BD| = 5 CAB = 1.5708 ACD = 1.5708
+13.142
+-- SHOULD BE NEAR PI --
+... |BD| = 0.00173205 CAB = 0.0034641 ACD = 3.13813
+3.142
+
+where A is the center of pulley 1, B is the point where
+the belt is tangent to pulley 1, C is the center of
+pulley 2, D is the point where the belt is tangent to
+pulley 2, and ... denotes output we omitted because it
+might tell you where we drew the extra lines.
+
+
+File:    pulleys.txt
+Author:	    Bob Walton <walton@seas.harvard.edu>
+Date:	       Tue Oct 15 20:33:08 EDT 2013
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2013/10/16 00:37:35 $
+    $RCSfile: pulleys.txt,v $
+    $Revision: 1.7 $

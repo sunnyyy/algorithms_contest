@@ -42,3 +42,65 @@ My solutions to practice problems for ACM & other contests.
 2. lcddisplay
 6. electriccars
 7. emirp
+
+##Contains:
+- BOSPRE 2011
+ - abduction
+ - boolebreak
+ - boolecipher
+ - delaunay
+ - opttriangulation
+ - relativeneighbor
+ - sniffer
+ - vlsicompact
+- BOSPRE 2012
+ - [ ] anglepuzzle
+ - broppers
+ - fractals
+ - gorillatoe
+ - lambdadev
+ - pagerank
+ - spoonerisms
+- BOSPRE 2013
+ - crates
+ - eulerian
+ - localcolor
+ - onlinestring
+ - polyellipse
+ - pulleys
+ - soundex
+ - transition
+- BOSPRE 2014
+ - binshuffle
+ - gamedraw
+ - grid
+ - markov
+ - shopsign
+ - simplefsm
+ - thue
+ - unitcalc
+- BOSPRE 2015
+ - asciiart
+ - latin
+ - mirrors
+ - modcalc
+ - reflect
+ - reversedraw
+ - trends
+ - vigenere
+ - [ ] xmole
+- BOSPRE 2016
+ - colorpuzzle
+ - economy
+ - exsort
+ - gaudy
+ - [ ] hulldiameter
+ - monte
+ - [ ] notlost
+ - [ ] oneboggle
+ - [ ] substrings
+ - whatwave
+- CCSCNE 2016
+ - electriccars
+ - emirp
+ - lcddisplay

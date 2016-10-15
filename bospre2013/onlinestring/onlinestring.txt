@@ -1,0 +1,208 @@
+Online String Matching
+----------------------
+
+The `online string matching' problem is finding all the
+substrings of a text string that match a given pattern
+string, assuming the pattern is given first, and is
+much shorter than the text string, or one pattern is
+matched against many text strings, so the pattern
+string may be preprocessed to optimize the match.
+
+Assume there is a single text string t of length n with
+characters t[0], ..., t[n-1], a pattern string p of
+length m with characters p[0], ..., p[m-1], and you
+are asked to find all s >= 0 such that t[s,...,s+m-1]
+is an exact match to p.  Here s is called the `shift',
+and you are asked to find all the `matching shifts',
+i.e., all s for which p matches t[s,...,s+m-1].
+
+A crude algorithm will check all values of s with simple
+substring comparison and have at worst case O(mn) char-
+acter comparisons.  The Knuth algorithm improves this by
+having exactly n character table lookups, but there are
+algorithms with O(mn) worst case character comparisons
+or table lookups that outperform the Knuth algorithm in
+typical real world cases.  You are being asked to code
+and evaluate several of these.
+
+All of the algorithms you are being asked to evaluate
+work by comparing characters from the end of the pattern
+p toward the beginning of p.  When this comparison is
+completed, either by a character mis-match or by exhaus-
+tion of p when s is a matching shift, s is incremented
+by a value that is a function of p and one or two char-
+acters read from t.  This shift increment is taken from
+a precomputed table S indexed by the characters read.
+
+For example, if for particular p and t the first char-
+acter comparison for each s always fails, c = t[s+m-1]
+is the character looked up in S, and c is never in p at
+all, then the shift increment can always be m, and there
+will be only n/m character comparisons and n/m table
+lookups, for a total of 2n/m operations.
+
+The ways of computing S that you are to study are-
+
+1. Horspool Algorithm.  c = t[s+m-1].  j = S[c] is
+   chosen as the smallest j such that 1 <= j < m and
+   p[m-1-j] = c, or j = m.
+
+2. Quick-Search Algorithm.  c = t[s+m].  j = S[c] is
+   chosen as the smallest j such that 1 <= j <= m and
+   p[m-j] = c, or j = m+1.
+
+3. Berry-Ravindran Algorithm.  c1 = t[s+m-1], c2=t[s+m].
+   j = S[c1,c2] is the smallest j such that 1 <= j < m
+   and p[m-1-j] = c1 and p[m-j] = c2, or j = m and
+   p[0] = c2, or j = m+1.
+
+You are given pairs t and p are are being asked to com-
+pute the number of character comparisons plus the number
+of table lookups required for each pair and each algor-
+ithm to find all the matching shifts.  The Knuth algor-
+ithm whose number of comparisons is always 0 and whose
+number of table lookups is always n is also to be
+included in the output.
+
+Note that we assume that for each s you begin with a
+comparison of t[s+m-1] and p[m-1] and continue with
+comparisons from right to left until you get a mismatch
+or p runs out of characters.  We also assume that
+initially s = 0 and you stop only when the next compar-
+ison or table lookup cannot be done because it would
+require reading a character beyond the end of t.
+
+
+Input 
+-----
+
+For each of several test cases, first a line containing
+just the test case name, then one or more lines contain-
+ing the text t, followed by a line containing just
+`END', and then one or more lines each containing a
+pattern p, followed by a line containing just `END'.
+Thus each test case has a single text and one or more
+patterns.
+
+The text t is made by putting a line feed at the end of
+each text line and concatenating the lines, so the lines
+are separated by line feeds and the last line ends in
+a line feed.  Each pattern is on a line by itself.
+
+The maximum length of every line is 80 characters, and
+the total maximum length of the text t with line feeds
+is 1,000,000 characters.  Each line contains only
+graphic ASCII characters (ASCII characters with codes in
+the range 33 ..  126) or single spaces (ASCII code 32).
+None of the texts or patterns are empty.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, first a line containing the test
+case name, and then for each pattern line 6 lines, first
+an exact copy of the pattern input line, and then the
+following 5 lines:
+
+    Pattern Length = #, Text Length = #, Matches = #
+    Knuth: # = # comparisons + # lookups
+    Horspool: # = # comparisons + # lookups
+    Quick-Search: # = # comparisons + # lookups
+    Berry-Ravindran: # = # comparisons + # lookups
+
+where # denotes an integer >= 0.  The first two #'s
+are m and n respectively, and the 4'th though 6'th #'s
+are n, 0, and n respectively.  The `Matches' # is the
+number of matching shifts and can be computed by any
+of the three algorithms being studied, as all three
+algorithms agree.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+abcaaaabcaaaabc
+abcaaabcaaabc
+END
+abc
+aaa
+END
+-- SAMPLE 2 --
+Hopping hippers flipping,
+Flipping floppers sticking,
+Sticking stoppers clicking,
+Clicking cloppers hopping.
+END
+ing
+pers
+ick
+END
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+abc
+Pattern Length = 3, Text Length = 30, Matches = 6
+Knuth: 30 = 0 comparisons + 30 lookups
+Horspool: 38 = 25 comparisons + 13 lookups
+Quick-Search: 32 = 22 comparisons + 10 lookups
+Berry-Ravindran: 32 = 22 comparisons + 10 lookups
+aaa
+Pattern Length = 3, Text Length = 30, Matches = 6
+Knuth: 30 = 0 comparisons + 30 lookups
+Horspool: 51 = 35 comparisons + 16 lookups
+Quick-Search: 48 = 35 comparisons + 13 lookups
+Berry-Ravindran: 41 = 30 comparisons + 11 lookups
+-- SAMPLE 2 --
+ing
+Pattern Length = 3, Text Length = 109, Matches = 8
+Knuth: 109 = 0 comparisons + 109 lookups
+Horspool: 94 = 55 comparisons + 39 lookups
+Quick-Search: 78 = 47 comparisons + 31 lookups
+Berry-Ravindran: 78 = 47 comparisons + 31 lookups
+pers
+Pattern Length = 4, Text Length = 109, Matches = 4
+Knuth: 109 = 0 comparisons + 109 lookups
+Horspool: 74 = 43 comparisons + 31 lookups
+Quick-Search: 64 = 39 comparisons + 25 lookups
+Berry-Ravindran: 61 = 37 comparisons + 24 lookups
+ick
+Pattern Length = 3, Text Length = 109, Matches = 4
+Knuth: 109 = 0 comparisons + 109 lookups
+Horspool: 84 = 46 comparisons + 38 lookups
+Quick-Search: 66 = 37 comparisons + 29 lookups
+Berry-Ravindran: 66 = 37 comparisons + 29 lookups
+
+
+Reference
+---------
+
+For a whole host of online string matching algorithms
+see
+
+   The Exact Online String Matching Problem:
+   A Review of the Most Recent Results,
+   Simone Faro and Thierry Lecroq,
+   ACM Computing Surveys, vol 45, no 2, 2013.
+
+
+File:     onlinestring.txt
+Author:	     Bob Walton <walton@seas.harvard.edu>
+Date:	        Mon Oct 14 02:27:24 EDT 2013
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2013/10/14 06:44:06 $
+    $RCSfile: onlinestring.txt,v $
+    $Revision: 1.11 $

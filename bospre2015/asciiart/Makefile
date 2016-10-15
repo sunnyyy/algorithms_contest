@@ -1,4 +1,4 @@
-# Makefile for the Simple FSM Problem
+# Makefile for the ASCII Art Problem
 #
 # File:		Makefile
 # Date:		Wed Feb  4 04:42:50 EST 2015
@@ -13,7 +13,7 @@
 #   XTRA_LIMITS limits that override those given
 #               previously to hpcm_sandbox
 #   
-P = simplefsm
+P = asciiart
 XTRA_INPUTS =
 XTRA_LIBS =
 XTRA_LIMITS =
@@ -53,7 +53,7 @@ default:	$P.out
 	chmod a+r $*.lsp
 	chmod a+rx $*
 
-#
+#
 $P.in:
 	if test -r sample.in; \
 	then cp sample.in $P.in; chmod u+rw $P.in; fi
@@ -114,7 +114,7 @@ clean:
 	if cmp -s $P.test sample.test; \
 	   then rm $P.test; fi
 
-#
+#
 # Derived From:	Makefile1
 # Author:	walton@seas.harvard.edu
 #

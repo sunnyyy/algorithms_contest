@@ -1,7 +1,7 @@
-# Makefile for the Delaunay Triangulation Problem
+# Makefile for the Polygon/Ellipse Intersection Problem
 #
 # File:		Makefile
-# Date:		Wed Feb  4 04:42:50 EST 2015
+# Date:		Wed Sep 28 06:12:05 EDT 2016
 #
 # See demonstration Makefile for documentation.
 #
@@ -12,36 +12,43 @@
 #   XTRA_LIBS	extra libraries for C and C++ programs
 #   XTRA_LIMITS limits that override those given
 #               previously to hpcm_sandbox
+#   XTRA_CLEANS extra files to remove on `clean'
 #   
-P = delaunay
+P = polyellipse
+
 XTRA_INPUTS =
 XTRA_LIBS =
 XTRA_LIMITS =
+XTRA_CLEANS =
+
 C_FLAGS = -g
 CC_FLAGS = -g
 JAVA_FLAGS = -g
 CL_FLAGS = --script
+PY_FLAGS =
 
 .SUFFIXES:
-.SUFFIXES: .c .cc .java .lsp
+.SUFFIXES: .c .cc .java .lsp .py
 
 default:	$P.out
 
 .c:
 	rm -f $* core core.[0-9]*
 	gcc ${C_FLAGS} -o $* $*.c \
-	    -lm -lcrypt ${XTRA_LIBS}
+	    -lm -lcrypto ${XTRA_LIBS}
 
 .cc:
 	rm -f $* core core.[0-9]*
 	g++ ${CC_FLAGS} -o $* $*.cc \
-	    -lm -lcrypt ${XTRA_LIBS}
+	    -lm -lcrypto ${XTRA_LIBS}
 
+#
 .java:
 	rm -f $* *.class core core.[0-9]*
 	javac ${JAVA_FLAGS} $*.java
 	echo >$* '#!/bin/sh'
-	echo >>$* "exec `which java` -ea $* \$$*"
+	echo >>$* "exec `which java`" \
+	          -ea $* '"$$@"'
 	chmod a+r *.class
 	chmod a+rx $*
 
@@ -53,7 +60,14 @@ default:	$P.out
 	chmod a+r $*.lsp
 	chmod a+rx $*
 
-#
+.py:
+	rm -f $* core core.[0-9]*
+	echo >$* '#!/bin/sh'
+	echo >>$* "exec python ${PY_FLAGS}" \
+	          "$*.py" '"$$@"'
+	chmod a+r $*.py
+	chmod a+rx $*
+
 $P.in:
 	if test -r sample.in; \
 	then cp sample.in $P.in; chmod u+rw $P.in; fi
@@ -63,6 +77,7 @@ $P.test:
 	then cp sample.test $P.test; \
 	     chmod u+rw $P.test; fi
 
+#
 $P.out:	$P $P.in
 	rm -f $P.out core core.[0-9]*
 	grant_access . $P ${XTRA_INPUTS}
@@ -103,18 +118,18 @@ in-submit:	$P.out
 inout-submit:	$P.out
 	hpcm_submit -inout $P
 
+#
 solution-submit:	$P.out
 	hpcm_submit -solution $P
 
 clean:
 	rm -f $P *.class core core.[0-9]* \
 	      *.out *.debug *.fout *.jout *.jfout \
-	      make_$P_*input
+	      make_$P_*input ${XTRA_CLEANS}
 	if cmp -s $P.in sample.in; then rm $P.in; fi
 	if cmp -s $P.test sample.test; \
 	   then rm $P.test; fi
 
-#
 # Derived From:	Makefile1
 # Author:	walton@seas.harvard.edu
 #

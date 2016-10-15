@@ -1,0 +1,32 @@
+-- SAMPLE 1 --
+abc
+Pattern Length = 3, Text Length = 30, Matches = 6
+Knuth: 30 = 0 comparisons + 30 lookups
+Horspool: 38 = 25 comparisons + 13 lookups
+Quick-Search: 32 = 22 comparisons + 10 lookups
+Berry-Ravindran: 32 = 22 comparisons + 10 lookups
+aaa
+Pattern Length = 3, Text Length = 30, Matches = 6
+Knuth: 30 = 0 comparisons + 30 lookups
+Horspool: 51 = 35 comparisons + 16 lookups
+Quick-Search: 48 = 35 comparisons + 13 lookups
+Berry-Ravindran: 41 = 30 comparisons + 11 lookups
+-- SAMPLE 2 --
+ing
+Pattern Length = 3, Text Length = 109, Matches = 8
+Knuth: 109 = 0 comparisons + 109 lookups
+Horspool: 94 = 55 comparisons + 39 lookups
+Quick-Search: 78 = 47 comparisons + 31 lookups
+Berry-Ravindran: 78 = 47 comparisons + 31 lookups
+pers
+Pattern Length = 4, Text Length = 109, Matches = 4
+Knuth: 109 = 0 comparisons + 109 lookups
+Horspool: 74 = 43 comparisons + 31 lookups
+Quick-Search: 64 = 39 comparisons + 25 lookups
+Berry-Ravindran: 61 = 37 comparisons + 24 lookups
+ick
+Pattern Length = 3, Text Length = 109, Matches = 4
+Knuth: 109 = 0 comparisons + 109 lookups
+Horspool: 84 = 46 comparisons + 38 lookups
+Quick-Search: 66 = 37 comparisons + 29 lookups
+Berry-Ravindran: 66 = 37 comparisons + 29 lookups

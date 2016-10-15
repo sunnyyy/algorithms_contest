@@ -1,0 +1,285 @@
+Demographic Transition
+----------------------
+
+Almost all countries have undergone or are undergoing a
+`demographic transition' in which the population
+explodes because improved public health measures and
+medicine cause the death rate to plummet but the birth
+rate remains high for a time before dropping to match
+the death rate.  You have been asked to compute the
+approximate start and stop years of a country's demo-
+graphic transition, and the multiplier of the transi-
+tion, which is defined as the population at the stop
+year divided by the population at the start year.
+
+To compute the start and stop years, take the yearly
+growth averaged over every 10 year period, define
+periods with average growth of at least 1% as `high
+growth', take the first year of the first high growth
+period as the start year and the LAST(!!) year of the
+last high growth period as the stop year.
+
+A country can have only one demographic transition (at
+least in historic times) which begins when improved
+public health measures and medicine cause the death rate
+to go down.  But not all periods within a demographic
+transition are high growth, and in fact, population may
+decrease within the transition period due to famine or
+war.
+
+To be a bit more precise, if PA is the population for
+year YA, the first of the 10 year period, and PB the
+population for year YB = YA + 10, then the period is
+high growth if and only if (1.01)**10 <= PB/PA.  Note
+YA and YB are the endpoints of a sequence of 11 (not
+10) year/population pair values, and YB is the LAST
+year of the high growth period.
+
+However, it is uncertain whether 10 years is the right
+period duration and whether 1% is the right growth level
+for defining `high growth periods', so these need to be
+parameters that can be changed.
+
+
+Input 
+-----
+
+For each of several test cases, first a line containing
+just the test case name (which typically is the country
+name), and then one line containing the raw data and
+having the format
+
+       Y N P1 P2 P3 ... PN
+
+This specifies the populations P1, ..., PN for N years
+beginning with year Y (thus the last year is Y + N - 1).
+This line is followed by one or more lines of the form
+
+     G D
+
+where a high growth period is defined as a period of
+duration D consecutive years with effective yearly
+growth G %.  The lines of this last format are followed
+by a line containing just the character `*'.
+
+To be precise, if P[YA] denotes the population at year
+YA, a D year period beginning at year YA and ending at
+year YA + D is high growth if and only if (1+G/100)**D
+<= P[YA+D]/P[YA].
+
+The input is such that
+
+    0 <= Y <= Y + N - 1 <= 3,000
+    2 <= N <= 3,000
+    1 <= D <= N - 1
+    0 <= G <= 100
+    0 <= Pi <= 2,000,000 for i = 1, 2, ..., N
+
+Populations are actual populations in units of 1,000
+of the country named in the test case name line.
+
+All input numbers are integers except G, which is
+floating point.  The line containing the raw population
+data may be very long, but other lines will be at most
+80 characters.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, first a copy of the test case name
+input line, then a line containing
+
+      data is for years Y1 through Y2
+      
+where
+
+    Y1 equals Y, the first year of raw input data
+    Y2 equals Y + N - 1, the last year of raw input data
+
+Lastly for each input line of the form
+
+       G D
+
+one output line of the form
+
+    M: YA/PA through YB/PB: G% for D years
+
+where
+
+    M is the ratio PB / PA,
+      with exactly 2 decimal places
+    YA is the start year, the first year of the first
+       high growth period
+    PA is the population at the start year
+    YB is the stop year, the last year of the last
+       high growth period
+    PB is the population at the stop year
+    D, G are from the input line,
+       but G is printed with exactly 2 decimal places
+
+However, if there were no high growth periods, output
+instead a line of the form
+
+    no transition found: G% for D years
+
+Note that you may get YA == Y1, which suggests that the
+demographic transition actually starts before the given
+data, or YB == Y2, which suggests that the transition is
+not yet finished.
+
+
+Sample Input
+------ -----
+
+-- France --
+1820 190 31250 31460 31685 [... see sample.in]
+1.5 10
+1.2 10
+1.0 10
+0.8 10
+0.7 10
+0.6 20
+0.5 20
+*
+-- Germany --
+1820 190 24905 25260 25620 [... see sample.in]
+1.5 10
+1.2 10
+1.0 10
+0.8 10
+0.7 10
+0.6 20
+0.5 20
+*
+
+
+Sample Output
+------ ------
+
+-- France --
+data is for years 1820 through 2009
+no transition found: 1.50% for 10 years
+no transition found: 1.20% for 10 years
+1.34: 1943/39000 through 1971/52432: 1.00% for 10 years
+1.37: 1942/39400 through 1975/53955: 0.80% for 10 years
+1.37: 1941/39600 through 1977/54378: 0.70% for 10 years
+1.38: 1940/41000 through 1986/56725: 0.60% for 20 years
+2.06: 1820/31250 through 2009/64420: 0.50% for 20 years
+-- Germany --
+data is for years 1820 through 2009
+1.21: 1894/49703 through 1907/60341: 1.50% for 10 years
+1.44: 1887/46001 through 1915/66230: 1.20% for 10 years
+2.65: 1820/24905 through 1916/66076: 1.00% for 10 years
+2.83: 1820/24905 through 1956/70603: 0.80% for 10 years
+3.12: 1820/24905 through 1970/77783: 0.70% for 10 years
+3.17: 1820/24905 through 1974/78966: 0.60% for 20 years
+3.14: 1820/24905 through 1976/78299: 0.50% for 20 years
+
+
+Tips:
+----
+
+Input consists of lines read from the standard input.
+Input ends when an end-of-file is read from the standard
+input.  Output consists of lines written to the standard
+output.  For example input/output code see
+
+    ~/demos/solutions/summer/summer.EXT
+
+where EXT is c, cc, or java.
+
+If you want to you can compute the growth g of any D
+year period using the formulae
+
+    double m = (double) P[YA+D] / P[YA];
+    double g = 100 * ( exp ( log ( m ) / D ) - 1 );
+
+Some output from running `make debug' on the judge's
+solution using this formula is
+
+-- France --
+data is for years 1820 through 2009
+10 YEAR PERIOD GROWTHS:
+ 1820: 0.64 0.61 0.59 0.55 0.53 0.50 0.49 0.49 0.48 0.48
+ 1830: 0.47 0.47 0.47 0.48 0.49 0.49 0.47 0.46 0.44 0.42
+ 1840: 0.41 0.40 0.39 0.38 0.37 0.36 0.34 0.32 0.30 0.28
+ 1850: 0.26 0.25 0.25 0.26 0.27 0.27 0.27 0.30 0.31 0.43
+ 1860: 0.30 0.09 0.04 0.05 0.05 0.05 0.08 0.09 0.11 0.00
+ 1870: 0.16 0.38 0.43 0.41 0.41 0.39 0.37 0.34 0.29 0.28
+ 1880: 0.25 0.20 0.17 0.14 0.11 0.09 0.08 0.11 0.14 0.13
+ 1890: 0.14 0.16 0.18 0.19 0.20 0.20 0.19 0.15 0.14 0.14
+ 1900: 0.15 0.16 0.16 0.16 0.15-0.10-0.26-0.41-0.63-0.60
+ 1910:-0.55-0.51-0.48-0.39-0.28 0.03 0.24 0.41 0.63 0.64
+ 1920: 0.65 0.65 0.60 0.49 0.40 0.32 0.25 0.24 0.22 0.16
+ 1930:-0.15-0.55-0.60-0.71-0.75-0.55-0.39-0.30-0.20-0.10
+ 1940: 0.36 0.79 0.92 1.10 1.20 1.08 1.03 1.05 1.05 1.07
+ 1950: 0.92 0.95 1.08 1.16 1.20 1.20 1.19 1.16 1.12 1.10
+ 1960: 1.09 1.07 0.96 0.89 0.85 0.80 0.75 0.71 0.68 0.64
+ 1970: 0.60 0.55 0.52 0.48 0.47 0.46 0.46 0.47 0.48 0.53
+ 1980: 0.54 0.55 0.55 0.56 0.55 0.56 0.56 0.56 0.56 0.51
+ 1990: 0.50 0.50 0.49 0.50 0.51 0.52 0.54 0.55 0.57 0.58
+1.34: 1943/39000 through 1971/52432: 1.00% for 10 years
+
+
+Commentary
+----------
+
+Populations are estimated for European countries from
+1820 on by Madison at
+
+    www.ggdc.net/maddison/Historical_Statistics/
+                          horizontal-file_02-2010.xls
+
+and for other countries from 1950 on by the UN at
+
+    esa.un.org/unpd/wpp/Excel-Data/EXCEL_FILES/
+      1_Population/
+      WPP2012_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.XLS
+
+It is actually not easy to define the start and stop
+years of the demographic transition in a meaningful way.
+The data needed to precisely define the start is gener-
+ally unavailable.  Populations also grow as the food
+supply grows (as happened when the amount of land under
+cultivation grew in America), and may shrink as the
+culture changes (as is happening now in Europe), so the
+demographic transition is superimposed on a slower
+long-term growth curve.
+
+We have kept this problem simple even though the results
+our solutions compute are not that close to the best
+that can be computed.  The book
+
+    A Concise History of World Population,
+    by Massimo Livi-Bacci, English Translation, 2012
+
+gives the following data (taken from a paper by J,-C.
+Chesnais) on page 118:
+
+    Country  Start and Stop Year	Multiplier
+
+    Sweden   1810 - 1960    		3.83
+    Germany  1876 - 1965			2.11
+    USSR     1896 - 1965				2.05
+    France   1785 - 1970					1.62
+    China    1930 - 2000						2.46
+    Mexico   1920 - 2000							7.02
+
+
+File:	        transition.txt
+Author:		   Bob Walton <walton@seas.harvard.edu>
+Date:		      Tue Oct 15 15:18:13 EDT 2013
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2013/10/15 19:48:46 $
+    $RCSfile: transition.txt,v $
+    $Revision: 1.16 $
