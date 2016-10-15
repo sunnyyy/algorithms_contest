@@ -1,0 +1,152 @@
+The Birthday Paradox
+--- -------- -------
+
+Suppose you pick m numbers at random, each between 1 and
+n.  How large does m have to be before we can expect to
+see two numbers that are the same?
+
+The answer is about the square root of 2n, which is
+surprisingly small.  For example, if n = 365, the number
+of days in the year, m = 28 will do.  One way to pick
+numbers from 1 through 365 is to pick people and take
+their birthdays.  Thus if you have 28 people in a room,
+you can expect two to have the same birthday.  For this
+reason the phenomenon we have just described is called
+the `Birthday Paradox'.
+
+The Birthday Paradox has some surprising applications.
+Suppose you have a pseudo-random number generator that
+uses the sequence
+
+     x(i+1) = A*x(i)^2 + B*x(i) + C   (modulo n)
+
+     x(0) = D
+
+for some constants n, A, B, C, and D to generate numbers
+x(0), x(1), x(2), ... which we hope act like a sequence
+of random numbers.  Suppose they really are like random
+numbers.  Then by the birthday paradox the sequence of
+numbers will start repeating itself after about m =
+square root of 2n numbers.  That is, if we find the
+smallest m > 0 and i > 0 such that x(i+m) = x(i), then
+typical values of m and i are on the order of the square
+root of 2n.  Note that given such values, by the nature
+of the above equation, x(j+m) = x(j) for all j >= i, and
+we say the sequence has a cycle of length m.
+
+The theory here is not rigorous, because the sequence
+x(0), x(1), x(2), is not a rigorously random sequence.
+In this problem you will be given n, A, B, C, and D and
+asked to compute i and m (the start and length of first
+cycle) and print these and the square root of n.  Just
+to see if the theory works most of the time.
+
+
+Input
+-----
+
+For each test case, one line containing
+
+    n A B C D
+
+Here 2 <= n <= 40,000; 0 <= A,B,C,D < n.  The input
+ends with an end of file.
+
+Output
+------
+
+For each test case, one line containing
+
+    n A B C D i m r
+
+where r = ceil ( sqrt ( 2 * n ) ) as an integer (ceil is
+the ceiling function and sqrt the square root function),
+and each integer of the 8 integers is printed right
+adjusted in exactly 7 columns.
+
+
+Remark
+------
+
+We limit n <= 40,000 in order to permit implementations
+to use 32 bit integers.  Note, however, that A * x * x
+may not fit into 32 bits, though x * x and A * n will.
+If you want to use 64 bit integers (`long long' in C and
+C++ and `long' in JAVA), you can compute with larger
+values of x.
+
+If you use a vector of integers of length n the size of
+n will still be limited.  But there are simple clever
+implementations that do not need a vector and use almost
+no memory for any size of n.
+
+
+Sample Input
+------ -----
+
+100 43 23 17 5
+199 0 2 0 1
+8191 5 2685 0 7
+32749 0 1944 0 5
+
+
+Sample Output
+------ ------
+
+    100     43     23     17      5      2      2     15
+    199      0      2      0      1      0     99     20
+   8191      5   2685      0      7    155    115    128
+  32749      0   1944      0      5      0  32748    256
+
+
+Remark
+------
+
+The pseudo-random number generators that are actually
+used pick A, B, C, and D so the shortest cycle is of
+length n or n-1.  One has to be smart about picking A,
+B, C, and D.  One old but usable set is
+
+    A = 0, B = 7^5, C = 0, D > 0, n = 2^31 - 1
+
+or in other words,
+
+   x(i+1) = 7^5*x(i) modulo (2^31-1)
+
+with D any non-zero value.  Another set that you can
+test your program with is
+
+    A = 0, B = 1944, C = 0, D > 0, n = 2^15 - 19
+
+which should have i = 0 and m = n - 1, the maximum
+possible cycle length.
+
+The irony is that to get a good random number generator,
+the sequence cannot really be random.
+
+
+Remark
+------
+
+Pollard's rho algorithm makes clever use of cases such
+as
+	A = 1, B = 0, C = n - 2
+
+to find factors of n for values of n up to 2^256 + 1.
+
+
+
+File:	   birthday.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Wed Oct 15 09:18:40 EDT 2008
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2008/10/15 13:20:51 $
+    $RCSfile: birthday.txt,v $
+    $Revision: 1.7 $

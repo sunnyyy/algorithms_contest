@@ -1,0 +1,61 @@
+Superstring Counter
+----------- -------
+
+A superstring of a set of strings is a string containing
+every member of the set (possibly with overlapping) as a
+substring.  You have been asked to find the number of
+superstrings with a given length of a given set of
+substrings.  All strings consist of lower case letters.
+
+
+Input
+-----
+
+For each test case, one line containing just `n m',
+where n is the length of the superstring and m is the
+number of substrings to be included in it, followed by
+m lines, each containing nothing but one substring.
+1 <= m <= 10, 1 <= n <= 40.  Substrings contain only
+lower case letters.  The input ends with an end of file.
+
+
+Output
+------
+
+For each test case, one line containing the number of
+superstrings containing just n lower case letters.  The
+input will be such that the output will be less than
+2^31.
+
+
+Sample Input
+------ -----
+
+4 2
+ab
+cd
+3 1
+aa
+
+
+Sample Output
+------ ------
+
+2
+51
+
+
+File:	   supercounter.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Wed Oct 15 09:27:16 EDT 2008
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2008/10/15 13:27:26 $
+    $RCSfile: supercounter.txt,v $
+    $Revision: 1.5 $

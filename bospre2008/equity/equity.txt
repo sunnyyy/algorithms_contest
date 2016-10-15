@@ -1,0 +1,343 @@
+Equity
+------
+
+You have been asked to write a program that will print
+information that can be used to evaluate the financial
+situation of a company.  The input is raw data about a
+company for a sequence of years, and the output is an
+income statement and balance sheet for the company for
+each year.
+
+
+Input
+-----
+
+The input is a set of lines each of which consists of
+a data type character followed by a datum.  These are
+
+N<company-name>
+    All the data lines following, until the next N line
+    or end of file, are for a company with the given
+    name.  All data for one company is grouped together;
+    any two different N lines are for different compan-
+    ies.  An N line is always followed by a Y line.
+Y<current-year>
+    All the data lines following, until the next N or
+    Y line or end of file, are for the given `current
+    year'.  The Y lines for one company are sequentially
+    increasing; that is, every Y line but the first for
+    a given company contains a value one greater than
+    the value of the previous Y line for the company.
+S<sales>
+    The sales (i.e. revenue) of the company in the
+    current year.
+R<received>
+    The amount of money received from sales for the
+    given year.  If you sell $1,000 worth and receive
+    $900, then you are still owed $100, which is called
+    a `receivable'.
+
+O<operating-cost>
+    The cost of operating the company during the current
+    year.  This is the cost of manufacturing, adminis-
+    tration, sales, advertising, etc. (but NOT the cost
+    of capital expenditures, interest, dividends, or
+    taxes).
+P<paid>
+    The amount of the operating cost you actually paid
+    during the current year.  If your cost was $1,000
+    and you paid $900, the you still owe $100, which is
+    called a `payable'.  If instead you paid $1100, then
+    presumably you had at least $100 of payables carried
+    over from the previous year and paid off $100 of it.
+C<capital-expenditures>
+    Amount of money spent on capital (land purchases,
+    construction, machinery, trucks, etc.) in the
+    current year.
+D<depreciation>
+    The amount of capital that is to be charged against
+    income in the current year.  If you pay $30,000 for
+    a truck in 2003, rather than charge it all against
+    income in 2003, you may charge $10,000 in each of
+    the three years 2003, 2004, and 2005 as `deprecia-
+    tion'.  If you pay $1,000 for land, however, you may
+    never charge anything to depreciation, on the
+    grounds that the land value does not depreciate.
+I<interest>
+    Interest paid on bonds in the current year.
+T<taxes>
+    Taxes paid in current year.
+V<dividends>
+    Dividends paid to stock holders in the current year.
+E<new-equity>
+    Amount taken in from venture capitalists or by sell-
+    ing new shares of common stock, minus amount paid
+    out to venture capitalists or to buy back the
+    company's shares of common stock, for the current
+    year.
+
+B<new-debt>
+    Amount of bonds sold minus amount of bonds retired
+    during the current year.
+G<inventory-change>
+    Value of goods produced for sale minus value of
+    goods sold during the current year.
+
+More than one company is described in the input.  The N
+value is a character string (all the characters after
+the N until the end of line).  All the other values are
+integers, which may be negative in some cases.  All the
+integer values are in some unspecified unit, such as
+millions of dollars or thousands of dollars, except of
+course the years.  If any of the dollar values are not
+given for a year, they are to be taken to be zero.
+E.g., in the first year of a company, we might give only
+Y, E, and C lines, and this means that all the other
+dollar values are zero.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+The output is an income statement and a balance sheet
+for each company year for which data is provided in the
+input.
+
+The format of the output is as given in the Sample
+Output.  All numbers are integers (you can think of them
+as being in millions or thousands of dollars).  All
+integers must be printed with their low order digit
+exactly in column 40.  Only negative integers have a
+sign, and no high order zeros may be printed.  Consecu-
+tive words and years in the output must be separated by
+a single space; and you may assume that this is true of
+company names given in N lines.
+
+Each non-blank output line starts in either column 1 or
+column 3, and this indentation must be exactly as in the
+Sample Output.  You can assume the N input line value is
+well formatted, and you should just copy that line with
+its initial `N' removed to an output line.
+
+There should never be two blank lines in a row, and
+blank lines must be included as indicated in the Sample
+Output.  There MUST NOT be any blank line at the
+beginning or end of output (be careful of this).
+
+Note that failure to follow any of the spacing rules
+will result in a `Formatting Error' score for your
+program if everything else is correct.
+
+In what follows, single capital letters such as S and I
+mean `the S input line value' and `the I input line
+value', etc.  The output is computed as follows:
+
+`Income Statement' for a given company and year:
+
+    Operating Revenue: S
+    Operating Cost: O
+    Depreciation: D
+    Operating Income: Operating Revenue - Operating Cost
+                                        - Depreciation.
+    Interest: I
+    Taxes: T
+    Earnings: Operating Income - Interest - Taxes.
+    Dividends: V
+    Transfer to Equity:  Earnings - Dividends.
+
+`Balance Sheet' for a given company and year:
+
+    All these values are for the end of the current
+    year.  These values are all set to zero before the
+    first year of a company (i.e, by each N input line).
+
+    Assets:
+    Cash: Cash from previous year + R - P - C + E
+        + B - I - T - V.
+	Inventory: Inventory from previous year + G.
+	Receivables: Receivables from previous year
+		          + S - R.
+			  Current Assets: Cash + Inventory + Receivables.
+			  Fixed Assets:  The Fixed Assets from the pre-
+			                 vious year + C - D.  (Essentially
+					              the undepreciated capital).
+						      Total Assets: Current Assets + Fixed Assets.
+
+    Liabilities:
+    Payables: Payables from previous year + O - P.
+    Current Liabilities: Payables
+    Debt: Debt from previous year + B.
+    Total Liabilities: Current Liabilities + Debt.
+
+    Equity: Total Assets - Total Liabilities.
+
+You may find it helpful to program the following check
+into your program as a debugging aid:
+
+    Equity = Equity from the previous year
+           + Transfer to Equity + E + G
+
+Note that neither assets nor liabilities may be
+negative, and among input values only E, B, and G may be
+negative, but the income, earnings, transfer to equity,
+and equity values can be negative.  Mathematically it
+would be possible for an asset like cash to go negative,
+but it would be an accounting error if this happened.
+
+
+Sample Input
+------ -----
+
+NBills's Toothpaste Company
+Y1950
+E15
+C20
+B10
+Y1951
+S30
+R27
+O25
+P24
+D3
+I1
+G1
+T1
+V1
+NGreat Flame Barbecue
+Y1975
+E5
+C4
+S10
+R9
+O6
+P5
+T1
+G1
+
+
+Sample Output
+------ ------
+
+Bills's Toothpaste Company
+
+1950 Income Statement:
+  Operating Revenue:                   0
+  Operating Cost:                      0
+  Depreciation:                        0
+  Operating Income:                    0
+  Interest:                            0
+  Taxes:                               0
+  Earnings:                            0
+  Dividends:                           0
+  Transfer to Equity:                  0
+
+1950 Balance Sheet:
+  Cash:                                5
+  Inventory:                           0
+  Receivables:                         0
+  Current Assets:                      5
+  Fixed Assets:                       20
+  Total Assets:                       25
+  Payables:                            0
+  Current Liabilities:                 0
+  Debt:                               10
+  Total Liabilities:                  10
+  Equity:                             15
+
+1951 Income Statement:
+  Operating Revenue:                  30
+  Operating Cost:                     25
+  Depreciation:                        3
+  Operating Income:                    2
+  Interest:                            1
+  Taxes:                               1
+  Earnings:                            0
+  Dividends:                           1
+  Transfer to Equity:                 -1
+
+1951 Balance Sheet:
+  Cash:                                5
+  Inventory:                           1
+  Receivables:                         3
+  Current Assets:                      9
+  Fixed Assets:                       17
+  Total Assets:                       26
+  Payables:                            1
+  Current Liabilities:                 1
+  Debt:                               10
+  Total Liabilities:                  11
+  Equity:                             15
+
+Great Flame Barbecue
+
+1975 Income Statement:
+  Operating Revenue:                  10
+  Operating Cost:                      6
+  Depreciation:                        0
+  Operating Income:                    4
+  Interest:                            0
+  Taxes:                               1
+  Earnings:                            3
+  Dividends:                           0
+  Transfer to Equity:                  3
+
+1975 Balance Sheet:
+  Cash:                                4
+  Inventory:                           1
+  Receivables:                         1
+  Current Assets:                      6
+  Fixed Assets:                        4
+  Total Assets:                       10
+  Payables:                            1
+  Current Liabilities:                 1
+  Debt:                                0
+  Total Liabilities:                   1
+  Equity:                              9
+
+
+Remarks:
+-------
+
+The above comes mostly from `The Interpretation of
+Financial Statements' by Benjamin Graham.  However the
+above is an over-simplification, and there are also
+terminological problems and accounting method disputes
+that the author of this problem is not qualified to deal
+with.
+
+To take one example, a company with a good balance sheet
+should have perhaps twice as much Current Assets, which
+might be interpreted as assets that could be converted
+into cash in a year, than Current Liabilities, which
+might be interpreted as liabilities that must be paid in
+a year.  Above we assumed that all bonds were long term
+and none were current liabilities, but some modern
+companies have taken to issuing lots of short term
+(e.g., three month) bonds which should be listed as
+Current Liabilities.
+
+Even a real balance sheet is an over-simplification.
+For example, some inventory may be unsellable and have
+to be `written off' as a loss eventually, and similarly
+some receivables may be uncollectible.  The networking
+hardware companies leased much of their hardware to the
+dot-com bubble companies and had to write off large
+amounts of receivables when the dot-com bubble burst.
+
+
+File:	   equity.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Wed Oct 15 09:11:05 EDT 2008
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2008/10/15 13:18:19 $
+    $RCSfile: equity.txt,v $
+    $Revision: 1.7 $

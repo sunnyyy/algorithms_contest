@@ -1,0 +1,448 @@
+The PAXOS Algorithm
+--- ----- ---------
+
+The PAXOS algorithm was developed by Leslie Lamport (and
+independently by others) to make a decision rapidly in a
+distributed computer system where any processor can
+fail.  You have been asked to simulate the algorithm in
+order to get a sense of how it works.
+
+A distributed system is a set of processes connected to
+each other by communication channels.  For the purposes
+of this problem, we assume there are two channels
+between every pair of processes, one channel going in
+each direction.
+
+In order for a distributed system to run as fast as
+possible, it should be `asynchronous'.  This means that
+as soon as a process receives a message, it computes its
+new state and sends appropriate messages to other
+processes, without waiting for any particular time.
+However, there is a theorem that any asynchronous
+distributed algorithm will stop dead if just one process
+fails at exactly the wrong moment.  Thus asynchronous
+distributed algorithms can fail if just one of their
+processes fails.
+
+The PAXOS algorithm can be thought of as an asynchronous
+decision making algorithm that can be run more than once
+to make the same decision.  That is, there can be more
+than one instance of the algorithm.  If one instance
+appears to be failing, another instance can be started.
+The algorithm has the critically important property that
+if several of the instances succeed in coming to a
+decision, they will all come to the SAME decision.
+
+The algorithm description is as follows:
+
+(1) For our purposes, the decision is to be made between
+    two values, labeled `B' and `C'.  In the real world
+    the decision is most often between `aborting' and
+    `committing' a data base transaction, so you can
+    think of `B' as meaning `abort' and `C' as meaning
+    `commit'.
+
+(2) Each algorithm instance has a single master process.
+    This process will make the decision and send it
+    to all the the other processes.  The master of the
+    first instance is generally chosen by the nature
+    of the decision being made, and the masters of later
+    instances are simply processes that, using clocks,
+    have decided that previous algorithm instances are
+    unduly delayed and a new algorithm instance needs to
+    be started.
+
+    All the processes other than the master for an
+    instance are called the slaves of that instance.  A
+    process can be the master of some algorithm
+    instances and a slave in other instances.
+
+(3) Each instance is assigned an identifier.  No two
+    instances may have the same identifier, and the
+    identifiers are ordered so that instances started
+    later are later in the ordering.  In the real
+    world identifiers are typically numbers whose
+    high order bits are the time of day and whose low
+    order bits are a unique process identifier.
+
+(4) Processes communicate by messages sent over chan-
+    nels.  We assume there are n processes numbered
+    from 1 through n, and there is exactly one directed
+    channel connecting message sending process j to
+    message receiving process k, for every pair of
+    processes j and k with j != k.  We assume each
+    channel delivers messages reliably and in the order
+    they were sent, BUT, with arbitrary delay.  Such a
+    channel can be built on top of unreliable communica-
+    tions by an appropriate channel protocol, which we
+    do not consider here (in the real world the internet
+    TCP protocol would likely be used).
+
+    We assume each channel can hold exactly one message,
+    which has been sent but not received.  We assume
+    that if a second message is sent to the channel
+    when the channel is not empty, any previous message
+    in the channel is discarded and lost.  This behavior
+    just simplifies the code of our simulation; a real
+    world channel probably would not discard messages
+    very often.
+
+(5) The algorithm messages have the following formats,
+    where lower case letters are variables and upper
+    case letters are constants:
+
+    m s N i
+        New-instance (N) message, sent from instance
+	master process m to instance slave process s,
+	announcing that a new instance has been created
+	with identifier i.
+
+    s m A i pd pi
+        (New-instance) acknowledgment (A) message, sent
+	from instance slave s to instance master m, for
+	the instance with identifier i.  pd and pi are
+	the values of variables maintained by the slave
+	as part of its state (see below).
+
+    m s P i d	
+        Proposal (P) message, sent from instance master
+	process m to instance slave process s, for the
+	instance with identifier i, proposing that the
+	instance decision be d (d == B or C).
+
+    s m Q i
+        Proposal acknowledgment (Q) message, sent merely
+	to acknowledge the above proposal (P) message.
+
+    m s F i
+        Final (F) message, sent from instance master
+	process m to instance slave process s, for the
+	instance with identifier i, stating that the
+	proposed decision for instance i has become
+	the final decision of the set of all instances,
+	and no subsequent instance will ever propose a
+	different decision.
+
+(6) Each process maintains the following variables:
+
+    imax The latest (maximum) instance identifier
+            for which the process has either
+	    	received or sent a new-instance (N),
+			 proposed (P), or final (F) message.
+			 	  Initialized to -1.  All instance
+				  	      identifiers are integers >= 0.
+
+					      pd	  The decision value in the last proposal
+					      		  (P) message the process has either sent
+							      or has received and not ignored.
+							      	 Initialized to X (meaning no proposal
+								 	     has been received).
+
+									     pi	 The instance identifier in the last pro-
+									     	 posal (P) message the process has either
+										       sent or has received and not ignored.
+										       	    Initialized to -1.
+
+    Note that a master maintains these variables as if
+    it were also a slave that receives and does not
+    ignore all the messages the master sends.
+
+    Here -1 is treated as an instance identifier value
+    that is less than any actual instance identifier.
+
+(7) Any received message is ignored (discarded) if
+    it is a message whose instance identifier i is LESS
+    THAN the receiver's current imax variable value.
+
+(8) There are n processes.  Let m be the smallest inte-
+    ger such that 2m > n.  Any set of processes with m
+    members is called a `majority'.
+
+    PAXOS uses the fact that any two majorities must
+    overlap.
+
+(9) The instance algorithm is:
+
+    (a) The master picks an instance identifier i
+        based on the current time.  This must be greater
+	than the imax variable value of the master, and
+	should be greater than the identifier of any
+	previous instance.
+
+    (b) The master sends new-instance (N) messages to
+        all slaves.  Upon receiving and not ignoring the
+	N message, a slave sends an acknowledgment (A)
+	message back to the master containing the
+	slave's pd and pi variable values.
+
+    (c) As soon as the master receives m-1 acknowledg-
+        ment (A) messages, it makes a proposed decision.
+	It knows at this point the pd and pi values of m
+	processes, the m-1 acknowledging slaves and the
+	master itself.  If all pd values are X, meaning
+	`not yet set', the master is free to make any
+	decision it wants (this will be the case for the
+	first instance).  Otherwise the master chooses
+	the pd value whose associated pi value is
+	greatest.
+
+    (d) The master sends proposal (P) messages to all
+        slaves containing the new proposed decision.
+	Any slave receiving and not ignoring this
+	message returns a proposal acknowledge (Q)
+	message to the master.  During this process
+	activity the pd and pi variable values of the
+	master and all acknowledging slaves are updated.
+
+    (e) As soon as the master receives m-1 proposal
+        acknowledgment (Q) messages, it sends a final
+	(F) message to all slaves.  Note that in the our
+	simulation slaves ignore final (F) messages,
+	though in the real world they would not.
+
+Event Specification
+-------------------
+
+The simulation you have been asked to perform represents
+algorithm execution as a sequence of events.  The events
+are numbered 1, 2, 3, etc., and the simulation input
+contains a list of event specification lines that are
+each one of the following:
+
+    N m d
+    Process m becomes the master of a new instance
+    whose instance identifier is the number of the
+    current event and whose decision will be d (B or
+    C) if the master is free to choose in step (c)
+    above.  The event consists of the new master
+    updating its variables and sending new-instance
+    (N) messages to every other process.
+
+    R j k
+    Process k receives the message in the channel
+    whose sending process is j and whose receiving
+    process is k, if there is a message in that
+    channel.  If there is no message, there is no
+    event.  If there is a message, the event
+    consists of the receiving process updating
+    its variables and sending messages to other
+    other processes as specified by the algorithm
+    steps above.
+
+Events in general send messages (except for events where
+a received message is ignored).  Sending a message
+consists of placing the message in the appropriate
+channel.  If necessary any previous message in the
+channel is first discarded.
+
+Input
+-----
+
+The input consists of several test cases.  Each test
+case consists of
+
+     a line containing the name of the test case
+     a line containing the number n of processes
+     zero or more event specification lines
+     a line containing only the character `E'
+
+Here 2 <= n <= 32.  The input terminates with an end
+of file.
+
+Output
+------
+
+For each test case the line containing the name of the
+test case is output.  Then for each event the output
+is as follows:
+
+(a) If the event is the creation of a new instance,
+    a line of the form `e: NEW INSTANCE m d' is output,
+    where e is the event number, and also the identifier
+    of the new instance, and m and d are taken from the
+    `N m d' event specification.
+
+(b) If the event is the reception of a message, a line
+    is output of the form `e: message action' where
+    e is the event number (1, 2, 3, etc.), the `message'
+    is the received message in the message format given
+    above with single spaces surrounding it and
+    separating its parts, and the `action' is one of the
+    following words:
+
+    	      IGNORED	    The message is ignored as per (7)
+	      		        above.
+
+				COMMITTING  The message is the m-1'st proposal
+				            (P) message to be received and not
+					    	    ignored by a slave for a given
+						    	        instance.
+
+								ACCEPTED    All other cases.
+
+Note that if for an event specification `R j k' the
+channel is empty, there is no event, there is no output,
+and the current event number is not incremented.
+
+In general, items in an output line are to be separated
+by a single space character, except there is no space
+before a `:'.  There should be no other whitespace
+characters in any output line.  You may assume the test
+case name input line is property formatted, and you
+should just copy it to the output.
+
+At the end of each test case print one empty line.
+This will appear before the name of the next test case,
+or before the end of the output file.
+
+
+Example Input
+------- -----
+
+ERRORLESS CASE
+3
+N 1 C
+R 1 2
+R 1 2
+R 1 3
+R 2 1
+R 3 1
+R 1 2
+R 1 3
+R 2 1
+R 3 1
+R 1 2
+R 1 3
+E
+ONE FAILURE CASE
+3
+N 1 C
+R 1 2
+R 1 3
+N 2 B
+R 2 1
+R 3 1
+R 2 3
+R 1 2
+R 3 2
+R 2 1
+R 2 3
+R 1 2
+R 3 2
+R 2 1
+R 2 3
+E
+
+
+Example Output
+------- ------
+
+ERRORLESS CASE
+1: NEW INSTANCE 1 C
+2: 1 2 N 1 ACCEPTED
+3: 1 3 N 1 ACCEPTED
+4: 2 1 A 1 X -1 ACCEPTED
+5: 3 1 A 1 X -1 ACCEPTED
+6: 1 2 P 1 C COMMITTING
+7: 1 3 P 1 C ACCEPTED
+8: 2 1 Q 1 ACCEPTED
+9: 3 1 Q 1 ACCEPTED
+10: 1 2 F 1 ACCEPTED
+11: 1 3 F 1 ACCEPTED
+
+ONE FAILURE CASE
+1: NEW INSTANCE 1 C
+2: 1 2 N 1 ACCEPTED
+3: 1 3 N 1 ACCEPTED
+4: NEW INSTANCE 2 B
+5: 2 1 N 4 ACCEPTED
+6: 3 1 A 1 X -1 IGNORED
+7: 2 3 N 4 ACCEPTED
+8: 1 2 A 4 X -1 ACCEPTED
+9: 3 2 A 4 X -1 ACCEPTED
+10: 2 1 P 4 B COMMITTING
+11: 2 3 P 4 B ACCEPTED
+12: 1 2 Q 4 ACCEPTED
+13: 3 2 Q 4 ACCEPTED
+14: 2 1 F 4 ACCEPTED
+15: 2 3 F 4 ACCEPTED
+
+[The last output line is blank.]
+
+Remarks
+-------
+
+A non-distributed reliable system can be made from a
+computer and a disk.  The computer runs instances of an
+algorithm which makes decisions.  To make a decision,
+an instance first proposes it, then writes it to disk,
+then declares the decision final.  If the computer
+crashes, a new instance of the algorithm is started,
+which begins by reading the disk to find out all the
+previously proposed decisions.  Since it does not know
+the extent to which these have been acted on, it must
+assume each of these proposed decisions is final.
+
+The disk is referred to as `stable storage', because it
+survives crashes and provides reliability.
+
+The PAXOS algorithm uses the set of processes to imple-
+ment stable storage (without any disks).  The proposal
+(P) messages write the proposed decision to stable
+storage (the set of processes), and the proposal acknow-
+ledgment (Q) messages confirm that the decision has been
+written.  In the non-distributed case the proposed deci-
+sion has been successfully written to stable storage
+when its last bit has been successfully copied to disk.
+In the PAXOS case the proposed decision has been
+successfully written to stable storage when the m-1'st
+slave which will not ignore the proposal's P message has
+received the P message.  At this point any subsequent
+instance will read the proposed decision.  So at this
+point the proposed decision is `committed'.  The master
+knows it has successfully written stable storage when it
+receives the m-1'st Q message.
+
+The new instance (N) messages and their acknowledgment
+(A) messages correspond to reading stable storage.  The
+master knows it has successfully read stable storage
+when it receives the m-1'st A message, and any proposed
+decision read is that associated with the most recent
+instance known to any of the slaves that sent the A
+messages.  Because two majority sets of processes must
+overlap, any committed proposed decision becomes known
+to the master.  Here we are using the fact that if a
+committed proposed decision is overwritten by a new
+proposed decision, the new proposed decision must be the
+SAME as the old proposed decision, by step (c) of the
+algorithm.
+
+One can formalize all this in an inductive mathematical
+proof that using PAXOS, once a proposed decision is
+committed by an instance no future instance can propose
+any other decision.
+
+The analogy we have drawn between the non-distributed
+and distributed cases is not precise.  For example, in
+the distributed case several instances can run simultan-
+eously (in DIFFERENT processes), and a proposed decision
+that is never committed can end up being read as the
+latest proposed decision by a subsequent algorithm
+instance.
+
+
+
+File:	   paxos.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Wed Oct 15 09:25:31 EDT 2008
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2008/10/15 13:26:34 $
+    $RCSfile: paxos.txt,v $
+    $Revision: 1.10 $
