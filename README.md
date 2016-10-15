@@ -1,4 +1,4 @@
-# algorithms_contes]\['[p=]]]']
+# algorithms_contest
 My solutions to practice problems for ACM & other contests.
 
 ##Solved & accurate:
@@ -44,6 +44,27 @@ My solutions to practice problems for ACM & other contests.
 7. emirp
 
 ##Contains:
+
+- BOSPRE 2005
+ - chromatic
+ - exchanged
+ - faireye
+ - isa
+ - overlapgame
+ - prooflabel
+ - pseudopi
+ - stringhash
+
+- BOSPRE 2008
+ - birthday
+ - [x] buffalo
+ - convexhull
+ - equity
+ - paxos
+ - supercounter
+ - tableformatter
+ - twolegs
+
 - BOSPRE 2011
  - abduction
  - boolebreak
@@ -53,6 +74,7 @@ My solutions to practice problems for ACM & other contests.
  - relativeneighbor
  - sniffer
  - vlsicompact
+
 - BOSPRE 2012
  - [ ] anglepuzzle
  - broppers
@@ -60,7 +82,8 @@ My solutions to practice problems for ACM & other contests.
  - gorillatoe
  - lambdadev
  - pagerank
- - spoonerisms
+ - [x] spoonerisms
+
 - BOSPRE 2013
  - crates
  - eulerian
@@ -70,6 +93,7 @@ My solutions to practice problems for ACM & other contests.
  - pulleys
  - soundex
  - transition
+
 - BOSPRE 2014
  - binshuffle
  - gamedraw
@@ -79,6 +103,7 @@ My solutions to practice problems for ACM & other contests.
  - simplefsm
  - thue
  - unitcalc
+
 - BOSPRE 2015
  - asciiart
  - latin
@@ -89,6 +114,7 @@ My solutions to practice problems for ACM & other contests.
  - trends
  - vigenere
  - [ ] xmole
+
 - BOSPRE 2016
  - colorpuzzle
  - economy
@@ -100,6 +126,7 @@ My solutions to practice problems for ACM & other contests.
  - [ ] oneboggle
  - [ ] substrings
  - whatwave
+
 - CCSCNE 2016
  - electriccars
  - emirp
