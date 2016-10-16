@@ -81,7 +81,7 @@ My solutions to practice problems for ACM & other contests.
 
 - BOSPRE 2008
  - birthday
- - [x] *buffalo* (BOSPRE 2008, Balgorfest 2016)
+ - [x] **buffalo** (BOSPRE 2008, Balgorfest 2016)
  - convexhull
  - equity
  - paxos
@@ -113,7 +113,7 @@ My solutions to practice problems for ACM & other contests.
  - gorillatoe
  - lambdadev
  - pagerank
- - [x] *spoonerisms* (BOSPRE 2012, Balgorfest 2016)
+ - [x] **spoonerisms** (BOSPRE 2012, Balgorfest 2016)
 
 - BOSPRE 2013
  - crates
@@ -153,14 +153,14 @@ My solutions to practice problems for ACM & other contests.
  - gaudy (BOSPRE 2016)
  - [ ] hulldiameter (BOSPRE 2016)
  - monte (BOSPRE 2016)
- - [x] notlost (BOSPRE 2016)
+ - [x] **notlost** (BOSPRE 2016)
  - [ ] oneboggle (BOSPRE 2016)
  - [x] substrings (BOSPRE 2016)
- - [ ] whatwave (BOSPRE 2016)
+ - [ ] **whatwave** (BOSPRE 2016)
 
 - Balgorfest 2016
- - [x] *fractions* (Harvard Selection Contest Fall 2015, Balgorfest 2016)
- - [x] *fibonacci* (Northeastern Preliminary at Harvard 1997, Balgorfest 2016)
+ - [x] **fractions** (Harvard Selection Contest Fall 2015, Balgorfest 2016)
+ - [x] **fibonacci** (Northeastern Preliminary at Harvard 1997, Balgorfest 2016)
 
 - CCSCNE 2016
  - [ ] electriccars
