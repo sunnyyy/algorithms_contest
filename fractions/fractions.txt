@@ -1,0 +1,95 @@
+Fractions
+---------
+You have been asked to write the numeric output routine
+for a calculator in which numbers such as 0.333333333
+are output as 1/3 rather then 0.333, on the grounds that
+1/3 is more accurate and sometimes more user friendly
+than 0.333.
+
+In general a fractional representation has the form N/D
+where
+
+N and D are integers
+0 < N < D
+N and D have no common factor (other than 1)
+
+Your code is to be part of a calculator that allows
+inputs of the form N/D and thus often produces results
+that have the same general form, but the calculator uses
+double precision floating point numbers internally.
+However, when the result is a fraction, it will be
+that faction to very high accuracy. Internally the
+accuracy is over 15 decimal digits. So we assume that
+if a number is the same as a fraction to within 9
+decimal digits, it equals the fraction. This allows
+6 decimal digits for inaccuracies of arithmetic, such
+as those that might arise from summing 1,000,000
+fractions.
+
+You are to write a program that determines whether a
+number between 0 and 1 is represented by a fraction
+with D <= 1000 within a precision of 9 decimal digits.
+IMPORTANT: You do NOT need to optimize. The judge is
+interested in getting a good algorithm for this application,
+so he coded one brute force solution and two
+optimal ones, but the brute force solution ran only 4
+times slower than either optimal solution. So its not
+easy to discriminate optimal from brute force solutions
+in a contest. Thus the judge’s data set for this
+problem is small and a brute force solution suffices.
+
+Input
+-----
+For each of very many test cases, a line containing just
+the number n to be represented. 0 <= n < 1.
+
+Input ends with an end of file.
+
+Output
+------
+For each test case, a line of the form
+
+n r
+
+where r is either a fraction of the form N/D meeting the
+requirements given above (in particular, D <= 1000 and
+|n-N/D| < 0.0000000005 == 0.5e-9), or is just a ‘-’
+indicating that there is no such fraction. The input
+will be such that the results are unambiguous.
+In the output lines, n should be printed with 15 decimal
+places.
+
+Sample Input
+------ -----
+0.333333333333333
+0.33333334
+0.066666666666666
+0.06666667
+0.111111111111111
+0.555555555555555
+0.123123123123123
+0.729729729729729
+0.729729727000000
+0.729729729700000
+
+Sample Output
+------ ------
+
+0.333333333333333 1/3
+0.333333340000000 -
+0.066666666666666 1/15
+0.066666670000000 -
+0.111111111111111 1/9
+0.555555555555555 5/9
+0.123123123123123 41/333
+0.729729729729729 27/37
+0.729729727000000 -
+0.729729729700000 27/37
+
+
+File: fractions.txt
+Author: Bob Walton <walton@seas.harvard.edu>
+Date: Sun Sep 20 11:33:11 EDT 2015
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

@@ -1,5 +1,4 @@
-import java.util.Scanner;
-import java.util.Math;
+import java.util.*;
 
 /* ********************************************************************************
 Input
@@ -46,17 +45,18 @@ public class pseudopi {
 			}
 		}
 		double est = 4* ((double) m)/n;
-		
+		// MISSING NUMBERFORMAT TO 5 DEC PLACES
+		// also incorrect solution
 		System.out.println(n+" "+mult+" "+mod+" "+seed+" "+est);
 	}
 
-	public static int random(mult, rand, mod) {
+	public static int random(int mult, int rand, int mod) {
 		return (mult * rand) % mod;
 	}
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		String mirror_line = ""
+		String line = "";
 		ArrayList<String> pts = new ArrayList<String>();
 		while (scan.hasNextLine()) {
 			line = scan.nextLine();

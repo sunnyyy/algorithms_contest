@@ -1,5 +1,5 @@
-import java.util.Scanner;
-import java.util.Math;
+import java.util.*;
+import java.text.*;
 
 /* ********************************************************************************
 * From geometry_problems_index.pdf
@@ -8,7 +8,7 @@ import java.util.Math;
 * (line between A & B). To do this, translate rotate the xy-coordinate system to
 * make a new x'y'-coordinate system in which A has x'y'-coordinates (0,0) and B has 
 * x'y'-coordinates (L,0), where L is the distance from A to B. Then the answer can 
-* be easily read from the x’ coordinate of C.
+* be easily read from the x' coordinate of C.
 * 
 * Input
 * -----
@@ -39,12 +39,12 @@ public class changeview {
 	public static void closest(String line) {
 		// get values from line
 		String[] temp = line.split("\\s+");
-		double ax = Double.parseInt(temp[0]);
-		double ay = Double.parseInt(temp[1]);
-		double bx = Double.parseInt(temp[2]);
-		double by = Double.parseInt(temp[3]);
-		double cx = Double.parseInt(temp[4]);
-		double cy = Double.parseInt(temp[5]);
+		double ax = Double.parseDouble(temp[0]);
+		double ay = Double.parseDouble(temp[1]);
+		double bx = Double.parseDouble(temp[2]);
+		double by = Double.parseDouble(temp[3]);
+		double cx = Double.parseDouble(temp[4]);
+		double cy = Double.parseDouble(temp[5]);
 		// calculate length of a to b
 		double lab = Math.sqrt((ax-bx)*(ax-bx)+(ay-by)*(ay-by));
 		// convoluted steps with triangle formulas to calculate height (cyy)
@@ -80,13 +80,13 @@ public class changeview {
 			loc = "ZoomTube";
 		}
 		// print result
-		NumberFormat nf = new NumberFormat("#0.000");
+		DecimalFormat nf = new DecimalFormat("#0.000");
 		System.out.println("("+nf.format(cxx)+","+nf.format(cyy)+") "+nf.format(l)+" "+loc);
 	}
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		while (scanner.hasNextLine()) {
+		while (scan.hasNextLine()) {
 			closest(scan.nextLine());	
 		}
 	}

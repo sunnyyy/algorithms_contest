@@ -1,0 +1,139 @@
+Tail Recursive Fibonacci
+---- --------- ---------
+The Fibonacci function is directly defined by the
+rewrite rules:
+
+fibonacci ( 0 ) ===> 0
+fibonacci ( 1 ) ===> 1
+fibonacci ( n ) ===> fibonacci ( n - 2 )
+                     +
+                     fibonacci ( n - 1 )
+                         if n >= 2
+where n >= 0 is an integer
+
+A straightforward encoding of these rules as a recursive
+function leads to an implementation whose running time
+is exponential in the argument n.
+
+There is a well known loop implementation whose running
+time is linear in n.
+
+Any loop can be encoded as a 'tail-recursive' function.
+The rewrite rules to do so for the Fibonacci function
+are:
+
+fibonacci ( 0 ) ===> 0
+fibonacci ( n ) ===> fibonacci_helper ( n, 1, 0, 1 )
+                         if n >= 1
+    where n >= 0 is an integer
+
+fibonacci_helper ( n, m, fib_m_minus_1, fib_m )
+    ===> fib_m if m == n
+    ===> fibonacci_helper ( n, m + 1, fib_m,
+                            fib_m_minus_1 + fib_m )
+                        otherwise
+    where m, n, fib_m_minus_1, and fib_m
+        are integers
+
+Here fib_m is the value of 'fibonacci ( m )' and
+fib_m_minus_1 is the value of 'fibonacci ( m - 1 )'.
+You know that fibonacci_helper implements a loop because
+in its recursive case it calls itself ONLY as the last
+thing it does. Thus it is said to be 'tail-recursive'.
+
+Compilers typically translate tail-recursive functions
+into loops in order to save stack space. This can be
+done simply by replacing the tail-recursive call with
+code that copies the tail-recursive call arguments to
+the location of the current function execution's arguments
+and jumps back to the beginning of the current
+function.
+
+Every loop can be readily re-written as a tail-recursive
+function and every tail-recursive function can be
+readily re-written as a loop.
+
+You have been asked to implement the functions fibonacci
+and fibonacci_helper according to the tail-recursive
+second set of rewrite rules given above. You are also
+asked to print at trace of the execution of these
+functions.
+
+Input
+-----
+
+For each of several test cases, one line containing just
+the integer n to be given to the fibonacci function.
+0 <= n <= 40. Note that fibonacci(40) fits in a 32 bit
+signed integer. Input ends with an end of file.
+
+Output
+------
+
+For each test case, first print a single line containing
+the integer n input to the test case (this is in effect
+an exact copy of the test case input line). Then call
+fibonacci ( n ).
+
+At the beginning of each of the functions fibonacci and
+fibonacci_helper you are to print one line that represents
+the call to the function. This line has the name
+of the function, and the arguments as integers separated
+by commas inside parentheses.
+
+At the end of each of the functions fibonacci and
+fibonacci_helper you are to print one line that represents
+the return from the function. This line has the
+name of the function, followed by an equals sign '=',
+followed by the result returned by the function.
+There must not be any space or tab characters in any
+printed line. There must not be any sign characters or
+leading zeros in the integers printed (zero prints as
+'0').
+
+Notes:
+-----
+After you add code to the end of fibonacci_helper to
+print the return part of the trace, this function will
+no longer be tail-recursive.
+
+You might find it amusing to code your program's input
+loop as a tail-recursive main function.
+
+Sample Input
+------ -----
+
+0
+1
+4
+
+Sample Output
+------ ------
+
+0
+fibonacci(0)
+fibonacci=0
+1
+fibonacci(1)
+fibonacci_helper(1,1,0,1)
+fibonacci_helper=1
+fibonacci=1
+4
+fibonacci(4)
+fibonacci_helper(4,1,0,1)
+fibonacci_helper(4,2,1,1)
+fibonacci_helper(4,3,1,2)
+fibonacci_helper(4,4,2,3)
+fibonacci_helper=3
+fibonacci_helper=3
+fibonacci_helper=3
+fibonacci_helper=3
+fibonacci=3
+
+
+File: fibonacci.txt
+Author: Bob Walton <walton@deas.harvard.edu>
+Date: Sun Mar 20 05:22:38 EDT 2016
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
