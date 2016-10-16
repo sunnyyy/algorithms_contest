@@ -1,0 +1,141 @@
+Turtle Draw
+-----------
+
+A beaver, a dog, a frog, and a man were sharing a corner
+of a pond on a sweltering evening in early August.  The
+beaver was considering air conditioning, the frog was
+imagining a water fall, the dog was happy to just swim
+after tennis balls, and the man knew he needed to write
+a computer program.
+
+When he got home the man wrote a program called `turtle-
+draw', in honor of the turtle that lived in the pond.
+She was not with the foursome that particular August
+evening, which just as well, as a 40 pound snapping
+turtle is a bit of a pond party pooper.
+
+
+Input
+-----
+
+The input contains a series of commands for an imaginary
+turtle living on an infinite board of squares.  At any
+time, the turtle is on a particular square, and is
+facing in one of four directions, up, right, down, or
+left.  In the beginning the turtle is facing up and
+all squares are blank.
+
+The commands are:
+
+    M		Move forward one square.
+    L		     Turn left 90 degrees.
+    R		     	  Turn right 90 degrees.
+    <other>		       Any other non-blank character:
+    			       	   write the character on the
+				   	     current square and THEN move
+					     	     	    forward one square.
+
+The input is a sequence of test cases.  Each test case
+begins with a line that names the test case.  This is
+followed by one or more lines which contain commands
+for the turtle.  No command line contains whitespace
+characters, and no command line contains just the
+character `.'.  The test case ends with a line
+containing just `.' (exactly one `.').
+
+In any test case the turtle will not wander more than
+100 squares in any direction away from its starting
+position.  No input line will contain more than 80
+characters.
+
+
+Output
+------
+
+For each test case, first one line that is an exact copy
+of the test case name line, then a single empty line
+(with no characters), and then just the portion of the
+infinite board that contains non-blank squares.
+Specifically, this portion of the board should NOT have
+any blank lines at its top or bottom, or any blank
+columns at its left or right edges.  At the end of the
+test case, right after the portion of the board with no
+blank lines, there should be a single blank line.
+
+Thus the output for each test case should have exactly
+two blank lines: the second line (after the name and
+before the board), and the last line (after the board).
+The entire output for ALL test cases ends with a blank
+line (if you get a `format error' score you may have the
+blank lines wrong).
+
+
+Sample Input
+------ -----
+
+--SIGN--
+EWRMGORMDOWNLMTHENLMPU
+.
+--HAT--
+L/_M____M_\LL
+MMML|RM____RM|
+.
+--DOG--
+RR***LMR***LMR***L**RML****LMR**L****RML***RML***
+L//////_\\\\\\L\**RML****
+LLMRMMMMMMMMMMMMMMMML****LMR**
+LMMMMMMMMMMLMMMML--MMM--
+.
+
+
+Sample Output
+------ ------
+
+--SIGN--
+
+ GO      
+W  D     
+E  O     
+   W    U
+   N    P
+    THEN 
+
+--HAT--
+
+   ____   
+\_|____|_/
+
+--DOG--
+
+ \\\\\\\_//////  
+ **           ** 
+ **           ** 
+* *           * *
+*  * --   -- *  *
+*  *         *  *
+*  *         *  *
+    *       *    
+    *       *    
+    *       *    
+    **    ***    
+      ****       
+
+NOTE: This output ends with a single blank line.
+
+
+
+File:    turtledraw.txt
+Author:	    Bob Walton <walton@seas.harvard.edu>
+Date:	       Thu Oct 15 05:42:30 EDT 2009
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2009/10/15 09:44:48 $
+    $RCSfile: turtledraw.txt,v $
+    $Revision: 1.5 $
+

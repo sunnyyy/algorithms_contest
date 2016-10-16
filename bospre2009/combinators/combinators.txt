@@ -1,0 +1,136 @@
+Combinators
+-----------
+
+The lambda calculus is a means of representing
+functions by means of `lambda-expressions' that have the
+syntax
+
+	lambda-exp ::= variable
+	            | ( lambda-exp lambda-exp )
+		          | ( \ variable . lambda-exp )
+			  variable ::= single lower case letter
+
+For example, (\x.x) represents the identity function
+that maps an argument x onto itself.  ((\x.x) y)
+represents the application of this function to the
+variable y.  It happens that this application can be
+reduced as ((\x.x) y) => y.  In general ((\x.M[x]) N) =>
+M[N] where M[x] denotes any lambda-expression possibly
+containing the variable x, N is any lambda-expression,
+and M[N] is M[x] with N substituted for the `free'
+occurrences of x.  However, you will not need to compute
+applications in this problem, so we will not get into
+details (such as what `free' means).
+
+Here were use `\' to denote the Greek letter `lambda'.
+
+The combinatorial calculus is another way of expressing
+functions that uses the syntax:
+
+	  c-expression ::= variable
+	              | ( c-expression c-expression )
+		      	    | K
+			          | S
+
+				  variable ::= lower case letter
+
+where `c-expression' is shorthand for `combinatorial
+expression', and K and S are constant functions.  In the
+combinatorial calculus application is computed using the
+rules
+
+	((KM)N) => M
+	(((SM)N)P) => ((MP)(NP))
+
+for any c-expressions M and N.  These rules are simpler
+than the rules for lambda-calculus, in the sense that
+there is no need to substitute for variables.
+
+A lambda-expression can be rewritten into an equivalent
+combinatorial expression using the following rules:
+
+	      (\v.w)	       => (Kw)
+	      (\v.K)	       	  => (KK)
+	      (\v.S)		     => (KS)
+	      (\v.v)		     	=> ((SK)K)
+	      (\v.(MN))			=> ((S(\v.M))(\v.N))
+
+for any DISTINCT variables v and w and any expressions
+M and N.
+
+You are asked to convert lambda-expressions into
+c-expressions using this last set of rules.
+
+Notice that you may have to apply these rules to sub-
+expressions before you can apply them to containing
+expressions.  Thus
+
+   (\x.(\y.x)) => (\x.(Kx)) => ((S(\x.K))(\x.x))
+               => ((S(KK))((SK)K))
+
+Input
+-----
+
+The input consists of test cases.  Each test case begins
+with a line containing the name of the test case, and
+this is followed by a single line containing a lambda-
+expression.  There are no spaces in the lambda-expres-
+sion line, and no input test case line is longer than
+80 characters.  The input is terminated by an end of
+file.
+
+
+Output
+------
+
+For each test case, three lines, the first two being
+copies of the two test case input lines, and the third
+containing the equivalent c-expression, as computed by
+the above conversion rules.  The last line may be very,
+very long.
+
+Note that both input and output are fully parenthesized;
+there are NO implicit parentheses in either.  Also
+there are no whitespace characters inside expressions.
+
+
+
+Sample Input
+------ -----
+
+-- IDENTITY --
+(\x.x)
+-- APPLICATION --
+(\x.(\y.(xy)))
+-- K --
+(\x.(\y.x))
+
+
+Sample Output
+------ ------
+
+-- IDENTITY --
+(\x.x)
+((SK)K)
+-- APPLICATION --
+(\x.(\y.(xy)))
+((S((S(KS))((S(KK))((SK)K))))((S((S(KS))(KK)))(KK)))
+-- K --
+(\x.(\y.x))
+((S(KK))((SK)K))
+
+
+File:	   combinators.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Thu Oct 15 06:30:59 EDT 2009
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2009/10/15 10:31:17 $
+    $RCSfile: combinators.txt,v $
+    $Revision: 1.10 $
