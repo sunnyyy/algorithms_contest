@@ -1,0 +1,78 @@
+Pig Latin
+---------
+
+You have been asked to translate English words to Pig
+Latin.  The translation is very simple: take all the
+consonants at the beginning of the word, move them to
+the end, and add `ay'.  If there are no consonants at
+the beginning of the word, just add `ay' to the end.
+The consonants are all letters except `a', `e', `i',
+`o', `u', and `y'.   Note that `y' is NOT a consonant
+for our purposes.
+
+
+Input
+-----
+
+A sequence of lines each containing an English word.
+There are no spaces in any line.  Words will contain
+only lower case letters.
+
+The input ends with an end of file.
+
+Output
+------
+
+For each English word, one line containing nothing but
+the translation of the word into Pig Latin.
+
+Example Input
+------- -----
+
+you
+help
+me
+to
+understand
+pig
+latin
+this
+hour
+
+
+Example Output
+------- ------
+
+youay
+elphay
+emay
+otay
+understanday
+igpay
+atinlay
+isthay
+ourhay
+
+
+Note: Actual Pig Latin moves only initial consonant
+SOUNDS, and therefore does not move unsounded initial
+consonants.  Thus `hour' would become `houray' in
+actual Pig Latin.  There are also variants which put
+`way' or `yay' or some such at the end of words that
+begin with a vowel sound.
+
+
+File:    piglatin.txt
+Author:	    Bob Walton <walton@deas.harvard.edu>
+Date:	       Wed Oct 10 03:31:33 EDT 2007
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2007/10/10 07:33:35 $
+    $RCSfile: piglatin.txt,v $
+    $Revision: 1.3 $

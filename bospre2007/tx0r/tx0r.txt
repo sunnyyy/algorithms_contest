@@ -1,0 +1,267 @@
+The TX-0 Reincarnate
+--------------------
+
+The TX-0 computer was built in 1955 as an experimental
+computer to test transistor circuitry, which was new to
+computers at that time.  Its instructions contained a
+2-bit operation code and a 16-bit address.  The word
+length was 18-bits.  The computer had a 1-word
+accumulator and up to 65536 words of random access
+magnetic core memory.
+
+The TX0R computer is very similar, but has been adapted
+for use in programming contests.  Its instruction set
+is:
+
+    STORE    address	Store accumulator in the word at
+    		        the given address.
+
+    ADD      address	Add the word at the given
+    			address to the accumulator.
+
+    TRANSFER address	Go to the instruction at the
+    			given address if the accumulator
+			is negative.
+
+    OPERATE  source,operation,destination
+
+    			Input the source word, perform
+			the indicated operation on it,
+			and output the result to the
+			destination.
+
+        sources:
+
+	    AC		Accumulator
+	    
+	    READ	Read the next row of the input
+	    		tape, and interpret that row as
+			a word value.  Or use the value
+			0 if the tape is at its end.
+
+	    EOF		The value 0 if the last READ
+	    		command read the next row, and
+			the value -1 if it did not
+			because the tape was at its end.
+
+	operations:
+	
+	    COPY	Copy the word
+
+	    CLEAR	Zero the word
+
+	    NEGATE	Negate the word
+
+	destinations:
+
+	    AC		Accumulator
+
+	    HALT	Halt normally and display result
+
+	    ERROR	Halt indicating error; the
+	    		result value is ignored
+
+The memory of this computer consists of 256 32-bit
+words.  Both program and data must be stored in this
+limited memory.
+
+The words are formated as 2's complement integers (just
+like 32-bit words in a modern computer).  Each
+instruction takes one word (most of which is unused).
+You are to use an assembler and therefore do not need to
+know the precise instruction format.
+
+The input is a punched paper tape with 32 columns.
+Every time READ is used as a source to an OPERATE
+instruction, the next row of the tape is read, thereby
+reading a 32 bit word.  If there is no next row (because
+the paper tape reader is at the end of tape), 0 is read.
+The EOF source to the OPERATE command produces the value
+0 if a row was read by the last READ source to an
+OPERATE command, and produces -1 if no row was read
+because the tape was at its end.
+
+The original TX-0 tape was had just 6 columns and
+reliability concerns, but the TX0R paper tape has
+32 columns and is completely reliable.
+
+Programs
+--------
+
+A TX0R program is written in a file whose name has the
+.tx0r extension.  A program is assembled, and consists
+of a sequence of word descriptions, each on one line.
+The possible word description lines are:
+
+    [label:]	STORE	 address
+    [label:]	ADD	 address
+    [label:]	TRANSFER address
+    [label:]	OPERATE	 source,operation,destination
+    [label:]	WORD	 value
+
+STORE, ADD, TRANSFER, and OPERATE are instructions.  You
+need not know the format of instruction words, as you
+will be using an assembler.
+
+WORD describes a word whose initial value, at the
+beginning of program execution, is given.
+
+Addresses and values may be integers or symbolic names,
+where a symbolic name is a sequences of letters, digits,
+and underbars, beginning with a letter or underbar.  The
+first word description is for the word at location 0,
+the second for the word at location 1, etc.  Any label
+given is a symbolic name that denotes the location of
+the word described on the same line.  A label may be
+used as an address or value.
+
+For the OPERATE class instruction, sources, operations,
+and destinations are named as indicated above.  See
+the example below.
+
+Blank lines in the input are ignored.  The characters
+`//' and anything following them in a line are ignored;
+so comments begin with `//'.
+
+Program execution begins at word 0.
+
+
+Example Program
+------- -------
+
+This program reads the data input and outputs the sum of
+all the input values.
+
+	   OPERATE	AC,CLEAR,AC	// sum = 0
+	   STORE	sum
+loop:	   OPERATE	READ,COPY,AC	// datum = READ
+	   STORE	datum
+	   OPERATE	EOF,COPY,AC	// if EOF goto
+	   TRANSFER	end_loop	//     end_loop
+	   OPERATE	AC,CLEAR,AC	// sum += datum
+	   ADD		datum
+	   ADD		sum
+	   STORE	sum
+	   OPERATE	AC,CLEAR,AC	// goto loop
+	   ADD		minus_one
+	   TRANSFER	loop
+end_loop:  OPERATE	AC,CLEAR,AC	// HALT sum
+	   ADD		sum
+	   OPERATE	AC,COPY,HALT
+sum:	   WORD		0
+datum:	   WORD		0
+minus_one: WORD		-1
+
+
+
+Input
+-----
+
+You will be using a simulator that executes a program
+under the direction of an input file.
+
+The input file consists of any number of test cases.
+Each test case begins with a line that contains nothing
+but the test case name.  This name must begin with a
+letter.
+
+After the test case name are the contents of the input
+data tape that the program can read using the READ
+source to the OPERATE instruction.  These contents
+consist of a sequence of zero or more integers.
+
+Each test case ends just before the end of file or the
+next line beginning with a letter.
+
+The input ends with an end of file.
+
+Output
+------
+
+For each test case the simulator outputs one line
+containing the test case name, as input, and one line
+containing one of the following:
+
+	HALT result
+	ERROR
+
+The result is an integer, printed with no spaces or high
+order zeros.  There is a single space character before
+this result, and no other space characters in the line.
+The words HALT and ERROR are the destination of the
+OPERATE instruction that halted the program.
+
+
+Simulation Command
+---------- -------
+
+You can use the `make' and `make debug' commands to
+run your program, or you can run your program directly
+with the command:
+
+    tx0r_simulator [-debug] tx0r.tx0r
+
+This assembles the TX0R code in the file tx0r.tx0r and
+runs it according to the instructions in the standard
+input, which contains the input file.  -debug prints an
+assembly listing, and after each instruction execution,
+prints the pc and ac.  The simulator writes results to
+the standard output.
+
+
+Problem
+-------
+
+You are to write a program in the TX0R language in the
+file tx0r.tx0r.  This program reads the input data tape
+and HALTs displaying the difference between the smallest
+datum and the largest datum.  It is an error if there
+are no data values (empty input tape), and in this case
+the program should execute an OPERATE instruction with
+ERROR destination.
+
+
+Example Input
+------- -----
+
+TEST 1
+1
+2
+3
+4
+5
+TEST 2
+TEST 3
+5
+-6
+7
+8
+2
+-3
+
+
+Example Output
+------- ------
+
+TEST 1
+HALT 4
+TEST 2
+ERROR
+TEST 3
+HALT 14
+
+
+File:	   tx0r.txt
+Author:	   Bob Walton <walton@deas.harvard.edu>
+Date:	   Wed Oct 10 07:30:22 EDT 2007
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2007/10/10 11:36:47 $
+    $RCSfile: tx0r.txt,v $
+    $Revision: 1.5 $

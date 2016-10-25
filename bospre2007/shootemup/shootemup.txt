@@ -1,0 +1,318 @@
+The Land of Shot-Em-Up
+----------------------
+
+In the Land of Shot-Em-Up conflicts are settled by robot
+duels.  Each side builds a robot.  The two robots are
+turned loose, on their own, in an arena, and whichever
+robot kills (makes non-functional) the other robot wins
+for its side of the conflict.
+
+You have entered `Conflict School' in the land of Shot-
+Em-Up, and are taking a (very) beginning course in
+programming these robots.  Your first assignment is to
+program a simple robot that will do battle in a virtual
+world.
+
+The virtual world is a 10x10 board of squares.  The two
+robots take turns making moves.  A move is one of:
+
+    moving one square in any of the 8 directions
+    (4 of which are diagonal)
+
+    staying put at the robot's current location
+
+    shooting in any of the 8 directions,
+    while staying put at the current location
+
+If you move off the edge of the board you die.
+
+If you shoot in a direction the shot hits anything in
+its path at the time of the shot.  A robot can absorb
+2 hits without ceasing to function, but will die when
+it receives a 3'rd hit.  However, if you shot in your
+last move, your shot in this move will have too little
+power to hit anything.  Your `gun' takes one move
+without shooting to `recharge'.
+
+Somewhat oddly both robots can occupy the same square
+of the board at the same time.  If one of the robots
+shoots at such a time, the shot never hits the other
+robot.
+
+The robots cannot see each other.  They can tell, how-
+ever, when they are hit, and from what direction the
+shot that hit them came.
+
+Your assignment is to write a robot program good enough
+to beat a given opponent at least 51 out of 100 times.
+The opponent is a stupid random robot provided by the
+teacher.
+
+Your program is not run directly, but instead is run by
+another program called `arena'.
+
+
+Your Program's Input
+--------------------
+
+The `arena' program writes lines that appear in your
+program's standard input.  These lines, which give you
+information, have the following format:
+
+    P x y
+
+	Prepare to start a new combat.  You are on board
+	square (x,y).  Here x and y are integers, with
+	0 <= x,y <= 9.
+
+    H dx dy
+
+    	Your opponent shot you in his last move.  The
+	shot passed through square (x+dx,y+dy) on its
+	way to hitting you, where you are currently at
+	square (x,y), dx and dy are integers, dx and
+	dy are not both 0, and -1 <= dx,dy <= 1.
+
+    N
+
+    	Your opponent did not shot you in his last move.
+
+    W
+
+    	Your opponent died in your or his last move,
+	and you have won.  The combat is over.
+
+    L
+
+    	You died in your or your opponents last move,
+	and you have lost.  The combat is over.
+
+    D<anything>
+
+        This line is a debugging instruction for your
+	program.  You produce such lines by giving them
+	as input to the arena program: see below.
+
+After inputting a P, N, or H line, you must make a move
+by outputting an M or S line, as specified below.  After
+inputting a W or L line, you should read another line.
+The next thing input will be a P line or the end of
+file.  After inputting a D line, you should do what the
+D line tells you to (you decide what this is), and then
+input another line.  You can output / lines anytime (see
+below) with debugging information.
+
+There are no superfluous space characters on any input
+line.  The board squares are numbered (0,0) at the upper
+left to (9,9) at the lower right.  To make a move, you
+output an M or S line (see below), and then you read
+a line of input to find out what happened next.
+
+Your program should terminate when it reads an end of
+file.
+
+
+Your Program's Output
+---------------------
+
+Your program writes lines to its standard output that
+are read by the `arena' program.  These lines announce
+your moves, and have the following formats:
+
+    M dx dy
+
+        Move from your current board square (x,y) to the
+	board square (x+dx,y+dy), where dx and dy are
+	integers and -1 <= dx,dy <= +1.  dx = dy = 0 is
+	permitted, and is used to implement the `staying
+	put' move.  0 <= x+dx,y+dy <= 9 is required
+	(else you die and lose).
+
+    S dx dy
+
+        Shoot.  The shot starts at your current square
+	(x,y) and goes in a straight line through the
+	square (x+dx,y+dy) and on to the edge of the
+	board.  Here -1 <= dx,dy <= +1, and dx,dy are
+	both integers.  dx and dy may NOT both be 0.
+	You are allowed to shoot off the edge of the
+	board, e.g., x+dx > 9 is allowed, but you will
+	not hit anything.
+
+    /<anything>
+
+    	This is a comment line.  It is output by the
+	arena program, and may be used for debugging.
+	E.g., you may output / lines in response to
+	a D line.
+
+You cannot move and shoot at the same time.
+
+
+Arena Input
+-----------
+
+The `arena' program reads commands from its standard
+input, which is normally the shootemup.in file.  These
+commands define test cases and debugging options.
+
+
+    G n		Reset the random number generator seed
+    		to n, which must be an unsigned integer
+		with at most 9 digits.  The random
+		number generator is used by your
+		opponent, and is used to determine your
+		initial position.  If you want your
+		opponent to behave differently, or to
+		run rounds differently, you must input
+		a different seed.
+    
+    -<anything>	Start a new combat.  This line is echoed
+                to the standard output and serves to
+		name the combat.  This is the first
+		input line describing a combat,
+		excepting those combats conducted by an
+		R command.
+
+    +		Make a pair of moves, one for you and
+    		one for your opponent.
+
+    .		Continue the combat to the end.
+
+    B		Display the board.  Good for debugging.
+		On the board, `Y' is you after your last
+		move, `O' is your opponent at the same
+		time, `+'s mark your shot if you shot in
+		your last move, `-'s mark your oppon-
+		ent's shot if it shot in its last move.
+
+    B1		Turn on display of the board after every
+    		move of your opponent.
+
+    B0		Turn off ditto.
+
+    *<anything>	Comment line.  Echoed to standard
+    		output.
+
+    D<anything>	This line is sent to your program.  It
+    		can be used to trigger a debugging
+		action: see above.
+
+    R n		Run a round of n combats, and print a
+    		round line at the end.  The round line
+		has the form
+		
+		  ! ROUNDS r WINS w LOSES l ERRORS e j
+
+		where
+
+		    r is the number of rounds
+		    w is the number of rounds that
+		      ended in wins for you
+		    l is the number of rounds that
+		      ended in loses for you
+		    e is the number of rounds that
+		      ended when your program made
+		      and error (explained in
+		      `*' lines)
+		    j is the judgment, which is
+		        `PASS' if 2w > r
+			`FAIL' if 2w <= r
+
+Unless a combat initiated by a `-' command is in
+progress, only G, R, and `-' commands are executed.
+
+
+Example Arena Input
+------- ----- -----
+
+The following can be put in the shootemup.in file.
+
+G 55
+-TEST 1
+B1
++
++
++
+.
+R 100
+R 100
+R 100
+
+
+Arena Output
+------------
+
+The `arena' program writes output to its standard
+output, which is normally put in the shootemup.out file.
+
+The `arena' program echos all its input lines, all the
+lines it sends to your program, and all the lines it
+receives from your program.  As an exception, the lines
+your program sends arena and that arena sends your
+program are NOT echoed during the R command.
+
+The arena program outputs lines beginning with `!' that
+contain error messages, board positions, etc.
+
+If you execute
+
+	arena shootemup < xx.in > xx.out
+	arena shootemup < xx.out > foo
+
+Then foo and xx.out should be identical.  That is, the
+the second command will repeat the moves made by the
+first command.
+
+Similarly, to replay a game in the debugger you execute
+
+	grep '^[PHNWLD]' xx.out > xx.din
+	gdb shootemup
+	run < xx.din
+
+
+Example Arena Output
+------- ----- ------
+
+G 55
+-TEST 1
+P 5 6
+B1
++
+S 0 1
+N
+!
+! ...-......
+! ....-.....
+! .....-....
+! ......-...
+! .......-..
+! ........O.
+! .....Y....
+! .....+....
+! .....+....
+! .....+....
+!
+[[ Substantial output omitted here ]]
+R 100
+! ROUNDS 100 WINS 91 LOSES 9 ERRORS 0 PASS
+R 100
+! ROUNDS 100 WINS 87 LOSES 13 ERRORS 0 PASS
+R 100
+! ROUNDS 100 WINS 92 LOSES 8 ERRORS 0 PASS
+
+
+File:	   shootemup.txt
+Author:	   Bob Walton <walton@deas.harvard.edu>
+Date:	   Wed Oct 10 12:44:10 EDT 2007
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2007/10/10 16:44:21 $
+    $RCSfile: shootemup.txt,v $
+    $Revision: 1.9 $
