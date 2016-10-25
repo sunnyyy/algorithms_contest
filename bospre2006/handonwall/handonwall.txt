@@ -1,0 +1,218 @@
+Right Hand on the Wall
+----- ---- -- --- ----
+
+Karel the Robot lives on a 10x10 board of squares.  Each
+boundary line of a square may or may not have a wall.
+At any given time, Karel is on one particular square,
+and is facing in one of four directions: up, left, down,
+or right.
+
+Karel can move forward one square if there is no wall in
+front of him.  Alternatively, Karel can turn 90 degrees
+clockwise or 90 degrees counter-clockwise.  These are
+the only moves Karel can make.  Karel can sense whether
+there is a wall in front of him.
+
+In this problem Karel repeats the 'Right Hand on the
+Wall' algorithm, which is:
+
+    (1) If there is a wall in front of Karel, Karel
+        turns counterclockwise 90 degrees.
+
+    (2) Otherwise if the square in front of Karel is the
+        original square on which Karel started, Karel
+	stops (WITHOUT moving forward to the original
+	square).
+
+    (3) Otherwise Karel moves forward one square and
+        turns clockwise 90 degrees;
+
+Starting from an initial position facing a wall, Karel
+repeats this algorithm until he stops.
+
+The boundary lines on the edge of the board all have
+walls, so Karel can never fall off the edge of the
+board, and will always eventually stop.
+
+You are asked to make Karel move according to this
+algorithm, and display the results.
+
+
+Board Display
+----- -------
+
+The 10x10 board is displayed in a 21x21 character matrix
+that can be printed in 21 lines of 21 columns each.
+
+There is one character position for each square, for
+each boundary line of a square, and for each corner of
+a square.
+
+The corner character positions hold the `+' character.
+
+The boundary line character positions hold the space
+character if there is no wall at the boundary, or `-'
+for a horizontal boundary wall, or `|' for a vertical
+boundary wall.
+
+A square character position holds the space character if
+Karel has never visited the position.  Otherwise it
+holds a character showing the direction Karel LAST faced
+when he was at that square.  `<' and `>' are used for
+`facing left' and `facing right', respectively.  `^' and
+`v' are used for `facing up' and `facing down', respec-
+tively.  Here `^' is the circumflex and `v' is the lower
+case letter.
+
+
+Input
+-----
+
+Each of several test cases.  Each case consists of an
+empty line followed by a board display.  On the board
+display, Karel is shown as being at one position and
+facing in one direction (there is only one `<', `>',
+`^', or `v' on the board).  The start position is
+always such that Karel is facing a wall, and all the
+board edges have walls.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, a copy of the input for the test
+case, with some board squares changed to hold characters
+showing that Karel has been at the square and was facing
+in a particular direction when he was last at the
+square.
+
+The board should show Karel's movement using the Right
+Hand on the Wall algorithm exactly as described above,
+starting with the initial situation defined by the input
+board.
+
+The empty lines beginning each input test case are
+copied to the output, so the first line output is an
+empty line.  The output should be an exact copy of the
+input except that some square positions are changed to
+`>', `^', `<', or `v'.
+
+
+Sample Input
+------ -----
+
+[There is an empty line before each board.]
+
+
++-+-+-+-+-+-+-+-+-+-+
+|   |               |
++ + + + + + + + + + +
+|   |               |
++-+-+ + + + + + + + +
+|                   |
++ + + + + + + + + + +
+|                   |
++ + + + + + + + + + +
+|                   |
++-+-+ + + + + +-+-+-+
+|                   |
++-+-+ + + + + + + + +
+|                   |
++ + + + + + + +-+-+-+
+|             |     |
++ + + + + + + +-+-+-+
+|                   |
++ + + + + + + + + + +
+|v                  |
++-+-+-+-+-+-+-+-+-+-+
+
++-+-+-+-+-+-+-+-+-+-+
+|       |           |
++ + + + +-+-+-+ + + +
+|             |     |
++ + + + + + + +-+-+-+
+|                   |
++ + + + + + + +-+-+-+
+|             |     |
++-+-+-+-+-+ + + + + +
+|             |     |
++ + + + +-+-+-+-+-+-+
+|                   |
++ + + + + + + +-+-+-+
+|             |     |
++ + + + + +-+-+ + + +
+|        >|         |
++-+-+ + + + + + + + +
+|   |               |
++ + +-+-+ + + + + + +
+|       |           |
++-+-+-+-+-+-+-+-+-+-+
+
+
+Sample Output
+------ ------
+
+[There is an empty line before each board.]
+
+
++-+-+-+-+-+-+-+-+-+-+
+|   |v < < < < < < <|
++ + + + + + + + + + +
+|   |v             ^|
++-+-+ + + + + + + + +
+|v < <             ^|
++ + + + + + + + + + +
+|v                 ^|
++ + + + + + + + + + +
+|> > v       > > > ^|
++-+-+ + + + + +-+-+-+
+|> > v       ^ < < <|
++-+-+ + + + + + + + +
+|v < <       > > > ^|
++ + + + + + + +-+-+-+
+|v           ^|     |
++ + + + + + + +-+-+-+
+|v           ^ < < <|
++ + + + + + + + + + +
+|> > > > > > > > > ^|
++-+-+-+-+-+-+-+-+-+-+
+
++-+-+-+-+-+-+-+-+-+-+
+|v < < <|           |
++ + + + +-+-+-+ + + +
+|v     ^ < < <|     |
++ + + + + + + +-+-+-+
+|v           ^ < < <|
++ + + + + + + +-+-+-+
+|> > > > > v ^|     |
++-+-+-+-+-+ + + + + +
+|v < < < < < ^|     |
++ + + + +-+-+-+-+-+-+
+|v     ^ < < < < < <|
++ + + + + + + +-+-+-+
+|v       > > ^|v < <|
++ + + + + +-+-+ + + +
+|> > v   ^|v < <   ^|
++-+-+ + + + + + + + +
+|   |> > ^ <       ^|
++ + +-+-+ + + + + + +
+|       |> > > > > ^|
++-+-+-+-+-+-+-+-+-+-+
+
+
+File:	   handonwall.txt
+Author:	   Bob Walton <walton@deas.harvard.edu>
+Date:	   Tue Oct 10 02:10:25 EDT 2006
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2006/10/10 06:22:07 $
+    $RCSfile: handonwall.txt,v $
+    $Revision: 1.6 $

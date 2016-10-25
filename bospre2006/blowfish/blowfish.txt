@@ -1,0 +1,159 @@
+Mini-Blowfish
+---- --------
+
+The Blowfish algorithm has become a popular encryption
+algorithm for data streams and large files, as it can
+be efficiently implemented in software.  In this problem
+you are asked to code and test a miniature version of
+this algorithm, which we call Mini-Blowfish, or MB for
+short.
+
+Description of MB:
+----------- -- --
+
+MB uses an 18+256 byte vector of `subkeys'.   The first
+18 of these are referred to as P[1] through P[18].  The
+next 256 are referred to as S[0] through S[255].  The
+18+256 subkeys are collectively referred to as K[1]
+through K[18+256], so K[1] == P[1], K[18] == P[18],
+K[19] == S[0], K[18+256] == S[255].
+
+The S values define a `substitution-box', or S-box, that
+takes a byte B as input and returns the byte S[B] as
+output, where bytes are viewed as unsigned integers from
+0 through 255.  E.g., if B == 5 the S-box returns S[5].
+
+The data encryption algorithm inputs and outputs 16 bit
+blocks.  These are divided into a high order byte, HB,
+and a low order byte LB, so block B == 256 * HB + LB.
+
+The encryption algorithm is:
+
+    Input B = 256 * HB + LB.
+    For round R = 1 though 16:
+        HB = HB xor P[R].
+	LB = LB xor S[HB].
+	swap HB and LB.
+    Finishing:
+        swap HB and LB (undo the round 16 swap).
+	LB = LB xor P[17];
+	HB = HB xor P[18];
+    Output B = 256 * HB + LB.
+
+Note that P[1], ..., P[18] are accessed in order by the
+encryption algorithm.  Decryption uses the same algori-
+thm except that P[1], ..., P[18] are used in the reverse
+order (P[18] is used in round 1 and P[1] is xor'ed at
+the end into HB).
+
+The main idea in Blowfish is the method of computing the
+subkeys.  In fact, the idea is to have a lot of subkeys
+(full Blowfish as 1042 32-bit subkeys).  Computing the
+subkeys takes a long time, so changing the key in MB or
+Blowfish is slow, and has been made so in order to have
+a secure algorithm in which encrypting the data given
+the subkeys is fast.
+
+To initialize the subkey vector K[1], ..., K[18+256] you
+need as input a password, which is any string of
+characters.  Let the bytes of the password be W[1],
+W[2], ..., W[N] where N is the length of the password.
+The MB subkey computation algorithm is then:
+
+	Input W[1], ..., W[N].
+	For i from 1 through 18+256:
+	    K[i] = 7 ** i mod 256;
+	For i from 1 through N:
+	    K[i] = K[i] xor W[i];
+	Set B = 0, a 16 bit value.
+	For round Q from 1 through (18 + 256)/2:
+	    Encrypt B to obtain Encrypted-B
+	    Set B = Encrypted-B
+	    Let B = 256 * HB + LB as above.
+	    Set K[2*Q-1] = HB and K[2*Q] = LB.
+	Output K[1], ..., K[18+256].
+
+Note that the output B of the encryption in round Q be-
+comes the input B to the encryption in round Q+1.  Also
+the subkeys at the end of round Q are the subkeys used
+in the encryption in round Q+1.  Thus B and the subkeys
+keep changing as Q advances.  The subkeys at the end of
+round Q = (18+256)/2 are the final output of the subkey
+computation algorithm.
+
+
+Input
+-----
+
+Lines each of which contains a password and some inte-
+gers to be encrypted using the password, all followed
+by the integer -1 (which is NOT to be encrypted).  These
+are separated from each other by whitespace.  No line is
+longer than 80 characters.
+
+The password is a string of one or more letters and
+digits, each interpreted as a byte equal to the ASCII
+code of the letter or digit (ASCII codes are the codes
+used to represent characters as integers in modern
+computers, and all ASCII codes are between 0 and 127).
+The integers to be encrypted are all in the range from 0
+through 65535 (= 2**16 - 1), and each integer represents
+a 16 bit block.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each input line, one output line, in the same format
+as the input line, except that each integer to be en-
+crypted is replaced by the result of encrypting it.
+
+
+Sample Input
+------ -----
+
+abcdefg 0 1 2 3 4 5 -1
+2hotfudge 28647 64826 42873 60872 53872 7648 29640 -1
+
+
+Sample Output
+------ ------
+
+abcdefg 61669 41297 34644 22212 18368 679 -1
+2hotfudge 37515 44577 40580 64732 42141 33306 62416 -1
+
+Further Information
+------- -----------
+
+Blowfish was invented by Bruce Schneier, and is describ-
+ed at
+	www.schneier.com/paper-blowfish-fse.html
+
+Blowfish is one of a large number of `Feistel ciphers'.
+The full algorithm uses 32 bit subkeys, 64 bit blocks,
+and 4 S-boxes that are applied to the 4 bytes of a
+32-bit half-block to get 4 32-bit half-blocks that are
+combined using addition and exclusive-or to make one
+32-bit half-block.  The subkeys are initially set to
+the fractional digits of PI, which are assumed to be
+random.  Short passwords are extended by cycling through
+their bytes.  However, like MB full Blowfish also has 16
+rounds, 18 P values, and the same control flow as MB.
+
+
+File:	   blowfish.txt
+Author:	   Bob Walton <walton@deas.harvard.edu>
+Date:	   Tue Oct 10 02:26:24 EDT 2006
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2006/10/10 06:26:37 $
+    $RCSfile: blowfish.txt,v $
+    $Revision: 1.6 $
