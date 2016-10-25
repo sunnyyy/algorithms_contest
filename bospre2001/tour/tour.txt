@@ -1,0 +1,76 @@
+General GXMD's Tour
+------- ------ ----
+
+General GXMD, who lives in 5 dimensions, is responsible
+for the home defense force in a sector of the galaxy
+with N planets.  The planets are conveniently named
+1, 2, 3, ..., N.  The general, who is on planet 1,
+wants to make an inspection tour.  Specifically he wants
+to go from planet 1 to planet N, stopping along the
+way at every other planet, so he visits each planet only
+once.  He wants you to find for him the shortest such
+tour, in terms of 5 dimensional distance.
+
+
+Input
+-----
+
+For each of several instances:
+
+Line 1:  The number N of planets.  2 <= N <= 16.
+
+Lines 2..N+1:  For each planet, one line containing
+               the 5 coordinates of the planet.
+
+The input ends with a line containing a single 0.
+
+
+Output
+------
+
+For each instance, one line beginning with `Instance #:'
+and followed by the numbers of the planets in the order
+that the general is to visit them, so as to have the
+shortest tour.  The first is always 1 and the last
+always N.  Each planet number appears exactly once.
+
+
+Sample Input
+------ -----
+
+4
+0.2  0 0 0 0
+4.9  0 0 0 0
+-0.3 0 0 0 0
+4.0  0 0 0 0
+5
+1 2 3 4 5
+2 3 4 2 1
+8 4 5 7 2
+3 4 2 1 4
+8 4 3 2 2
+0
+
+
+Sample Output
+------ ------
+
+Instance 1: 1 3 2 4
+Instance 2: 1 4 2 3 5
+
+
+
+File:	tour.txt
+Author:	Bob Walton <walton@deas.harvard.edu>
+Date:	Thu Oct 11 15:13:01 EDT 2001
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2001/10/11 19:15:54 $
+    $RCSfile: tour.txt,v $
+    $Revision: 1.2 $

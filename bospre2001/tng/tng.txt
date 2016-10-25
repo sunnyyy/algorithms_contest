@@ -1,0 +1,189 @@
+The Number Game
+--- ------ ----
+
+The Society of Misplaced Mathematicians likes to play a
+game called TNG, The Number Game, which is like tic-tac-
+toe, except that at each stage there are only two pos-
+sible moves, + and -, and instead of a board, there is
+a single non-negative integer n.  The two moves are:
+
+	+:	n = ( n + e**n ) mod p
+
+	-:	n = ( n - e**n ) mod p
+
+There is a set of goals g, for example, g = {8, 9},
+which means that a player whose move makes n equal to 8
+or 9 wins.
+
+A game is specified by giving a prime number p, an inte-
+ger e, an initial value n0 for n, a maximum number of
+rounds to be played, r, and a set of goals, g.  Each
+round consists of a move by player X followed by a move
+by player Y.  The player who first moves to a goal wins.
+Because the number of rounds is limited, ties are
+possible.
+
+An example is:
+
+Game:	n0 = 3, r = 2, e = 7, p = 11, g = { 8, 9 }
+
+        7**0  mod 11 = 1	7**1 mod 11 = 7
+        7**2  mod 11 = 5	7**3 mod 11 = 2
+        7**4  mod 11 = 3	7**5 mod 11 = 10
+        7**6  mod 11 = 4	7**7 mod 11 = 6
+        7**8  mod 11 = 9	7**9 mod 11 = 8
+        7**10 mod 11 = 1
+
+Initial State:		n = n0 = 3
+
+Round 1:  X moves +:	n = ( 3 + 7**3 ) mod 11 = 5
+	  Y moves -:	n = ( 5 - 7**5 ) mod 11 = 6
+Round 2:  X moves -:	n = ( 6 - 7**6 ) mod 11 = 2
+	  Y moves -:	n = ( 2 - 7**2 ) mod 11 = 8
+	  		Y wins!
+
+The `game tree' of a game is a computer science tree in
+which the nodes are the possible states of the game and
+the edges are the possible moves of the game.  The game
+tree of the above example game, but with r=1 instead of
+r=2, is:
+
+	    __3__
+	  -/     \ +		X moves
+	  1       5
+	-/ \+   -/ \+		Y moves
+	5   8   6   4
+
+A computer can figure out whether X or Y will win a game
+if both play optimally by assigning a `minimax value' to
+each node of the game tree as follows.  The possible
+minimax values are:
+
+	+1 if X wins
+	 0 if neither player can force a win (tie)
+	-1 if Y wins
+
+For the leaves of the tree, these values can be assigned
+directly.  For the other nodes the computer uses the
+following formulae:
+
+	if X plays next:
+
+	    max ( minimax value of - child,
+	          minimax value of + child )
+
+	if Y plays next:
+
+	    min ( minimax value of - child,
+	          minimax value of + child )
+
+Thus if we attach minimax values in [] brackets to the
+nodes of the above game tree, we get:
+
+	      ____3[0]____
+	    -/            \ +		X moves
+	   1[-1]          5[0]
+	 -/    \+       -/    \+	Y moves
+	5[0]   8[-1]   6[0]   4[0]
+
+To play optimally, X moves to a child with the maximum
+minimax value, and Y moves to a child with the minimum
+minimax value.  Thus in this example X optimally plays
++, but if X were to play -, Y would optimally play +.
+
+Note that a goal node has minimax value +1 if X moved
+last, and minimax value -1 if Y moved last.
+
+The minimax value of the root node is the minimax value
+of the game, and tells the outcome of the game if both
+players play optimally.  The name `minimax' comes from
+the alternating use of `max' and `min' in the evaluation
+formulae.
+
+As a final example, the game tree with minimax values
+for the above example game with r=2 is:
+
+
+	      ________3[-1]_______
+            -/                    \+
+          _1[-1]            ______5[-1]______
+        -/      \+        -/                 \+
+     __5[0]__   8[-1]   _6[-1]_            __4[0]_
+   -/        \+       -/        \+       -/       \+
+  6[0]       4[0]    2[-1]    10[-1]   1[-1]      7[0]
+ -/ \+     -/  \+   -/  \+   -/  \+    -/ \+     -/  \+
+ 2   10    1    7   8    7   9    0    5   8     1    2
+[0]  [0]  [0]  [0] [-1] [0] [-1] [0]  [0] [-1]  [0]  [0]
+
+Thus in this 2 round game Y can force a win.
+
+Problem
+-------
+
+You are to compute the minimax value of number games.
+
+
+Input
+-----
+
+For each game, one line containing the integers
+
+	n0  r  e  p  m  g[1]  g[2]  ...  g[m]
+
+where m is the number of values in the goal set and
+{ g[1], g[2], ..., g[m] } is the goal set.
+2 <= p <= 47; 0 <= m <= 10; 1 <= r <= 6; 2 <= e < p.
+All the goals g[i], n0, and e are in the range from 0
+to p-1 inclusive.
+
+The input ends with a line containing a single -1.
+
+
+Output
+------
+
+For each game, one line beginning with `Game #:' and
+ending with `X wins', `Y wins', or `draw' representing
+the minimax value of the game.
+
+
+Hint:
+----
+
+Compute a table f[n] = ( e ** n ) mod p to reduce the
+cost of computing this function.  Although there is a
+trick to computing this function very rapidly, you will
+not need the trick if you compute the table.
+
+
+Sample Input
+------ -----
+
+3 1 7 11 2 8 9
+3 2 7 11 2 8 9
+3 2 7 11 1 6
+-1
+
+Sample Output
+------ ------
+
+Game 1: draw
+Game 2: Y wins
+Game 3: X wins
+
+
+
+File:	tng.txt
+Author:	Bob Walton <walton@deas.harvard.edu>
+Date:	Sun Oct 14 10:39:20 EDT 2001
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: hc3-judge $
+    $Date: 2001/10/14 14:39:44 $
+    $RCSfile: tng.txt,v $
+    $Revision: 1.6 $

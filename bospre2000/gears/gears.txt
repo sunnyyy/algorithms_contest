@@ -1,0 +1,46 @@
+Design Optimal Gear Ratios
+------ ------- ---- ------
+
+As an engineer for the Bicycle Sprint Club, you are re-
+sponsible for choosing gear ratios for the bikes.  The
+rules of sprint racing say that the bicycle can have
+only a single gear; that is, one chain connecting a
+single gearwheel on the pedals to a single gearwheel on
+the rear wheel.  The tire sizes are also fixed.  The
+team physiologist has computed for each member of the
+team the optimal gear ratio between the number of turns
+of the pedals to the number of revolutions of the rear
+wheel.  It is your job to translate this single real
+number into a pair of gears for the bicycle.
+
+The number of teeth on a gearwheel must lie between 16
+and 100 due to mechanical constraints.  In addition, the
+pedal gear will always have more teeth, since in sprint-
+ing the rear wheel always spins faster than the pedals.
+
+Your input will consist of multiple data sets, one per
+line.  Each set will contain a single real number
+greater than one and less than six indicating the number
+of times the rear wheel should spin for each revolution
+of the pedals.
+
+Your output for each data set should be two integers on
+a single line.  The first integer is the number of gears
+on the pedal gearwheel and the second integer is the
+number of gears on the rear wheel gearwheel, such that
+the ratio between these two values is the closest poss-
+ible to the given input ratio.  If multiple possible
+combinations of gears yield the same ratio, select the
+pair with the smallest total number of gears.
+
+Sample input:
+
+3
+3.04
+2.414
+
+Sample output:
+
+48 16
+76 25
+70 29

@@ -1,0 +1,58 @@
+Reverse Polish Notation Calculator
+------- ------ -------- ----------
+
+This calculator operates on floating point numbers and
+provides the operations +, -, *, and /.  It uses reverse
+polish notation; the values are entered first, followed
+by the operation to perform.  For instance,
+
+3 2 -
+
+should calculate 3-2.  The result is left on the stack.
+
+The stack is five elements deep.  All elements start out
+initialized to zero.  On each new number entry, the
+stack is `pushed' (entries moved down, with the last
+entry falling off the end).  On each operation, the two
+operands are popped off the stack, the operation is
+done, and the result is pushed onto the stack.  On each
+stack pop, the last element on the stack is duplicated.
+
+The `-' operator subtracts the first element popped from
+the stack from the second element popped.  The `/'
+operator divides the second element popped by the first
+element popped.
+
+Input is multiple lines, each one containing a white-
+space-separated sequence of zero or more commands.  Each
+command is either a single-character operation or else a
+number.  Input numbers can be integers, floating point,
+or in scientific representation; they will all be within
+the range of a `double precision' type.  After each
+input line is processed, the first value on the stack is
+printed on a line by itself.  (First is the most recent-
+ly pushed number.)  Note that the stack is not cleared
+between lines.  Repeat:  do not clear the stack between
+lines!
+
+The output should be accurate to at least 0.0001% (6
+decimal places) as long as similarly valued numbers are
+not subtracted and the number of operations needed to
+compute an output number is less than 100.  Again this
+is well within the limits of double precision floating
+point arithmetic as long as at least 6 digits of
+precision are output.
+
+Sample input:
+
+3
+2 +
+1 2 /
+-3.2e10 5 /
+
+Sample output:
+
+3
+5
+0.5
+-6.4e+09

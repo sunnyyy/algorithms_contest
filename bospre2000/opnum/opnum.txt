@@ -1,0 +1,68 @@
+Optimum Number Representation
+------- ------ --------------
+
+The inhabitants of the ancient tribe of Pagong had in-
+credible numerical dexterity.  Their numeral system was
+not decimal, but reverse-polish-notation based.  Each
+number was represented by a sequence of digits and oper-
+ations.  The `digits' they used were surprisingly simi-
+lar to those we use today:
+
+   one two three four five six seven eight nine ten
+
+represented our numbers 1 through 10, respectively.  To
+build numbers larger than ten, they composed other num-
+bers with the operations * or +, respectively, using
+reverse polish notation, where the operation follows the
+two operands.  Thus, one representation for our number
+13 is
+
+   eight five +
+
+Another representation is
+
+   one two + two * two * one +
+
+Because there were so many representations of the same
+number, `high' Pagong dictates that the canonical
+representation of a number be the shortest possible
+representation, and where there were ties in length,
+that the earliest lexigraphically shall be the canonical
+number.  (Their lexigraphical ordering was the same as
+ASCII, amazingly).  The length includes all characters,
+including a single space that follows each digit or op-
+eration but the last.  Thus, the shortest possible
+representations of 13 are:
+
+   three ten +
+   four nine +
+   six seven +
+   seven six +
+   nine four +
+   ten three +
+
+and of these, 
+
+   four nine +
+
+is the earliest and thus canonical representation of 13.
+
+Your task is to translate numbers from our Arabic repre-
+sentation to the canonical Pagong representation.  Each
+input number will be on a line by itself, and the output
+should consist of lines each containing just one canon-
+ical Pagong number.  All numbers will be 1000 or less,
+and there will be fewer than five hundred numbers in the
+input set.
+
+Sample input:
+
+5
+101
+64
+
+Sample output:
+
+five
+one ten ten * +
+eight eight *

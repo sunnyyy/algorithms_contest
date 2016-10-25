@@ -1,0 +1,70 @@
+Palindrome Sentences
+---------- ---------
+
+
+Given a set of words, find the longest possible palin-
+drome using only that set of words, with no repeated
+words.
+
+A palindrome is a phrase whose alphabetic characters
+are in the same sequence when reversed, as in
+
+   Madam, I'm Adam
+
+or
+
+   Able was I ere I saw Elba
+
+or
+
+   A man, a plan, a canal:  Panama.
+
+(Note that two of these have repeated words; this is
+disallowed by our problem specification.)
+
+The length is measured in characters NOT including
+spaces.  The input sets will have no repeated words.
+
+The input will consist of multiple sets of words.  Each
+word is on a single line by itself, and each set of
+words ends with an empty line that contains nothing.
+There are no space characters in any line.  Each word
+consists solely of lowercase letters.
+
+There will be fewer than 1000 words in all the input
+word sets combined and no word will be longer than 80
+characters.
+
+Output is a single line containing the unique longest
+palindrome made from each word set.  The input word sets
+will be chosen so that there is exactly one longest
+palindrome that can be made from the word set without
+repeating words.  There must be a single space character
+between consecutive words in the output line, and no
+other space characters in the line.  The line may be
+very long.
+
+The words and the palindromes may not necessarily make
+sense.
+
+Sample input:
+
+an
+bann
+nab
+foo
+
+code
+coder
+contest
+fast
+gnu
+problem
+redo
+reverse
+rung
+
+Sample output:
+
+bann an nab
+gnu redo code rung

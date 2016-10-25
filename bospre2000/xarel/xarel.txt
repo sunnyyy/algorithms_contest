@@ -1,0 +1,117 @@
+Xarel the Robot
+----- --- -----
+
+The students of the U of Xp have built a robot out
+of legos and motors and sensors and computer chips,
+just the kind of thing they usually do.  They call it
+Xarel, for `eXperimental kAREL'.
+
+Xarel lives on a 5x5 board of squares.  Looking from
+above, he can face East, South, West, or North in the
+square he is in, and he has two commands: `m' to move
+forward one square, and `t' to turn clockwise 90
+degrees.  He has a sensor to let him know if he is
+facing a board edge, and this is used to turn the `m'
+command into a no-operation (nop) if he is asked to
+move off the edge of the board.
+
+The board squares have been given coordinates, x and
+y, each with values 0, 1, 2, 3, or 4; and Xarel is
+said to be in a state `xyd' where x is the x coordi-
+nate digit, y the y coordinate digit, and d the
+direction Xarel is facing in, E, S, W, or N, which
+denote toward increasing x, decreasing y, decreasing
+x, or increasing y, respectively.  Thus the board
+layout, viewed from above, is
+
+	    <---------- West
+         ------------------------ 
+    S   | 04 | 14 | 24 | 34 | 44 |   ^
+    o    ---- ---- ---- ---- ----    |
+    u   | 03 | 13 | 23 | 33 | 43 |   |
+    t    ---- ---- ---- ---- ----    |
+    h   | 02 | 12 | 22 | 32 | 42 |   N
+    |    ---- ---- ---- ---- ----    o
+    |   | 01 | 11 | 21 | 31 | 41 |   r
+    |    ---- ---- ---- ---- ----    t
+    v   | 00 | 10 | 20 | 30 | 40 |   h
+         ------------------------ 
+            East ---------->
+
+Initially Xarel always starts in the lower left corner,
+facing East.  This is state 00E.  An `m' command from
+here would send him to state 10E, but a `t' command
+would send him instead to state 00S.  Starting at 00E,
+the command sequence `ttmtm' would send Xarel to state
+01N, as the first `m' would be turned into a nop, be-
+cause when it is received, Xarel is in state 00W facing
+the edge of the board.
+
+Unfortunately, Xarel has a bug in his logic.  The
+students believe they know exactly what this bug is,
+and have gotten you to volunteer to make a software sim-
+ulator of Xarel, complete with bug, so they can compare
+that with Xarel's actual behavior, and test the hypo-
+thesis that Xarel has only this bug.
+
+After executing each command, Xarel reads his forward
+looking sensor to determine if he is looking off the
+edge of the board, and uses this reading to turn an `m'
+command into a nop if the reading says there is a board
+edge in front of him.  The difficulty is that the sensor
+is slow and has delays.  The students think they have
+it working if the last command is a successful `m' or an
+`m' turned into a nop; but if the last command is a
+`t', the students think the sensor reading is correct
+for Xarel BEFORE he turned, and not after he turned.
+
+Thus `tm' starting at 00E would send Xarel first to
+00S and then off the board, because after the `t' the
+sensor reading is that before the turn, when Xarel was
+facing East.  If Xarel goes off the board, he enters
+a state named `DEAD', because a safety circuit merce-
+fully cuts his power.  Once DEAD Xarel ignores all
+commands.
+
+The input to your simulator consists of multiple runs,
+each run being a single line containing just `m's and
+`t's.  The line will be at most 80 characters long.
+
+The output for each run should be an empty line, con-
+taining nothing, follow by the sequence of states Xarel
+is in during the run, each on a line by itself.  The
+first state of a run is always 00E.  If the state DEAD
+is achieved, it is the last state output for the run.
+
+Note that if Xarel is in some state and receives an `m'
+command that is turned into a nop because Xarel thinks
+the board is in front of him, the state appears on
+consecutive lines.  Even a nop'ed `m' command produces
+a line in the run output for the state Xarel is in
+after the nop.
+
+Sample input:
+
+mm
+tmtmtm
+ttmtm
+
+Sample output (starts with an empty line):
+
+
+00E
+10E
+20E
+
+00E
+00S
+DEAD
+
+00E
+00S
+00W
+00W
+00N
+00N
+
+In the last run, both `m's are turned into nops.

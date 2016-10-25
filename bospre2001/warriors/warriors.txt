@@ -1,0 +1,106 @@
+Matching Warriors
+-------- --------
+
+The Kingdom of Irfrissable Polytudinous Warriors (KIPW)
+has a tournament every year between its two tribes, the
+Kay (K), and the Kaykay (KK).  This consists of contests
+between individual warriors, each tribe having the same
+number, and the tribe with the most winning warriors
+wins the coveted thud cup.
+
+Its up to the tribe that lost last year (currently the
+K) to choose which warriors will fight each other.  The
+K are using science to do this, and have derived the
+following method of determining the probability that
+warrior i will defeat warrior j.  To this end the K have
+assigned scores for 6 skills to each warrior, so the
+scores for warrior i are s[i][k] for k = 0,1,2,3,4,5.
+Then the probability of warrior i defeating warrior j
+is
+	I / (I + J)
+
+	where
+
+	I  = max{I',0}
+	I' = max{ s[i][k] - s[j][k] : k=0,1,2,3,4,5 }
+	J  = max{J',0}
+	J' = max{ s[j][k] - s[i][k] : k=0,1,2,3,4,5 }
+
+and in the special case that I = J = 0, the probability
+is 0.5.
+
+It is your task to compute for K the matching of
+warriors that will give K the greatest expected number
+of victories.
+
+Input
+-----
+
+For each of several data sets:
+
+Line 1:  The number n of warriors in each tribe,
+         0 < n <= 20;
+Lines 2 .. 1+n:
+         One line for each warrior of K, where the
+	 warriors are numbered 1 .. n in increasing
+	 order, and the line for warrior i contains:
+	 	s[i][0]  s[i][1]  ...  s[i][5]
+	 0 <= s[i][k] <= 10 for every i and k.
+	 The s[i][k] are all integers.
+
+Lines 2+n .. 1+2n:
+	 Ditto for the warriors of KK.
+
+The input ends with a line containing a single 0.
+
+
+Output
+------
+
+One line per instance containing `Instance #:' followed
+by the KK warrior numbers matched to the warriors of
+tribe K in increasing order of the K warrior numbers.
+E.g., `2 3 1' means K warrior 1 fights KK warrior 2,
+K warrior 2 fights KK 3, K 3 fights KK 1.
+
+
+Sample Input
+------ -----
+
+2
+1 0 0 0 0 0
+0 2 0 0 0 0
+0 0 1 0 0 0
+0 0 0 3 0 0
+3
+1 0 0 0 0 0
+0 2 0 0 0 0
+0 0 3 0 0 0
+0 0 2 0 0 0
+0 1 0 0 0 0
+3 0 0 0 0 0
+0
+
+
+Sample Output
+------ ------
+
+Instance 1: 2 1
+Instance 2: 3 2 1
+
+
+
+File:	warriors.txt
+Author:	Bob Walton <walton@deas.harvard.edu>
+Date:	Thu Oct 11 15:18:44 EDT 2001
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2001/10/11 19:34:13 $
+    $RCSfile: warriors.txt,v $
+    $Revision: 1.5 $

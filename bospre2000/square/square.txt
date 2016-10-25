@@ -1,0 +1,41 @@
+Bisecting a Square
+--------- - ------
+
+You are given a point A on or within the unit square
+bordered by (0,0), (0,1), (1, 0), and (1,1), and a point
+B on the boundary of that square.  Find another point C
+on the boundary of the square such that the polyline BAC
+bisects the area of the square.
+
+Note that A may lie on the square boundary, and that
+either B or C may be the same point as A.  However, if
+A and C may be the same point, C will not be unique, and
+we choose to forbid input for which C is not unique.
+
+There will be multiple data sets of input.  Each data
+set will consist of a single line containing four num-
+bers separated by spaces.  The first two numbers are the
+x and y coordinates of point A, and the second two num-
+bers are the x and y coordinates of point B.  All num-
+bers will be given in floating point.
+
+Note that for points B and C, either x or y will be
+either 0.0 or 1.0 exactly.
+
+Your output should be, for each data set, the x and y
+coordinates of point C, accurate to at least + or -
+0.0001, separated by a space on a single line.
+
+Sample input:
+
+0.5 0.5 1 0
+0 0 0 0
+0.3 0 1 1
+0.3 0.3 0.5 1
+
+Sample output:
+
+0 1
+1 1
+0 1
+1 0.0714286

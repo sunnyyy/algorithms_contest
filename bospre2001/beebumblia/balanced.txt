@@ -1,0 +1,63 @@
+Balanced Strings
+-------- -------
+
+A balanced string is a string whose parentheses all
+match.  Thus
+
+     balanced-string
+         ::= empty-string
+	   | balanced-string non-parenthesis-character
+	   | balanced-string ( balanced-string )
+
+You have been asked to develop a piece of code that
+determines whether strings are balanced.
+
+Input
+-----
+
+For each string, one line whose contents is the string.
+The maximum string length is 80 characters.
+
+The input ends with an end of file.
+
+Output
+------
+
+For each string, one line beginning with `String #:' and
+ending with either `balanced' or `NOT balanced'.
+
+
+Sample Input
+------ -----
+
+This is (a) very ((bal)(en(ce)d)) st()ring!
+But this is (a) bit (un((bal)(en(ce)d)).
+And so is) (this).
+
+
+Note: This sample input is a file with exactly 3 lines.
+
+
+Sample Output
+------ ------
+
+String 1: balanced
+String 2: NOT balanced
+String 3: NOT balanced
+
+
+
+File:	balanced.txt
+Author:	Bob Walton <walton@deas.harvard.edu>
+Date:	Mon Oct  8 02:39:54 EDT 2001
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2001/10/08 07:16:07 $
+    $RCSfile: balanced.txt,v $
+    $Revision: 1.2 $

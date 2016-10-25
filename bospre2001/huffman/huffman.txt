@@ -1,0 +1,142 @@
+Huffman Coding Trees
+------- ------ -----
+
+Huffman Coding is a method of compressing data.  It is
+based on specialized binary trees, which we will call
+Huffman Coding Trees.
+
+A Huffman Coding Tree for (compressing) the string
+`abaacb' is made as follows.  First, make single node
+trees for each character appearing in the string, and
+assign each tree a `weight' equal to the number of times
+the character appears in the string.  We get the three
+single node trees:
+
+	a/3	b/2	c/1
+
+where `a', `b', and `'c' are the names of the single
+node trees and 3, 2, and 1 are their weights.
+
+Next we select the two trees with the lowest weights and
+replace them both by a single larger tree made by adding
+a root node whose two children are the two trees being
+replaced.  In this case we get
+
+	(b)(c)/3
+
+where the name of a tree with two children is written:
+
+	(left-child-name)(right-child-name)
+
+and the weight of the new tree is the sum of the weights
+of its children.  In this case `b' is the left child,
+`c' is the right child, and 3=2+1 is the new weight.
+
+After this first tree replacement we are left with two
+trees:
+	a/3		(b)(c)/3
+
+We repeat the replacement step until there is only one
+tree:
+
+	(a)((b)(c))/6
+
+which is a Huffman Coding Tree of the string `abaacb'.
+
+In this problem you are to compute a Huffman Coding Tree
+for arbitrary strings of lower case letters.  There is
+some ambiguity in the above process we want to remove to
+make the judging easier, so we require you to have the
+first letter in any node's left child's name be less, in
+dictionary order, than the first letter in the node's
+right child's name.  Thus `(b)(c)' is acceptable but
+`(c)(b)' is not, and `(a)((b)(c))' is acceptable but
+`((b)(c))(a)' is not.
+
+Superfluous Note
+----------- ----
+
+The following is some background information not needed
+to solve this problem.
+
+The edges in a Huffman Coding Tree can be labelled with
+0 and 1, where 0 is placed on edges to left children,
+and 1 on edges to right children, as follows
+
+			.
+		      0/ \1
+		      a   .
+		        0/ \1
+			b   c
+
+The Huffman code of a letter is just the digits on the
+path from the root to the letter.  In this case:
+
+	a   0		b   10		c   11
+
+
+The set of Huffman codes for all the letters in a
+Huffman Coding Tree is a `prefix code', meaning that no
+code in the set is the prefix of any other code in the
+set.  This `0' is not a prefix of `10' or `11'.  As a
+consequence, the letters in the original string can be
+replaced by their Huffman codes:
+
+	abaacb		010001110
+
+and the resulting bit string can be unambiguously de-
+coded into the original letter string.
+
+
+Input
+-----
+
+One line for each string.  The characters of the line
+are just the characters of the string.  The string will
+consist only of lower case letters, and will not be
+longer than 80 letters.
+
+The input will end with an end of file.
+
+
+Output
+------
+
+One line for each string, beginning with `String #:' and
+ending with the name of a Huffman Coding Tree for the
+string.  This tree must obey the rule we gave above to
+reduce ambiguity.  If there is more than one tree obey-
+ing this rule, output only one tree.
+
+
+Sample Input
+------ -----
+
+abaacb
+abbcccddddeeeeeffffffggggggghhhhhhhh
+
+
+
+Sample Output
+------ ------
+
+String 1: (a)((b)(c))
+String 2: (((((a)(b))(c))(f))((d)(e)))((g)(h))
+
+
+
+
+File:	huffman.txt
+Author:	Bob Walton <walton@deas.harvard.edu>
+Date:	Thu Oct 11 13:14:29 EDT 2001
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2001/10/11 17:18:49 $
+    $RCSfile: huffman.txt,v $
+    $Revision: 1.3 $
