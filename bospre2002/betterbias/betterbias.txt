@@ -1,0 +1,151 @@
+Achieving Better Bias
+--------- ------ ----
+
+The Better Bias Bureau takes M faced biased dice with
+known biases and makes from them N faced biased dice
+with desired biases.  More specifically, if you have an
+M faced biased die with probability pm[j] of throwing
+face j, for j from 1 though M, but you really want
+instead an N faced biased die with probability pn[i] of
+throwing face i, for i from 1 through N, then good old
+B3 will give you a method of achieving your desires.
+
+The method is this.  You are to consider throwing your M
+faced die an infinite number of times and writing out
+the resulting faces, f1, f2, f3, ..., as an infinite
+fraction .f1f2f3... base M.  The fraction will be a
+number, call it F, in the range from 0 through 1.  For
+any number r, 0 <= r <= 1, we can compute the probabil-
+ity that F <= r.
+
+Let rn[i] be defined so that
+
+      probability F <= rn[i]
+    = probability that an N faced die throw is k for
+      some k <= i
+    = sum of pn[k] for k from 1 through i
+
+Then when you throw a value F with your M faced die, you
+should declare it to be face i of the N faced die if
+
+	          F < rn[i] if i = 1
+or
+	rn[i-1] < F < rn[i] if 1 < i < N
+or
+	rn[i-1] < F         if i = N
+or
+
+This method produces a properly biased N faced die.
+Here one ignores the cases where F = rn[i] for some i,
+as the probability of this happening is 0.
+
+The neat thing about all this is that you do not actual-
+ly have to throw the M faced die an infinite number of
+times to decide what the value of i is.  After some
+finite number of throws, depending on the value of F,
+you can stop, knowing the answer i.
+
+Suppose you stop as soon as possible.  What is the ex-
+pected number of throws of the M faced die necessary to
+produce one throw of the N faced die?
+
+
+Note:
+----
+
+For technical reasons, relating to the elimination of
+ambiguity in judging a contest, we use only one inequal-
+ity if i = 1 or i = N.  To be a little more specific,
+the judge's test data has been adjusted so that for all
+cases that must actually be tested, either both the in-
+equalities rn[i-1] < F and F < rn[i] will be true by a
+margin definitely larger than the accuracy of the com-
+putation, or one of these inequalities will be false by
+a margin definitely larger than the accuracy of the com-
+putation.  But it is NOT possible to adjust the judge's
+data so the inequalities at the ends, rn[0] = 0.0 < F
+and F < rn[N] = 1.0, will be true or false by a margin
+definitely larger than the accuracy of the computation.
+So we suppress these two inequalities, which we can do
+without changing the validity of the method.
+
+
+Input
+-----
+
+For each of several test cases:
+
+  * M followed by pm[1], pm[2], ..., pm[M] in order.
+
+  * N followed by pn[1], pn[2], ..., pn[N] in order.
+
+Here 2 <= M <= 20, 2 <= N <= 20, and for all j and i
+0.01 <= pm[j] <= 0.99, 0.01 <= pn[i] <= 0.99.  The sum
+of all the pm[j] equals 1.0, and the sum of all pn[i]
+equals 1.0.
+
+Numbers are separated by whitespace, which may consist
+of any sequence of spaces, tabs, or newlines.
+
+Input ends with a line containing just a single 0.
+
+You should use double precision floating point arithme-
+tic to do input and computation, as more than 6 signifi-
+cant figures of accuracy are necessary.
+
+
+Output
+------
+
+For each test case, one line containing the expected
+number of throws of the M sided die needed to generate
+one throw of the N sided die.  This number should have
+exactly 2 decimal places.
+
+
+Sample Input
+------ -----
+
+2 0.5 0.5
+4 0.1 0.2
+  0.3 0.4
+4 0.1 0.2 0.3 0.4
+2 0.5 0.5
+2 0.5 0.5
+3 0.333333333333 0.333333333333 0.333333333333
+0
+
+
+Sample Output
+------ ------
+
+3.50
+1.45
+3.00
+
+
+
+Note
+----
+
+You might find it interesting to consider at your
+leisure whether B3's method is optimal, i.e., achieves
+the minimal expected number of throws of the M faced die
+to generate one throw of the N faced die.
+
+
+
+File:	   betterbias.txt
+Author:	   Bob Walton <walton@deas.harvard.edu>
+Date:	   Mon Oct 21 01:22:35 EDT 2002
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2002/10/21 05:23:01 $
+    $RCSfile: betterbias.txt,v $
+    $Revision: 1.11 $

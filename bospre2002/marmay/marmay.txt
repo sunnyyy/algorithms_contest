@@ -1,0 +1,98 @@
+Marriage Mayhem
+-------- ------
+
+Alex and Betty are soon to be married, but have each
+forgotten a crucial item at home.  They must each
+collect their item before the wedding may take place;
+thus they wish to arrive there as soon as possible.
+However, as tradition has it that the bride and groom
+must not meet before the wedding, they must take care to
+avoid running into each other.
+
+Being decent people, their world consists of a graph.
+The problem will specify Alex and Betty's start and
+target vertices.  Traversing an edge will take one
+second.  (It is also allowed to stand still at a
+vertex.)  It is not allowed for Alex and Betty to:
+
+-- be at the same vertex at the same time;
+-- traverse the same edge at the same time.
+
+Your job is to compute the earliest time at which both
+Alex and Betty can be home, or to say that no solution
+is possible.
+
+
+
+Input
+-----
+
+For each test case, the input is:
+
+Line 1:  5 integers: the number of vertices N;
+         Alex's start vertex `as' and finish vertex
+	 `af'; Betty's start vertex `bs' and finish
+	 vertex `bf'; Vertices are numbered 1..N.
+	 1 <= N <= 30.
+
+Lines 2..N+1:
+	 An nxn array of 0's and 1's, where 1's indicate
+	 the presence of edges.  Each row is on a single
+	 line.  The vertex numbers increase from left to
+	 right and from top to bottom.  The matrix is
+	 symmetric and the diagonal is all 1's.
+
+Input will be terminated a line containing five 0's.
+
+
+
+Output
+------
+
+A single line beginning with `Case #:'.  Then if a
+solution is possible, this is followed by the integer
+number of seconds the quickest solution takes; but if
+no solution is possible, the word `impossible' is to
+be output in place of an integer.
+
+
+
+Sample Input
+------ -----
+
+3 1 3 3 1
+1 1 1
+1 1 1
+1 1 1
+3 1 3 3 1
+1 1 0
+1 1 1
+0 1 1
+0
+
+
+
+Sample Output
+------ ------
+
+Case 1: 2
+Case 2: impossible
+
+
+
+File:	  marmay.txt
+Author:	  Vince Conitzer <conitzer@post.harvard.edu>
+	  with minor revisions by
+	  Bob Walton <walton@deas.harvard.edu>
+Date:	  Sat Oct 26 16:03:37 EDT 2002
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: hc3-judge $
+    $Date: 2002/10/26 20:04:51 $
+    $RCSfile: marmay.txt,v $
+    $Revision: 1.9 $

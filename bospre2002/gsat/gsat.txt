@@ -1,0 +1,256 @@
+GSAT Tracing
+---- -------
+
+GSAT is a `greedy local search' procedure for satisfying
+propositional formulae in CNF form.  You have been asked
+to code the GSAT algorithm, and as a first step, you are
+to code a variation of the core of this algorithm and
+output a trace of its execution.
+
+A propositional formula is a formula containing boolean
+variables and the operators AND, OR, and NOT.  A propo-
+sitional formula is in `conjunctive normal form', or
+CNF, if it has the syntax:
+
+	CNF-formula ::= clause { AND clause }*
+	clause ::= ( literal { OR literal }* )
+	literal ::= variable | NOT variable
+
+Thus if v1, v2, v3, ... are boolean variables, an exam-
+ple is
+
+	( v1 OR NOT v3 ) AND ( NOT v4 OR v5 OR v2 )
+
+As a shorthand we will write such formula with the
+following modifications:
+
+  A. We will omit OR's and AND's.
+
+  B. We will omit v's, representing variables by
+     integers.
+
+  C. We will replace NOT's by -'s, negating the integer
+     representing a variable that is to be NOT'ed.  We
+     will omit space between the `-' and its following
+     integer.
+
+Thus the above example becomes:
+
+	( 1 -3 ) ( -4 5 2 )
+
+The goal of the GSAT algorithm is to find an assignment
+of values (true or false) to variables so that the given
+input CNF formula is satisfied (evaluates to true by the
+rules of boolean algebra).
+
+The core of the GSAT algorithm is:
+
+  1. Assign values (true or false) to all the variables
+     randomly.
+
+  2. If all clauses are satisfied (so the formula is
+     satisfied), stop.
+
+  3. For each variable i, compute the number of clauses
+     N[i] that will be satisfied if just the value of
+     variable i is changed.
+
+  4. Form the set of variables S whose N[i] is maximal.
+
+  5. Pick one variable from S randomly and change its
+     value.
+
+  6. Return to step 2.
+
+You have been asked to program a first version of this
+GSAT core that replaces random choices as follows:
+
+  1. In step 1, the initial variable assignments are
+     input.
+
+  5. In step 5, instead of picking a variable from S
+     randomly, the variable i with the smallest value
+     of 
+     
+     		( i - iteration ) mod V
+		
+     is chosen, where `iteration' is the iteration num-
+     ber, 1, 2, 3, etc., and V is the number of vari-
+     ables.  This amounts to searching variables begin-
+     ning with variable 
+
+     		( ( iteration - 1 ) mod V ) + 1
+		
+     and wrapping around from variable V to variable 1,
+     picking the first variable with maximum N[i] that
+     is found.
+
+You are asked to print out all variable changes in step
+5 and the set of currently unsatisfied clauses in step
+2.
+
+To simplify implementation, GSAT is usually programmed
+to run only on CNF formula whose clauses contain at most
+3 literals.  All CNF formula can be easily converted to
+such a form.  To make coding easier, we require that all
+clauses have exactly 3 literals.  To make this work, we
+introduce the special variable v0 whose value is ALWAYS
+false.  Thus the clause (v1 OR v2) with two literals is
+changed to the clause (v1 OR v2 OR v0) with three
+literals, the last of which, v0, is always false.
+
+
+Input
+-----
+
+For each formula, integers V, C, and I, in that order,
+which are respectively the number of variables, the
+number of clauses, and the maximum number of algorithm
+iterations.  1 <= V <= 100, 1 <= C <= 100, and 1 <= I
+<= 100.  These are followed by V integers, each 0 repre-
+senting `false' or 1 representing `true', that are the
+initial values of the variables, in order from variable
+1 through variable V.  And these are followed by the
+clauses, represented as a sequence of integers, using
+the abbreviations given above.  As each clause has ex-
+actly 3 literals, parentheses would be redundant infor-
+mation, and are therefore omitted.  If a clause contains
+variable 0, it is the last one or two variables of the
+clause.
+
+The input ends with a line containing 3 zeros.
+
+
+Output
+------
+
+For each data set, first a single line containing
+`Formula #' where # is 1, 2, 3, etc., the number of the
+formula in the input.
+
+Then every time step 2 is executed, one or more lines
+containing the clauses that are not satisfied.  Each
+clause is represented by three integers enclosed in
+parentheses, with clauses being separated by a space.
+Consecutive integers are separated by a space, but par-
+entheses are NOT separated from integers by space.  If
+there are more than 5 clauses, then exactly 5 clauses
+are printed on each line but the last, which may have
+1 to 5 clauses.  The clauses MUST be printed the order
+they were input.
+
+As a special case, if there are no unsatisfied clauses
+at step 2, print a single line containing just `DONE' 
+and stop the algorithm.
+
+Lastly, every time step 5 is execute print either
+`# = true' or `# = false' to indicate that variable #
+has been assigned the new value `true' or `false'
+respectively.
+
+Execution of the algorithm should stop immediately after
+the algorithm executes step 2 for the I+1'st time, if
+execution has not previously stopped because the formula
+was satisfied.
+
+
+Sample Input
+------ -----
+
+4 5 10
+0 0 0 0
+ 1  2  0
+ 2  3  0
+ 3  4  0
+ 4 -1  0
+-1 -2  0
+4 4 10
+0 0 0 0
+ 1 -2 0
+ 2 -3 0
+ 3 -4 0
+ 4  0 0
+4 5 8
+1 0 0 1
+-2  3  0
+-3  4  0
+-4 -2  0
+ 1  2  0
+-1  2  0
+0 0 0
+
+
+Sample Output
+------ ------
+
+Formula 1
+(1 2 0) (2 3 0) (3 4 0)
+2 = true
+(3 4 0)
+3 = true
+DONE
+Formula 2
+(4 0 0)
+1 = true
+(4 0 0)
+2 = true
+(4 0 0)
+3 = true
+(4 0 0)
+4 = true
+DONE
+Formula 3
+(-1 2 0)
+1 = false
+(1 2 0)
+3 = true
+(1 2 0)
+3 = false
+(1 2 0)
+4 = false
+(1 2 0)
+1 = true
+(-1 2 0)
+2 = true
+(-2 3 0)
+3 = true
+(-3 4 0)
+4 = true
+(-4 -2 0)
+
+
+Notes:
+-----
+
+The full GSAT algorithm runs the core algorithm some
+number of times, and claims, perhaps incorrectly, that
+the formula is unsatisfiable if none of these runs
+produces a satisfying variable assignment.  Each core
+run stops after some number of iterations if it fails
+to find a satisfying variable assignment.  Full GSAT has
+a good record of finding satisfying variable assignments
+if they exist for some important classes of formulae.
+
+The original GSAT paper is Selman, Levesque, and
+Mitchell, A New Method for Solving Hard Satisfiability
+Problems, Proc 10th Conf on AI (AAAI-92), July 1992,
+440-446.
+
+
+
+
+File:	   gsat.txt
+Author:	   Bob Walton <walton@deas.harvard.edu>
+Date:	   Mon Oct 21 00:36:45 EDT 2002
+
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2002/10/21 04:39:01 $
+    $RCSfile: gsat.txt,v $
+    $Revision: 1.7 $

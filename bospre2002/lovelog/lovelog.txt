@@ -1,0 +1,77 @@
+Love Log
+---- ---
+
+Olivia, the arrow beetle, is on the ground near a log.
+On the other side of the log is Oliver, the love of her
+life.  She wants to get to him.  How far must she
+travel?
+
+Olivia and Oliver are on the ground, the log rests on
+the ground, and Olivia must fly over the top of the log
+to get to Oliver.  You can assume that the ground is
+perfectly flat and the log is a perfect cylinder with
+axis perpendicular to the line between Olivia and
+Oliver.  The distance B from Olivia to the point where
+the log touches the ground, the distance C from this
+point to Oliver, and the diameter D of the log are
+given.  Arrow beetles fly in perfectly straight lines
+when they need to get to a point they can see, and
+otherwise can fly right next to a curved surface.  You
+can assume `right next to' means infinitesimally close
+to.
+
+Olivia or Oliver can be in the shadow of the log; i.e.,
+B < D/2 or C < D/2 are possible.
+
+
+Input
+-----
+
+Several test cases, each with one line containing B, C,
+and D, in that order.  0 < B,C,D < 1000000.  Input ends
+with a line containing three zeros.
+
+You should use double precision floating point arithme-
+tic to do input and computation, as input with 3 decimal
+places can have up to 9 significant digits.
+
+
+Output
+------
+
+For each test case, one line containing the length of
+the shortest arrow beetle flying route from Olivia to
+Oliver.  This length must have exactly 3 decimal places.
+
+
+Sample Input
+------ -----
+
+10.0 10.0 20.0
+ 0.1  0.1 20.0
+10.0 80.0 20.0
+0 0 0
+
+
+Sample Output
+------ ------
+ 
+51.416
+62.632
+108.195
+
+
+File:	   lovelog.txt
+Author:	   Bob Walton <walton@deas.harvard.edu>
+Date:	   Sun Oct 20 22:44:48 EDT 2002
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2002/10/21 02:46:01 $
+    $RCSfile: lovelog.txt,v $
+    $Revision: 1.3 $

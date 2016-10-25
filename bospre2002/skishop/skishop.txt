@@ -1,0 +1,96 @@
+Tom's Ski Shop
+----- --- ----
+
+Tom owns a ski shop at the foot of Mt. Big Toe.  He both
+sells and rents skis.  Tom's customers can either buy
+skis for X dollars, or rent them for a weekend for Y
+dollars.  If a customer skis for T weekends before he
+tires of skiing and stops, and if the customer rents for
+the first K weekends and then buys on the K+1'st week-
+end, with K+1 <= T, then the customer pays K*Y + X
+dollars to have skis for T weekends.  If X < T*Y, the
+customer would find it least expensive to have bought
+skis on his very first weekend (K = 0), but if X > T*Y,
+the customer would find it least expensive to always
+rent (K >= T).  A customer does not know his T in
+advance of actually getting tired of skiing, so these
+last facts are not very useful.
+
+Tom has studied this situation statistically and devised
+`optimal' advice for his customers.  By observation, Tom
+knows the probability P[T] that an arbitrary customer
+will tire of skiing after exactly T weekends.  Using
+this Tom finds the number K such that if every customer
+rents for her first K weekends and buys on her K+1'st
+weekend, the expected cost to the customer is minimized.
+
+Specifically, if the customer follows Tom's strategy for
+a given K, and the customer tires after T weekends, the
+cost to the customer is T * Y if T <= K and K * Y + X if
+T > K.  If we denote this cost by C[T], then the expect-
+ed cost is the sum of P[T]*C[T] over all T, and this
+expected cost, being a function of K, can be minimized
+by selecting K properly.
+
+You are asked to compute the optimal K given P[T].
+Somewhat artificially, you are to assume that P[T] is 0
+for all T above some value N, and you are not to con-
+sider any K above N.
+
+
+Input
+-----
+
+For each of a number of data sets, the numbers X, Y, and
+N in that order, followed by N probabilities, P[1],
+P[2], through P[N].  0 < X, 0 < Y, 1 <= N <= 100.  The
+probabilities are all between 0.0 and 1.0 inclusive, and
+the probabilities sum to 1.0.  The numbers are separated
+by whitespace, consisting of spaces, tabs, and newlines
+in any combination.
+
+Input ends with a line containing three zeros.
+
+
+Output
+------
+
+For each data set, one line containing first the optimal
+value of K and second the expected cost in dollars for
+that K.  The cost must have exactly 2 decimal digits.
+
+
+
+Sample Input
+------ -----
+
+ 50.00 30.00 4 0.5 0.0 0.0 0.5
+ 70.00 30.00 4 0.5 0.0 0.0 0.5
+100.00 30.00
+    4 0.5 0.0 0.0 0.5
+0 0 0
+
+
+Sample Output
+------ ------
+
+0 50.00
+1 65.00
+4 75.00
+
+
+
+File:	   skishop.txt
+Author:	   Bob Walton <walton@deas.harvard.edu>
+Date:	   Mon Oct 21 00:14:50 EDT 2002
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2002/10/21 04:16:23 $
+    $RCSfile: skishop.txt,v $
+    $Revision: 1.4 $

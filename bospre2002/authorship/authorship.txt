@@ -1,0 +1,103 @@
+Authorship Verification
+---------- ------------
+
+Slippery Redux, the Text Private Eye, is trying to set
+up a system to catch text copycats.  To do this he needs
+a program that will take input text and count the words
+that match a pattern.  The patterns he is interested
+in are fairly simple: they merely match the beginning of
+each word to see if there is some sequence of vowels and
+consonants and particular letters.  Thus the pattern
+`CVC' matches all words beginning with a consonant
+followed by a vowel followed by a consonant, and the
+pattern `thV' matches all words beginning with the
+letters `th' followed by a vowel.
+
+The input has been preprocessed so it is just a sequence
+of data words each of which contain nothing but lower
+case letters.  The pattern is a word consisting of lower
+case letters and the letters `C' and `V'.  In a pattern,
+a lower case letter matches only the letter itself in a
+data word, while `C' in a pattern matches any consonant
+in a data word, and `V' in a pattern matches any vowel
+in a data word.
+
+The letter `y' in a data word is to be treated as both a
+vowel and a consonant.  Thus BOTH `V' AND `C' ALWAYS
+match `y'.
+
+
+Input
+-----
+
+The input is a sequence of items, each of which is a
+pattern, a data word, or the special item `*'.  Items
+are separated by whitespace, which consists of one or
+more spaces, tabs, or newlines.
+
+The input contains one or more test cases, each consis-
+ting of a pattern followed by 1 or more data words
+followed by the item `*'.
+
+Input ends with the item `*' by itself (where the next
+pattern would be).
+
+No data word or pattern is longer than 80 characters.
+
+
+Output
+------
+
+For each test case, the single line
+
+	Case #: #/# = #%
+
+where the #'s denote numbers and are the following in
+order: the test case number (chosen from 1, 2, 3, etc.),
+the number of matching data words, the total number of
+data words, and the ratio of matching to total data
+words expressed as a percentage with exactly one decimal
+place.
+
+
+Sample Input
+------ -----
+
+thV
+i like the best of the noise sometimes *
+V
+i like the best of the noise sometimes *
+CVC
+i like the best
+of the noise sometimes *
+CV
+do you like my new nonsense *
+*
+
+
+Sample Output
+------ ------
+
+Case 1: 2/8 = 25.0%
+Case 2: 2/8 = 25.0%
+Case 3: 3/8 = 37.5%
+Case 4: 6/6 = 100.0%
+
+
+
+
+
+File:	   authorship.txt
+Author:	   Bob Walton <walton@deas.harvard.edu>
+Date:	   Sat Oct 26 16:02:39 EDT 2002
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: hc3-judge $
+    $Date: 2002/10/26 20:04:51 $
+    $RCSfile: authorship.txt,v $
+    $Revision: 1.8 $
