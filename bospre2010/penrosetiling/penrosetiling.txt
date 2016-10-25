@@ -1,0 +1,194 @@
+Penrose Tiling
+------- ------
+
+Sir Roger Penrose investigated aperiodic tilings of the
+plane in the 1970's.  These tilings are generated
+from a small number of finite shapes by following a set
+of rules, but no translation of a tiling is identical to
+the tiling, hence the designation `aperiodic'.
+
+Penrose rhombus tilings are generated from a pair of
+rhombi called `t', the `thin' rhombus, and `T', the
+`thick' rhombus.  All sides of these are unit length.
+The angles of t are 36 and 144 degrees, and those of T
+are 72 and 108.
+
+The sides of the rhombi also need to be labeled, so
+we give the following algorithms for drawing them using
+a pen:
+
+  for t, thin rhombus:
+    draw a straight line of unit length labeled +1
+    turn left 1*36 = 36 degrees
+    draw a straight line of unit length labeled -1
+    turn left 4*36 = 144 degrees
+    draw a straight line of unit length labeled +2
+    turn left 1*36 = 36 degrees
+    draw a straight line of unit length labeled -2
+    turn left 4*36 = 144 degrees
+    you are now back in your starting position
+
+  for T, thick rhombus:
+    draw a straight line of unit length labeled +1
+    turn left 2*36 = 72 degrees
+    draw a straight line of unit length labeled +2
+    turn left 3*36 = 108 degrees
+    draw a straight line of unit length labeled -2
+    turn left 2*36 = 72 degrees
+    draw a straight line of unit length labeled -1
+    turn left 3*36 = 108 degrees
+    you are now back in your starting position
+
+The rhombi must be fit together so:
+
+    1. The rhombi are rotated and/or translated but NOT
+       flipped over.
+
+    2. Two rhombi may not intersect.  This means that
+       their intersection as sets, including boundaries,
+       must not contain any points EXCEPT for those in
+       shared vertices and shared edges.
+
+    3. When an edge is shared between two rhombi, the
+       sum of the two labels of the edge must be 0.
+       E.g., a +2 edge from one rhombus may be shared
+       with a -2 edge from another rhombus, but NOT with
+       a +2 or -1 or +1 edge.
+
+    4. There are no holes in the tiling.
+
+In this problem you are given a proposed finite Penrose
+rhombic tiling and you are asked to determine whether
+it follows all the above rules.
+
+We need a way to describe a finite Penrose rhombic
+tiling.  We do this by placing the tiles down on the
+xy-plane so that each tile but the first shares an edge
+with one of the tiles laid down so far.
+
+The first tile is always a T-tile with its +1 edge dir-
+ected from (0,0) to (1,0) and its +2 edge directed from
+(1,0) to (x,y) with x>1, y>0.  This is referred to as
+the `standard position' for the first tile, which is
+also tile 1 in a our tile labeling scheme that numbers
+the n tiles laid down so far from 1 through n.
+
+The position of the n+1'st tile is given by the line
+
+	k j e
+
+where
+
+	k is the kind of tile, either `t' or `T'
+	j is the number of a previous tile that is to
+	  share an edge with the new tile; 1 <= j <= n
+	e is the label (+1, -1, +2, or -2) of the edge
+	  of tile j that is to be shared with the new
+	  tile, respecting the rule about the sum of
+	  shared edge labels being zero
+
+Thus the line `t 7 -2' says to lay a t-tile so that its
++2 edge is shared with the -2 edge of the 7'th tile
+laid.
+
+
+
+Input
+-----
+
+The input consists of test cases.  Each test case begins
+with a line containing the name of the test case.  This
+is followed by any number of lines each containing a
+description `k j e' of another tile to be laid to make a
+tiling pattern.  The first tile of the pattern is in
+standard position, and the i'th line of the form `k j e'
+describes how to lay the i+1'st tile.  After these lines
+there is a line containing just `.', which is the last
+line of the test case.
+
+	maximum number of tiles <= 10,000
+
+	for each tile vertex (x,y):
+	    -100 <= x <= +100
+	    -100 <= y <= +100
+
+
+Output
+------
+
+For each test case, first output an exact copy of the
+test case name line, and then output just one line in
+one of the following formats:
+
+	tile # intersects tile #
+	tile # edge # is shared with tile # edge #
+	there are # holes
+	tiling OK
+
+Here the #'s are integers that are tile labels, edge
+labels, or counts.  The first line is output if two
+tiles intersect; the second if two share edges have
+labels not summing to 0.  If the tiling violates the
+rule against intersection AND the rule against edge
+labels not summing to 0, then either of the first two
+lines may be output -- only one violation is to be
+reported.
+
+However, reporting holes must ONLY be done if there are
+NO intersection or edge label sum violations.
+
+
+Printing Input
+-------- -----
+
+As a debugging aid, the command
+
+	print_penrosetiling foo.in
+
+will print a picture of the tiling described in foo.in.
+The file sample_input.ps contains the result for the
+sample input.
+
+The labels in the picture are represented by single
+arrows (+1, -1) or double arrows (+2, -2) going around
+the rhombus boundary in the counter-clockwise (+1, +2)
+or clockwise (-1, -2) directions.  They are offset so
+that usually if a shared edge has labels not summing to
+zero this will be visible in the picture.  But their
+are perverse cases; consider:
+
+	-- PERVERSE CASE --
+	t 1 +1
+	T 2 -1
+	.
+
+
+Sample Input
+------ -----
+
+This is available in the file sample_input.in.
+
+
+Sample Output
+------ ------
+
+-- PENROSE TILING SAMPLE 1 --
+tiling OK
+-- PENROSE TILING SAMPLE 2 --
+tile 1 and tile 7 intersect
+
+
+File:	   penrosetiling.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Thu Oct 14 09:48:57 EDT 2010
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2010/10/14 13:51:26 $
+    $RCSfile: penrosetiling.txt,v $
+    $Revision: 1.13 $
