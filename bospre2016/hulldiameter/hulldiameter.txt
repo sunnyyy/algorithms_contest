@@ -1,0 +1,105 @@
+Hull Diameter
+---- --------
+
+Your boss wants you to find the diameter of a set of
+points, defined as the longest distance between any pair
+of the points.  The difficulty is that there are very
+many points.
+
+So your boss has built special hardware that finds the
+convex hull with exceptional speed.  Given this, he
+wants you to find the diameter of the set, which is the
+same as the diameter of the convex hull.
+
+
+Input
+-----
+
+Input consists of one or more test cases.  Each test
+case begins with a test case name line.  This is
+followed by a line containing just N, the number of
+points.  Then come N point description lines of the
+format
+
+	x y
+
+Here
+
+    3 <= N <= 100,000
+    -1000 <= x, y <= 1000
+    number of test cases per input file <= 1,000
+
+The points (x,y) are the vertices of the convex hull
+given in clockwise order, where x and y are floating
+point numbers.  The interior angle at any vertex is
+less than 180 degrees.
+
+Input ends with an end of file.  No input line is longer
+than 80 characters.
+
+
+Output
+------
+
+For each case, output one line containing exactly the
+test case name, followed by one line containing:
+
+	D i j
+	
+where D is the hull diameter printed with exactly 9
+decimal places and i and j are the indices of the ver-
+tices separated by D.  Vertex indices are 1, 2, ..., N
+in the order that their description lines appear in the
+input.
+
+You are REQUIRED to output the two vertices so i < j.
+For simplicity, the input will be such that the output
+will be unambiguous; no two pairs of vertices will be at
+distance D.
+
+
+Sample Input
+------ -----
+
+-- TRIANGLE --
+3
+0 1
+1 0
+0 0
+-- ALMOST EQUILATERAL TRIANGLE --
+3
+-0.5 0.866025403784438
+1 0
+-0.515038074910054 -0.857167300702112
+-- DECAGONAL --
+10
+-20 -30
+-27.6265470493195 -6.7520357810226
+-30 50
+-25.7378332533286 57.4019499735396
+40 90
+46.6457282195071 82.2651502425173
+70 -4
+65.7983884328896 -22.3095807142023
+20 -80
+0.726418814447584 -62.7190939693087
+
+
+Sample Output
+------ ------
+
+-- TRIANGLE --
+1.414213562 1 2
+-- ALMOST EQUILATERAL TRIANGLE --
+1.740711392 2 3
+-- DECAGONAL --
+171.172427686 5 9
+
+
+File:	   hulldiameter.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Tue Aug 30 04:49:22 EDT 2016
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

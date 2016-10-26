@@ -1,0 +1,102 @@
+Gaudy Artworks
+--------------
+
+You have been hired by Gaudy Artworks Inc. and are being
+asked to help them manufacture one of their specialty
+products.  This consists  of a white board in which a
+number of circles are randomly placed.  Then a subset
+of the circles which do NOT overlap each other too much
+have their interiors colored various colors, while the
+outlines of all the circles are overprinted in black.
+
+Given a board with the circles placed randomly on it,
+you have been asked to find a largest set of non-over-
+lapping circles.
+
+Your boss has defined overlapping as meaning that the
+intersection of two circles has area greater than 0.5.
+
+
+Input
+-----
+
+Input consists of one or more test cases.  Each test
+case begins with a test case name line.  This is
+followed by a line containing just N, the number of
+circles.  2 <= N <= 40.
+
+Then come N circle description lines, each of the format
+
+	X Y R
+
+where
+	-1000 <= X, Y <= 1000
+	5 <= R <= 100
+
+Each line describes a circle of center (X,Y) and radius
+R.
+
+The circles are assigned indices 1, 2, 3, ..., N in
+the order that their descriptions appear in the input.
+
+Input ends with an end of file.  No input line is longer
+than 80 characters.
+
+
+Output
+------
+
+For each case, output one line containing exactly the
+test case name, followed by one line containing the max-
+imum number M of circles that have no overlap, followed
+by the indices of M circles that have no overlap.  M
+must be maximized.  There may be several solutions with
+the same M; output only one.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+5
+ 0  0 5
+ 0 10 5
+10  0 5
+10 10 5
+ 5  5 5
+-- SAMPLE 2 --
+6
+ 0  0 10
+10  0 10
+20  0 10
+30  0 10
+40  0 10
+50  0 10
+-- SAMPLE 3 --
+6
+ 0  0 12.5
+10  0 10.3
+20  0 12.5
+30  0 10.3
+40  0 11.1012295764
+50  0 10.3
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+4 1 2 3 4
+-- SAMPLE 2 --
+3 1 4 6
+-- SAMPLE 3 --
+2 1 6
+
+
+File:	   gaudy.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Thu Oct  6 23:23:42 EDT 2016
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

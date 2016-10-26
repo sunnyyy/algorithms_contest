@@ -1,0 +1,106 @@
+What Wave?
+---- -----
+
+You are programming a sophisticated electronic device
+repair robot, and it has to be able to figure out
+whether the screen it is looking at is showing a
+picture of a square wave or a sine wave, and what the
+period of the wave is.
+
+For example,
+
+xx      xxxxxx      xxxxxx      xxxxxx      xxxxxx      
+                                                        
+                                                        
+                                                        
+  xxxxxx      xxxxxx      xxxxxx      xxxxxx      xxxxxx
+
+is a square wave with period 12 columns and
+
+ xxx             xxx             xxx             xxx    
+x   x           x   x           x   x           x   x   
+     x         x     x         x     x         x     x  
+                      x               x               x 
+      x       x               x               x         
+       x     x         x     x         x     x         x
+        x   x           x   x           x   x           
+         xxx             xxx             xxx            
+
+is a sine wave with period 16 columns.
+
+
+Input
+-----
+
+For each of several test cases, first a line containing
+just the test case name, then several lines containing
+the picture of the waveform, and then a line containing
+just `*'.  At least two full cycles of the waveform are
+pictured.
+
+All lines are at most 80 columns long,  Picture lines
+contain only single spaces and `x' characters.  All
+picture lines are of the same length.  There are no more
+than 20 lines in any picture.
+
+Input lines are read from the standard input.  Input
+ends when an end of file is read.
+
+
+Output
+------
+
+For each test case, first an exact copy of the test case
+name input line, and then one line containing first the
+name of the wave type and second the period in columns.
+
+The wave type name is either `sine' or `square'.  The
+period must be accurate to + or - 1 column.
+
+Output lines are printed to the standard output.  Output
+ends when the program terminates.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+xx      xxxxxx      xxxxxx      xxxxxx      xxxxxx      
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+  xxxxxx      xxxxxx      xxxxxx      xxxxxx      xxxxxx
+*
+-- SAMPLE 2 --
+ xxx             xxx             xxx             xxx    
+x   x           x   x           x   x           x   x   
+     x         x     x         x     x         x     x  
+                      x               x               x 
+      x       x               x               x         
+       x     x         x     x         x     x         x
+        x   x           x   x           x   x           
+         xxx             xxx             xxx            
+*
+[see sample.in file for more sample test case inputs]
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+square 12
+-- SAMPLE 2 --
+sine 16
+[see sample.test file for more sample test case outputs]
+
+
+File:	   whatwave.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Tue Sep 27 11:51:37 EDT 2016
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
