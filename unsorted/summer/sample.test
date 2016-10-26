@@ -1,0 +1,8 @@
+-- SAMPLE 1 --
+6.00 is correct
+-- SAMPLE 2 --
+6.01 should be 6.00
+-- SAMPLE 3 --
+0.00 is correct
+-- SAMPLE 4 --
+0.00 should be -0.01

@@ -1,0 +1,147 @@
+Unit Calculator
+---- ----------
+
+You have been asked to write a program that will perform
+context dependent unit conversions.   For example, if
+you are selling apples and oranges and want to know
+how many oranges you must sell to generate as much
+revenue as selling 1 apple, you could give the program:
+
+	12 apples = 4.95 dollars
+	12 oranges = 3.25 dollars
+	1 apples = ? oranges
+
+to which the answer is:
+
+   1 apples = 1.523 oranges
+
+Similarly if you want to know how many kilowatts of
+energy it takes to heat 1 gallon of water 60 degrees
+Fahrenheit in 1 minute, you could give the program:
+
+	   1 BTUs = 1 degrees-F pounds
+	   1 BTUs = 1055 joules
+	   1 joules = 1 watts seconds
+	   1000 watts = 1 kilowatts
+	   60 seconds = 1 minutes
+	   1 gallons = 8.3454 pounds
+	   60 degrees-F gallons = ? kilowatts minutes
+
+to which the answer is
+
+   60 degrees-F gallons = 8.804 kilowatts minutes
+
+Notice the first problem makes apples and oranges
+equivalent to dollars, which only works in a particular
+context.  The second problem makes 1 gallon equal to
+8.3454 pounds, and 1 BTU equal to 1 degrees-F per
+pound, and these equations work only for water.  So
+our problems are context sensitive.
+
+To simplify things we always use the plural for unit
+names, thus writing such syntactic barbarisms as 
+`1 apples'.  The lexemes are
+
+    <number> ::= any number readable as floating point
+    <unit-name> ::= sequence of graphic characters
+                    that begins with a letter
+    <special> ::= / | = | ? | .
+
+A `graphic' character is a character that prints a mark.
+Lexemes are always separated from each other by white-
+space.
+
+There is one statement per input line.  The statement
+syntax is:
+
+    <units> ::= <unit-name>* <divisor>*
+    <divisor> ::= / <unit-name>
+    <quantity> ::= <number> <units>
+    <equivalence> ::= <quantity> = <quantity>
+    <query> ::= <quantity> = ? <units>
+    <end> ::= .
+    <statement> ::= <equivalence> | <query> | <end>
+
+Input 
+-----
+
+For each of several test cases, a line containing just a
+test case name, followed by lines containing equiva-
+lences used in the calculation, followed by lines con-
+taining queries, followed by a line containing just `.'.
+Note that there can be more than one query, and lines
+and unit names can be long.
+
+All input is lexically and syntactically legal.  All
+numbers input are > 0.
+
+There are at most 100 distinct <unit-name>s in a test
+case and at most 100 <equivalence>s.  In all test cases
+there will be at most 1,000 <query>s.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, first a line containing an exact
+copy of the test case name line, and for each input
+query line an exact copy of that line but with the ?
+replaced by a number with exactly 3 decimal places.
+Input will be such that every query will have a unique
+answer.
+
+
+Sample Input
+------ -----
+
+-- APPLES AND ORANGES --
+12 apples = 4.95 dollars
+12 oranges = 3.25 dollars
+1 apples = ? oranges
+.
+-- HEATING WATER --
+1 BTUs = 1 degrees-F pounds
+1 BTUs = 1055 joules
+1 joules = 1 watts seconds
+1000 watts = 1 kilowatts
+60 seconds = 1 minutes
+1 gallons = 8.3454 pounds
+1 BTUs = ? kilowatts minutes
+60 degrees-F gallons = ? BTUs
+60 degrees-F gallons = ? kilowatts minutes
+.
+-- STRANGE --
+5 / X = 7
+3 X = ?
+.
+
+
+Sample Output
+------ ------
+
+-- APPLES AND ORANGES --
+1 apples = 1.523 oranges
+-- HEATING WATER --
+1 BTUs = 0.018 kilowatts minutes
+60 degrees-F gallons = 500.724 BTUs
+60 degrees-F gallons = 8.804 kilowatts minutes
+-- STRANGE --
+3 X = 2.143
+
+
+File:    unitcalc.txt
+Author:	    Bob Walton <walton@seas.harvard.edu>
+Date:	       Wed Oct 15 07:28:20 EDT 2014
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2014/10/15 11:29:46 $
+    $RCSfile: unitcalc.txt,v $
+    $Revision: 1.10 $

@@ -1,0 +1,73 @@
+Monte
+-----
+
+You work for Applied Probability Enterprises Inc., and
+have been asked by one of their customers to write a
+program that answers the question:
+
+  If N points are placed uniform randomly in the unit
+  interval, what is the probability that the smallest
+  distance between two of these points will be at most
+  D.
+
+Note that the end points of the unit interval itself DO
+NOT count as points to which a distance can be measured.
+
+
+Input
+-----
+
+For each of several test cases, a line containing just
+
+	N D
+where
+
+    2 <= N <= 20		0 < D < 1
+
+D has exactly 4 decimal places.  Input ends with an end
+of file.
+
+
+Output
+------
+
+For each test case, a line containing just
+
+	N D P
+
+where N and D are copied from the input and P is the
+desired probability.  D has exactly 4 decimal places
+and P has exactly 2 decimal places. 
+
+
+Sample Input
+------ -----
+
+ 8 0.0200
+10 0.0200
+10 0.0100
+10 0.0050
+15 0.0050
+15 0.0020
+20 0.0020
+
+
+Sample Output
+------ ------
+
+8 0.0200 0.70
+10 0.0200 0.86
+10 0.0100 0.61
+10 0.0050 0.37
+15 0.0050 0.66
+15 0.0020 0.35
+20 0.0020 0.54
+
+
+File:	   monte.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Fri Aug 12 21:42:59 EDT 2016
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

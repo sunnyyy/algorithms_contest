@@ -1,0 +1,150 @@
+Vigenere Cipher
+-------- ------
+
+A Vigenere Cipher encrypts by shifting each letter of
+a plain text line cyclically to the right within the
+alphabet by an amount determined by a key.  For example,
+`C' is `A' shifted right 2 places and `B' is `Z' shifted
+right 2 places cyclically (i.e., with wrap-around).
+
+The key is made by repeating a keyword indefinitely.
+The n'th letter of a plain text line is shifted
+cyclically right by the same amount as the n'th letter
+of the key is shifted right from the first letter A of
+the alphabet.
+
+So for example, if the keyword is CIPHER, the key is
+CIPHERCIPHERCIPHER...., and the letters of a plain text
+line are shifted cyclically right by the amounts:
+
+    1st letter	 shift by 2    (C is A shifted by 2)
+    2nd letter	 shift by 8    (I is A shifted by 8)
+    3rd letter	 shift by 15   (P is A shifted by 15)
+    4th letter	 shift by 7    (H is A shifted by 7)
+    5th letter	 shift by 4    (E is A shifted by 4)
+    6th letter	 shift by 17   (R is A shifted by 17)
+    7th letter	 shift by 2    (C is A shifted by 2)
+    8th letter	 shift by 8    (I is A shifted by 8)
+    9th letter	 shift by 15   (P is A shifted by 15)
+   10th letter	 shift by 7    (H is A shifted by 7)
+   ...........  ..........    .....................
+
+Thus for example, the line
+
+     This is encrypted by a Vigenere Cipher.
+
+is encrypted using the keyword `CIPHER' to
+
+   Vpxz zu tugiaxilh dg h Mkotuiig Rptygz.
+
+because
+
+	T --> V  (shift by 2)
+	h --> p  (shift by 8)
+	i --> x  (shift by 15)
+	s --> z  (shift by 7)
+	  -->    (shift by 4 not used for space)
+	  i --> z  (shift by 17)
+	  s --> u  (shift by 2)
+	    -->    (shift by 8 not used for space)
+	    e --> t  (shift by 15)
+	    n --> u  (shift by 7)
+	    c --> g  (shift by 4)
+	    r --> i  (shift by 17 AND WRAP AROUND)
+	    etc.
+
+ 
+Your spies have discovered an encrypted message, and
+also the decrypted plain text of the first line of the
+message.  They also have discovered that the message
+lines were all encrypted using a Vigenere Cipher with
+the same keyword, and that keyword has at most 10
+letters.  You are to find the decrypted message.
+
+
+Input
+-----
+
+For each of several test cases, a line containing just
+the test case name, followed by the decrypted first
+line of the message, followed by the encrypted message
+which has one or more lines, followed by a line contain-
+ing just `*'.
+
+No line is longer than 80 characters and the message
+has at most 40 lines.
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, first an exact copy of the test case
+name line, then the decrypted message, and lastly a line
+containing just `*'.
+
+The decrypted message is an exact copy of the encrypted
+message but with letters changed.  Punctuation, spaces,
+and line breaks are NOT changed.  The case of letters is
+preserved (upper case to upper case, lower case to lower
+case).
+
+Test cases will be such that decryption is always
+possible and is unique.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+This is encrypted by a Vigenere Cipher.
+Vpxz zu tugiaxilh dg h Mkotuiig Rptygz.
+Jq mscma,
+    Lfrm fsl igl vprdfmei ioi ewcaijv.
+Dgt jfnsh!
+*
+-- SAMPLE 2 --
+AAAAAAAAAAAAAAAA
+PASSWORDPASSWORD
+PASSWORD
+PASS
+*
+-- SAMPLE 3 --
+Twas brillig, and the slithy toves
+Kegz szosezo, tel aav ysbkpe mfdkz
+Uqj zpzk tel nbdjrl zv aav chuv;
+Rtr fzuyf nmxl kpk ufzunhmmy,
+Rvj mym thdm ytkpy hlbmytsm.
+*
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+This is encrypted by a Vigenere Cipher.
+Hi folks,
+    Hope you are enjoying the contest.
+Bye folks!
+*
+-- SAMPLE 2 --
+AAAAAAAAAAAAAAAA
+AAAAAAAA
+AAAA
+*
+-- SAMPLE 3 --
+Twas brillig, and the slithy toves
+Did gyre and gimble in the wabe;
+All mimsy were the borogoves,
+And the mome raths outgrabe.
+*
+
+
+File:	   vigenere.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Mon Oct 12 03:48:27 EDT 2015
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

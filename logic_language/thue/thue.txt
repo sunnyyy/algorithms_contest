@@ -1,0 +1,171 @@
+Thue
+----
+
+THUE is an esoteric programming language invented by
+John Colagioia in 2000.  It is based on a non-determin-
+istic rewriting system named after the Norwegian math-
+ematician Axel Thue, and has been described as one of
+the simplest possible ways to construe constraint-based
+programming.  It is capable of simulating a Turing
+machine.
+
+You have been asked to implement THUE.
+
+Syntax
+------
+
+    symbol ::= graphic ASCII character
+    string ::= symbol*
+    rule ::= left-hand-side single-space
+             `::=' single-space right-hand-side
+             end-of-line
+    left-hand-side ::= non-empty string other than `::='
+    right-hand-side ::= string
+    input-rule ::= left-hand-side single-space
+    	       	      `::=' single-space `:::' end-of-line
+    output-rule ::= left-hand-side single-space
+    		        `::=' single-space `~' string
+			          end-of-line
+    memory ::= string
+    input ::= string other than `!!!'
+    input-line ::= input end-of-line
+    program ::=
+        rule*
+	`::=' end-of-line
+	memory end-of-line
+	input-line*
+	`!!!' end-of-line
+
+Notes:
+
+    `Graphic' means non-white-space, non-control.
+    The only non-graphic characters in any line are
+        the two single-spaces in rules.
+    `::=' denotes a 3-character string as opposed to the
+          syntax equation meta-symbol ::=
+
+
+Execution
+---------
+
+Memory is searched and the sequence of rules is searched
+until a memory substring and rule are found such that
+the memory substring matches exactly the rule left-hand-
+side.  Then the memory substring is replaced by the rule
+right-hand-side.  The searches are non-deterministic
+(search order does not matter).  Execution stops when no
+match can be found.
+
+Two kinds of rules are special.
+
+For an input-rule, the right-hand-side ::: is replaced
+by the input string from the next input-line.  Unless
+the last line input was the program ending !!! line,
+in which case that line is RE-READ.
+
+For an output-rule, the right-hand-side without its
+initial ~ is output and then replaced in the rule by
+the empty string (so the left-hand-side is deleted from
+memory).  If what would be output is the empty string
+(the right-hand-side was ~ by itself), an end-of-line is
+output; otherwise no end-of-line is output.
+
+
+Input 
+-----
+
+For each of several test cases, first a line containing
+just the test case name, then a program.
+
+Input ends with an end of file.
+
+The maximum line length is 80 characters, and the
+maximum number of rules in a program is 100.
+
+
+Output
+------
+
+For each test case, first a line containing an exact
+copy of the test case name input line, then the test
+case program output, and LASTLY A SINGLE BLANK LINE.
+
+Input will be such that no output line is longer than
+80 characters, memory will never be longer than 100
+characters (symbols), output will be unique, output
+will end with an end-of-line, and the program
+terminating !!! line will be read.  Assuming, of
+course, that you execute the program correctly.
+
+
+Sample Input
+------ -----
+
+-- HELLO WORLD --
+a ::= ~Hello_World!
+** ::= ~
+$$ ::= :::
+::=
+$*a*$
+!!!
+-- INCREMENT BINARY NUMBERS --
+INPUT ::= :::
+1_ ::= 1++
+0_ ::= *1
+01++ ::= *10
+11++ ::= 1++0
+_1++ ::= _*10
+0* ::= *0
+1* ::= *1
+_*0 ::= _Z*
+Z ::= ~0
+_*1 ::= _ONE*
+ONE ::= ~1
+_*! ::= $EOL$
+EOL ::= ~
+$$ ::= _INPUT_!
+::=
+_INPUT_!
+0
+1
+00
+01
+10
+11
+1001111
+!!!
+
+
+
+Sample Output
+------ ------
+
+-- HELLO WORLD --
+Hello_World!
+
+-- INCREMENT BINARY NUMBERS --
+1
+10
+01
+10
+11
+100
+1010000
+
+[Output ends with a single blank line.]
+
+
+File:	   thue.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Wed Oct 15 07:26:53 EDT 2014
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2014/10/15 11:27:40 $
+    $RCSfile: thue.txt,v $
+    $Revision: 1.5 $

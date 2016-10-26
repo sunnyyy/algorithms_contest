@@ -1,0 +1,99 @@
+One-Boggle
+----------
+
+One-Boggle is a game in which you are given a line full
+of random letters and you are asked to find as many
+words in the line as possible.  In our version, you are
+also given a dictionary containing all the words you are
+allowed to find.
+
+Found words may go from left to right or right to left.
+Words may overlap.  A dictionary word may appear more
+than once.
+
+
+Input
+-----
+
+For each of several test cases:
+
+  * A single line giving the test case name
+
+  * Up to 1000 lines, each containing a single diction-
+    ary word.
+
+  * A single line containing just `*'.
+
+  * Many boggle lines, each containing random letters.
+
+  * A single line containing just `*'.
+
+All letters are lower case.  Words only contain letters.
+No line (or word) is longer than 80 characters.
+
+Input lines are read from the standard input.  Input
+ends when an end of file is read.
+
+
+Output
+------
+
+For each test case, first an exact copy of the test case
+name input line, and then a copy of each boggle line
+with letters that are not part of a word replaced by
+periods `.'.
+
+Output lines are printed to the standard output.  Output
+ends when the program terminates.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+my
+hi
+*
+xmybhiip
+xymbihipqihihic
+mxymwihibhhiynmyx
+*
+-- SAMPLE 2 --
+bone
+nobody
+need
+ted
+*
+biboneydoconedenobano
+iwaydoboneedxy
+aneedetapomporosaydoboneedetfew
+*
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+.my.hi..
+.ym.ihi..ihihi.
+..ym.ihi..hi..my.
+-- SAMPLE 2 --
+..bone........enob...
+...ydoboneed..
+.needet..........ydoboneedet...
+
+
+Actual boggle differs from One-Boggle in that (1) the
+game board is a 4x4 or 5x5 square, (2) words may run
+from any square to any of the 8 adjacent squares, (3)
+the human player can use any word they know, (4) the
+the player has a time limit.
+
+
+File:	   oneboggle.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Tue Oct 11 07:49:24 EDT 2016
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

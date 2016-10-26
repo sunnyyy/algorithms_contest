@@ -1,0 +1,263 @@
+Even Steven
+-----------
+
+Even-Steven is a one person card game played as follows.
+
+First you deal yourself a hand of cards.  Then you deal
+cards one at a time, and every time you deal a card,
+you must cover it by playing one card of equal or higher
+value from your hand, or you lose the game.  If your
+hand runs out of cards without losing, you win.
+
+
+Programs
+--------
+
+You are asked to write a program called `evensteven'
+that plays your hand.  A program called `dealer' is
+provided that is the dealer.  Each of the two programs
+reads its standard input and writes its standard
+output.  The standard input and output of the dealer
+is connected to a terminal or file.  The standard input
+and output of your `evensteven' program is connected to
+the dealer program: the dealer writes what `evensteven'
+reads and reads what `evensteven' writes.
+
+If you invoke the programs with the command
+
+	dealer evensteven
+
+the dealer starts your `evensteven' program as a
+subprogram (actually subprocess) of the dealer.  Then
+the dealer reads from the terminal, writes to your
+`evensteven' program, reads from your `evensteven'
+program, and writes to the terminal.
+
+
+Input for the `dealer' Program
+----- --- --- -------- -------
+
+For each of several games, just one line that contains
+
+	N seed
+
+where N is the number of cards dealt to the player's
+hand (0 < N <= 13), and seed is the seed of a pseudo-
+random number generator that is used to shuffle the
+deck ( 0 < seed < 2147483647 ).
+
+The input ends with an end of file.
+
+
+Input for `evensteven' Program
+----- --- ------------ -------
+
+For each of several games, first a line that describes
+your hand (the first N cards of the shuffled deck).
+This line has the form
+
+	N C1 C2 ... CN
+
+where N is the number of cards and each Ci is a card
+specified in the format:
+
+	Ci := <value><suit>
+
+	<value> := 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+	         | J | Q | K | A
+
+	<suit> := c | d | h | s
+
+Here the <value> is a number or J for `jack', Q for
+`queen', K for `king', or A for `ace'.  A <value> is
+greater if it is later in the above list; i.e., the
+highest value is `A' for `ace' and the lowest is `2'.
+
+The <suit> is c for `clubs', d for `diamonds', h for
+`hearts', or s for `spades'.  The suit of a card has
+NO affect on the card's value.
+
+So `2c' is the two of clubs and `Jh' the jack of hearts.
+
+After this first line, each following line names a
+single card being dealt from the reminder of the deck,
+or is one of the following:
+
+	YOU WIN
+	YOU LOSE
+
+Either of these last two lines ends the game.
+
+When you read an end of file, you MUST terminate the
+program (ALL the games are over).
+
+
+Output for `evensteven' Program
+------ --- ------------ -------
+
+For each game, every time you read a line naming a
+single card dealt after your hand has been dealt,
+you must output one line naming the card in your hand
+that you are playing.  Once you play a card this way,
+it is removed from your hand and you cannot play it
+again .
+
+A played (output) card is non-losing if its value is not
+less than the value of the dealt (input) card.
+
+You MUST play a card for each card dealt, even if you
+have only a losing card (in which case the next line you
+read will be `YOU LOSE').  Otherwise the dealer will
+time out waiting for you to output a card, and you will
+be given a `program crashed' score as detailed under
+`Scoring' below.  Some hands are necessarily losing, and
+you must lose these gracefully to have a successful
+`evensteven' program.
+
+WARNING: If you are programming in C you must execute
+
+	fflush (stdio);
+
+after writing each line to the standard output, or your
+output will be trapped in a buffer and never get to the
+dealer.  In C++ the `endl' IO manipulator flushes the
+buffer and in JAVA `println' flushes the buffer, so
+nothing unusual needs to be done for these languages.
+
+
+Output for the `dealer' Program
+------ --- --- -------- -------
+
+For each of the several games, first a line containing
+`Game #' where # = 1, 2, 3, ... is the number of the
+game, and then one of the lines:
+
+	YOU WIN
+	YOU LOSE NECESSARILY
+	YOU LOSE UNNECESSARILY
+
+You can lose in either of two ways: `NECESSARILY' 
+because there is no way to play your hand and win,
+and `UNNECESSARILY' because you played a winning hand
+badly (the dealer is a smart alec).
+
+
+Scoring
+-------
+
+The judge's test input and output are for the dealer
+program, and the judge's test output does NOT contain
+any `YOU LOSE UNNECESSARILY' lines.  Thus if your
+program loses unnecessarily, you will get a score of
+`incorrect output'.
+
+If your program outputs a badly formatted line the
+`dealer' program will output an error message and your
+program will get the score `incorrect output'.
+
+Similarly you will get `incorrect output' if you play
+a card not in your hand or you play the same card
+twice in a game.
+
+If your program hangs up reading when the dealer is
+trying to read from your program a line your program
+failed to write, the dealer will detect this eventually
+and abort, causing a score of `program crashed'.
+
+
+Debugging
+---------
+
+If your `evensteven' program outputs a line that begins
+with `*', the `dealer' program will copy that line to
+its standard output and otherwise ignore the line.  This
+can be used for debugging.  For example, in C++ one
+might use
+
+	bool debug = false;
+	#define dout if ( debug ) cout << "* "
+	. . .
+	main ( int argc )
+	{
+	    debug = ( argc > 1 );
+	    . . .
+	    dout << "my debugging message" << endl;
+	    . . .
+
+The `dealer' program passes extra arguments onto the
+`evensteven' program; e.g.,
+
+	dealer evensteven debug
+
+executes `evensteven debug'.  See the `make debug'
+command in the `solving' help file.
+
+However, if you output `*' lines when just `evensteven'
+with no arguments is called, in the code you submit to
+the judge, these lines will appear in the output file
+and you will get the score `Incorrect Output'.
+
+One use for debugging `*' lines is simply to echo all
+input to and output from `evensteven' so you can see
+how a game is going.
+
+
+Sample Input for Dealer
+------ ----- --- ------
+
+4 876390176
+4 653723903
+
+
+Sample Input for Evensteven
+------ ----- --- ----------
+
+4 4h 2d Qs Jc
+8c
+Qc
+9s
+YOU LOSE
+4 Kd 8c As 5s
+3s
+6h
+Kh
+5c
+YOU WIN
+
+
+Sample Output for Evensteven
+------ ------ --- ----------
+
+Jc
+Qs
+2d
+5s
+8c
+Kd
+As
+
+
+Sample Output for Dealer
+------ ------ --- ------
+
+Game 1
+YOU LOSE NECESSARILY
+Game 2
+YOU WIN
+
+
+
+File:	   evensteven.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Thu Oct 15 05:56:44 EDT 2009
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2009/10/15 09:58:04 $
+    $RCSfile: evensteven.txt,v $
+    $Revision: 1.9 $

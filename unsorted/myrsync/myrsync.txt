@@ -1,0 +1,227 @@
+My Rsync
+-- -----
+
+The UNIX rsync program copies a file F at location L to
+a remote location L' which is accessible from L only by
+slow communications.  It optimizes the case where an
+older version F' of the file already exists at L'.  F'
+is divided into disjoint S byte blocks, and the MD5
+signatures of these blocks are communicated by L' to L.
+Then L sends to L' the bytes of F as follows: if the
+next S bytes to be sent match a block of F', the identi-
+fier of that block is sent, and otherwise the next byte
+is sent.  Here S bytes match a block in F' if both have
+the same MD5 signature, which is only 16 bytes, so L'
+only has to send 16 bytes for every S bytes of F', and
+this is faster than having L' send all of F' if S is
+much greater than 16.
+
+However, if we do as we have said, then for every byte
+of F the MD5 signature of the S byte block starting at
+that byte would have to be computed.  This is too expen-
+sive computationally.
+
+So L' reports for every block both its MD5 signature and
+a 32-bit rolling checksum.  L uses the rolling checksum
+to find blocks in F that might with high probability be
+identical to blocks in F', and then computes the MD5
+signatures of just those blocks, to check if the blocks
+are indeed identical.
+
+What do we mean by a rolling checksum?  We are looking
+at the sequence of S byte blocks of F that begin at all
+the possible different byte offsets in F.  Suppose we
+have a pointer into F and relative to that pointer the
+next S + 1 bytes are
+
+	B(0), B(1), B(2), ..., B(S-1), B(S)
+
+An example rolling checksum for the current block is
+
+  b = (B(0) + B(1) + B(2) + ... + B(S-1)) mod 2**16
+
+The value of this checksum for the next block in the
+sequence is
+
+  bnext = (B(1) + B(2) + ... + B(S-1) + B(S)) mod 2**16
+	= (b + B(S) - B(0)) mod 2**16 
+
+That is, bnext can be computed quickly from b and the
+byte B(0) we are discarding and the byte B(S) we are
+adding to make the next block from the current block.
+We call b a `rolling' checksum because bnext can be
+computed quickly from b.
+
+Another example of a rolling checksum is
+
+    c = (S*B0 + (S-1)*B1 + (S-2)*B2 + ... + 1*B(S-1))
+        mod 2**16
+
+for which
+
+    cnext = (S*B1 + (S-1)*B2 + (S-2)*B3 + ... + 1*B(S))
+            mod 2**16
+	  = (c + bnext - S*B0) mod 2**16
+
+Here we use bnext to help compute cnext.  Lastly, we
+can combine these two rolling checksums into one:
+
+    d = b + 2**16 * c
+
+which is the 32-bit rolling checksum that we will use.
+
+Note that in the above a byte is an UNSIGNED 8 bit
+integer (an `unsigned char' in C/C++ , and as JAVA
+does not have unsigned integer data, you must convert
+each byte to an int and then & with 0xFF in JAVA).
+
+
+Input
+-----
+
+The standard input consists of test cases.  Each test
+case begins with a line containing the name of the test
+case.  The second line of the test case contains a data
+file name (the name of F), and the third line contains
+the block size.  The lines following this each describe
+one block of the remote file F', and each of these lines
+holds an MD5 signature followed by a single space
+followed by a rolling checksum.  The signature is 32
+hexadecimal digits (0, ..., 9, A, ..., F), and the
+rolling checksum is 8 hexadecimal digits.  The last line
+of the test case contains just `.', which signals the
+end of the test case.
+
+The input file name will not contain any white-space
+characters, and the block size will be a decimal
+number.  No standard input line will be longer than 80
+characters.  The standard input will be terminated by an
+end of file after the last test case.
+
+You must open each input file F for reading, and NOT for
+writing.  If you open it for reading and writing, your
+program may fail, and WORSE, it might work when you test
+it and then fail when the judge tests it because when
+the judge runs it your program will not be allowed to
+open files for writing.
+
+Output
+------
+
+For each test case, first output an exact copy of the
+first line of the test case, the test case name.  Then
+for each offset in file F of a block whose rolling
+checksum matches the rolling checksum of some block of
+F', output the line
+
+	offset block-number
+
+where block-number is the block number of the block
+of F' whose MD5 sum matches that of the block of F at
+the given offset, or is -1 if there is none.  These
+lines must be in order of increasing offset.  The blocks
+of F' are numbered 0, 1, 2 ... .
+
+Lastly output a line containing just `.' to end the
+test case output.
+
+
+Notes
+-----
+
+To compute an MD5 sum of an S byte block:
+
+  In C:
+
+        #include <openssl/md5.h>
+	unsigned char signature[16];
+	unsigned char block[S];
+	... read block ...
+	MD5( block, S, signature );
+
+  In C++:
+
+        extern "C" {
+	#include <openssl/md5.h>
+	}
+	unsigned char signature[16];
+	unsigned char block[S];
+	... read block ...
+	MD5( block, S, signature );
+
+  In JAVA:
+
+	import java.security.*;
+
+	static byte[] MD5 ( byte[] block )
+	    throws NoSuchAlgorithmException
+	{
+	     MessageDigest md =
+		 MessageDigest.getInstance ( "MD5" );
+	     return md.digest ( block );
+	}
+
+Here the MD5 sum is called a signature and is represent-
+ed as a 16 byte string, where each byte represents 2
+hexadecimal digits, with the first byte representing the
+highest order digits.
+
+If you use gcc or g++ directly (instead of using the
+Makefile you are provided) you need to use the -lssl
+library option.
+
+On modern computers computation of MD5 sums is so fast
+compared to input/output CPU time that we were unable
+to construct sensible test cases where the optimization
+of using rolling sums to reduce the amount of MD5 sum
+computation actually made a large difference in CPU
+time.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+sample1.dat
+256
+0665A333D10B4F10495EDCD35E8F2904 94127CB5
+7CB5FA5E037EFF272462C92867AFC1B9 BE387EB4
+D94B841EB5F4C528ACFFA4D2BD068503 94127CB5
+.
+-- SAMPLE 2 --
+sample2.dat
+4096
+B26EBEE4CB66A9CC513F48293E676CA9 FB23138E
+6167E71B305291265C85B37F758DB1BB D217FCA6
+87AC778780609BDF81C7E5C144BE48EA 48C909AF
+.
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+0 0
+256 1
+512 2
+.
+-- SAMPLE 2 --
+0 0
+8314 2
+.
+
+
+File:	   myrsync.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Sun Oct 18 22:10:45 EDT 2009
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: hc3-judge $
+    $Date: 2009/10/19 02:12:22 $
+    $RCSfile: myrsync.txt,v $
+    $Revision: 1.14 $

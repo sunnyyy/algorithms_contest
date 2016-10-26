@@ -1,0 +1,161 @@
+// Regression Tests for Vcalc
+//
+// File:	vcalc_regression.in
+// Author:	walton@seas.harvard.edu
+// Date:	Mon Jan 14 07:06:26 EST 2013
+
+// Boolean operations
+
+t = true
+f = false
+nott = ! t
+notf = ! f
+andff = f && f
+andtf = t && f
+andft = f && t
+andtt = t && t
+orff = f || f
+ortf = t || f
+orft = f || t
+ortt = t || t
+
+println //
+println // Boolean operations
+println ! t = nott
+println ! f = notf
+println f && f = andff
+println t && f = andtf
+println f && t = andft
+println t && t = andtt
+println f || f = orff
+println t || f = ortf
+println f || t = orft
+println t || t = ortt
+
+// Comparison operations
+
+eq45 = 4 == 5
+eq44 = 4 == 4
+eq54 = 5 == 4
+ne45 = 4 != 5
+ne44 = 4 != 4
+ne54 = 5 != 4
+lt45 = 4 <  5
+lt44 = 4 <  4
+lt54 = 5 <  4
+le45 = 4 <= 5
+le44 = 4 <= 4
+le54 = 5 <= 4
+gt45 = 4 >  5
+gt44 = 4 >  4
+gt54 = 5 >  4
+ge45 = 4 >= 5
+ge44 = 4 >= 4
+ge54 = 5 >= 4
+
+println //
+println // Comparision operations
+println 4 == 5 = eq45
+println 4 == 4 = eq44
+println 5 == 4 = eq54
+println 4 != 5 = ne45
+println 4 != 4 = ne44
+println 5 != 4 = ne54
+println 4 <  5 = lt45
+println 4 <  4 = lt44
+println 5 <  4 = lt54
+println 4 <= 5 = le45
+println 4 <= 4 = le44
+println 5 <= 4 = le54
+println 4 >  5 = gt45
+println 4 >  4 = gt44
+println 5 >  4 = gt54
+println 4 >= 5 = ge45
+println 4 >= 4 = ge44
+println 5 >= 4 = ge54
+
+// Scalar operations
+
+m5 = -5
+a5 = | 5 |
+am5 = | -5 |
+p45 = 4 + 5
+m45 = 4 - 5
+t45 = 4 * 5
+d405 = 40 / 5
+
+println //
+println // Scalar operations
+println - 5 = m5
+println | 5 | = a5
+println | -5 | = am5
+println 4 + 5 = p45
+println 4 - 5 = m45
+println 4 * 5 = t45
+println 40 / 5 = d405
+
+// Vector operations
+
+u = (1,1)
+v = (3,-4)
+w = (-4,8)
+mv = - v
+lv = || v ||
+au = angle u
+pvw = v + w
+mvw = v - w
+tvw = v * w
+r0u = u ^ 0
+r90u = u ^ 90
+r180u = u ^ 180
+r270u = u ^ 270
+r360u = u ^ 360
+rm90u = u ^ -90
+rm180u = u ^ -180
+rm270u = u ^ -270
+rm360u = u ^ -360
+
+println //
+println // Vector operations
+println - v = mv
+println || v || = lv
+println angle u = au
+println v + w = pvw
+println v - w = mvw
+println v * w = tvw
+println u ^ 0 = r0u
+println u ^ 90 = r90u
+println u ^ 180 = r180u
+println u ^ 270 = r270u
+println u ^ 360 = r360u
+println u ^ -90 = rm90u
+println u ^ -180 = rm180u
+println u ^ -270 = rm270u
+println u ^ -360 = rm360u
+
+
+println //
+println // If statement
+if true: println if true: executed
+if false: println if false: executed
+
+println //
+println // Clear statement
+VARIABLE = 999
+println VARIABLE after setting variable to 999
+clear
+println VARIABLE after clear
+VARIABLE = 999
+clear OTHER
+println VARIABLE after clear OTHER
+clear VARIABLE
+println VARIABLE after clear VARIABLE
+
+println //
+println // Print statement
+clear
+print x =
+x = 5
+print x and y =
+y = (1,1)
+println y

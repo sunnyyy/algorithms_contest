@@ -1,0 +1,24 @@
+// Sample vcalc Input
+//
+x = 5
+y = -10
+z = x + y
+println x + y = z
+
+p1 = ( 3, 4 )
+p2 = ( -7, 3 )
+p = ( 1, 4 )
+p12 = p2 - p1
+rp12 = p12 ^ 90
+y' = p * rp12
+y1' = p1 * rp12
+y2' = p2 * rp12
+println p'y = y' ### p1'y = y1' ### p2'y = y2'
+print p is
+x = y' > y1'
+if x: print to the left of
+x = y' == y1'
+if x: print on
+x = y' < y1'
+if x: print to the right of
+println p1 ---> p2

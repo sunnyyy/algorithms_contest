@@ -1,0 +1,98 @@
+The Two Legged Maze
+-------------------
+
+A two legged maze is a board of NxN squares, with each
+square labeled by a single lower case letter.  The
+problem is to go by a path from a start square to a goal
+square.  The path is a sequence of horizontal and verti-
+cal moves to adjacent squares.  The path is divided into
+two parts, the `first leg' followed by the `second leg'.
+Each leg is a sequence of moves.  In the first leg all
+moves must be from a square labeled X to a square
+labeled Y where Y follows X in the alphabet, or in
+short, X<Y.  In the second leg all moves must be from X
+to Y where Y precedes X in the alphabet, or X>Y.  Either
+leg can have zero moves.
+
+The board columns are numbered 1, 2, ..., N and the
+board rows are numbered 1, 2, ..., N.  A square has
+coordinates (r,c) where r is the square's row number and
+c is its column number, (1,1) is the upper left corner,
+and (N,N) is the lower right corner.  The start square
+is (sr,sc) and the goal square is (gr,gc).
+
+Diagonal moves are NOT allowed.
+
+
+Input
+-----
+
+For each of several test cases, a single line containing
+the 5 numbers
+
+    N sr sc gr gc
+
+where 1 <= N <= 50, followed by N lines each containing
+just N lower case letters.  These lines are the rows of
+the board, with row 1 first and row N last.  The N lower
+case letters on a line are the labels of the squares in
+the line's row, with the first letter in the line being
+for column 1 and the last being for column N.
+
+An end of file terminates the input.
+
+
+Output
+------
+
+For each case, a single line containing nothing but
+the minimum number of moves required by any path from
+the start to the goal.  Or if there is no such path,
+then the line contains just the word `impossible'.
+
+
+Example Input
+------- -----
+
+5 1 1 5 5
+abcde
+fghij
+klmno
+pqrst
+uvwxy
+5 1 2 4 5
+abken
+ywxyz
+abekw
+yxieb
+pqude
+5 4 2 5 5
+abkzn
+ywxyx
+abekw
+ymief
+pqude
+
+
+Example Output
+------- ------
+
+8
+6
+impossible
+
+
+File:	   twolegs.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Wed Oct 15 03:08:09 EDT 2008
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2008/10/15 07:08:22 $
+    $RCSfile: twolegs.txt,v $
+    $Revision: 1.4 $

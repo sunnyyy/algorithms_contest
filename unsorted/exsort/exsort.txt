@@ -1,0 +1,286 @@
+External Memory Sort
+-------- ------ ----
+
+You have been asked to sort some data on disk while
+minimizing the number of disk block reads to a RAM cache
+and disk block writes from the cache.  In the ultimate
+application of your program, the disk is much much
+bigger than computer RAM memory.  But in the test setup,
+everything is being simulated with much smaller sizes.
+
+You have a RAM memory cache that can hold C disk blocks,
+where a disk block is B 32-bit signed integers.  You can
+read a block from disk to a cache block, or write a
+cache block to disk.  In the test setup, you are being
+asked to sort the integers in the first I blocks of
+disk.
+
+In this contest environment, the cache is implemented
+in a separate program with which you communicate by
+writing commands to your standard output and reading
+command responses from your standard input.  You can
+read a disk block to a cache block, write a cache
+block to a disk block, read a cache block into your
+own program memory, and copy an integer from one cache
+location to another.  To avoid cheating, there is no
+command to let you write a cache location with an
+integer of your own choosing.
+
+The size of the disk is D = 2*I, twice the size of the
+data to be sorted.  You must sort the integers in the
+first I disk blocks, leaving the answer in these first
+I disk blocks.  You are permitted at most K*I disk block
+read operations, at most K*I disk block write opera-
+tions, and at most K*I cache block to program memory
+read operations, where K is the smallest integer such
+that (C-1)**K >= I (note that C >= 3 always).
+
+
+Your Input/Output
+---- ------------
+
+You write the program whose binary name is `exsort'.
+The disk and cache are implemented by a separate `disk
+controller' program whose name is `disk'.  The `disk'
+program runs your `exsort' program as a subprocess.  The
+command that does this is
+
+    disk exsort <TEST-CASE-INPUT >TEST-CASE-OUTPUT
+
+You write disk commands to your standard output which
+the disk controller program reads and executes.  For
+some of these commands the disk controller then writes
+results which you read from your standard input.
+
+Note that your program DOES NOT READ the test case input
+or write the test case output.  The `disk' program does
+this.
+
+The commands you may write to your standard output are:
+
+    Command	Results
+    -------     -------
+
+    case	One line containing
+    
+    			B D C I K [debug-options]
+
+    		or a line containing `0 0 0 0 0' if
+		there are no more test cases.
+
+	The `case' command must be the first command you
+	issue for each test case, and the next `case'
+	command indicates your are done with sorting for
+	the last test case and are starting the next
+	test case.
+
+	Here `debug-options' denotes optional arguments
+	you may provide to control debugging output from
+	your program.  See Test Case Descriptions and
+	Output below.
+
+	Note that D and K are computable from I and C.
+
+    read d c	One line containing the B integers of
+    		the block read from disk.  These are
+		printed one integer per 8 columns, so
+		the line can be up to 8*16 = 128
+		characters long.  However, if this
+		command or a previous command in the
+		same test case is in error, then instead
+		of a line containing integers, the
+		result is a line containing just
+		`ERROR'.
+    
+	The d+1'st block on disk is read into the c+1'st
+	block of cache, overwriting any previous con-
+	tents of cache block.  0 <= d < D, 0 <= c < C.
+
+
+    write c d			No results.
+    
+	The c+1'st block in cache is written to the
+	d+1's block of disk, overwriting any previous
+	contents of the disk block.  0 <= c < C,
+	0 <= d < D.
+
+    move c1 i1 c2 i2		No results.
+
+	The i1+1'st element of the c1+1'st cache block
+	is copied to the i2+1'st element of the c2+1'st
+	cache block.  0 <= c1,c2 < C, 0 <= i1,i2 < B.
+
+    debug ...			No results.
+
+	This line is traced even if tracing is off.  It
+	has no other effect.  It is used to convey
+	debugging output from your program to the `disk'
+	program standard output.
+
+	Do NOT use this command if there are no debug-
+	options in the `case' command result, as doing
+	so will cause an Incorrect Output judgment.
+
+WARNING: If you use printf in C or C++ you must use
+fflush after printing a line, as in
+
+	printf ( "...\n", ... );
+	fflush (stdio);
+
+Similarly if you use `print' in python you must flush
+after printing a line, as in
+
+	print '....'
+	sys.stdout.flush()
+
+Otherwise your output will be trapped in a buffer and
+never get to the disk program.  The C++ `endl' IO
+manipulator and JAVA `println' functions flush this
+buffer, so if you are using these functions nothing
+special needs to be done.
+
+
+Test Case Descriptions And Output
+---- ---- ------------ --- ------
+
+In the test environment, the disk controller is a separ-
+ate program named `disk' that runs your `exsort' program
+as a subproccess.  The controller (and not your program)
+reads test case descriptions from its standard input and
+the controller (and not your program) writes test case
+output to its standard output.
+
+Each test case description has two lines.  First a line
+containing just the test case name.  Then a line
+containing
+
+	B C I SEED TRACE [debug-options]
+
+where B, C, I are as given above and SEED is an unsigned
+integer used to seed a pseudo-random number generator
+that generates the input on disk.  10**8 <= SEED.
+The debug-options are passed to your program as part of
+`case' command result, and may be used to control debug-
+ging output in your program.
+
+TRACE is either `no' indicating you do not want
+communication between your program and the controller
+traced, or `yes' indicating you do want it traced.
+Tracing is only used to debug, and consists of the
+controller outputting to its standard output (not your
+program) the lines it reads from your program, prefaced
+by `<< ', and the lines it writes to your program,
+prefaced by '>> '.  Tracing also adds some other
+information lines beginning with `**'.
+
+Since this is the initial test of your program, the
+initial sizes of parameters are quite small:
+
+    2 <= B <= 16, 3 <= C <= 17, 4 <= I <= 1024
+
+Test case input lines (read by the `disk' program from
+its standard input) must not be longer than 80 charac-
+ters.  Test case input ends with an end of file.
+
+The `disk' program, at the beginning of the test case
+(after reading the `case' command from the `exsort'
+program and the test case input lines from the standard
+input), writes integers from 1 though B*I into the first
+I blocks of the disk, and then uses the SEED to shuffle
+them randomly, before returning a reply to the `exsort'
+`case' command.  When the test case is finished (i.e.,
+the `exsort' program outputs its NEXT `case' command),
+the `disk' program checks that the first I blocks of
+disk now contain these integers in sorted order.
+
+Test case output (written by the `disk' program to its
+standard output) consists of two lines, the first being
+an exact copy of the test case name line, and the
+second containing either just `OK' or an error message
+describing the first error found when running the test
+case or checking to see if its output is in fact sorted.
+
+It is an error if your program executes too many disk
+reads or writes during a test case (the limit for both
+is K*I).  The only other limit on your program is the
+CPU time limit which should be more than sufficient to
+allow any algorithm that does not exceed the read/write
+limits.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+2 3 8 675874567 no
+-- SAMPLE 2 --
+4 3 32 789467324 no
+-- SAMPLE 3 --
+4 5 32 647583765 no
+-- SAMPLE 4 --
+4 5 31 548741098 no
+-- SAMPLE 5 --
+4 6 64 508980765 no
+-- SAMPLE 6 --
+13 8 674 389701520 no
+-- SAMPLE 7 --
+16 17 1024 648935623 no
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+OK
+-- SAMPLE 2 --
+OK
+-- SAMPLE 3 --
+OK
+-- SAMPLE 4 --
+OK
+-- SAMPLE 5 --
+OK
+-- SAMPLE 6 --
+OK
+-- SAMPLE 7 --
+OK
+
+
+SAMPLE TRACE INPUT
+------ ----- -----
+
+-- SAMPLE TRACE 1 --
+2 3 8 675874567 yes
+
+
+SAMPLE TRACE OUTPUT
+------ ----- ------
+
+-- SAMPLE TRACE 1 --
+<< case
+>> 2 16 3 8 3 
+<< read 0 0
+>>       10       7
+<< read 1 1
+>>       11       4
+<< move 1 1 2 0
+<< move 0 1 2 1
+<< write 2 0
+** DISK 0:       4       7
+<< move 0 0 2 0
+<< move 1 0 2 1
+<< write 2 1
+** DISK 1:      10      11
+..... see sample-trace.trace for omitted output .....
+<< case
+** 24 blocks read out of 24 allowed
+** 24 blocks written out of 24 allowed
+OK
+>> 0 0 0 0 0
+
+File:	   exsort.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Mon Oct  3 14:45:26 EDT 2016
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

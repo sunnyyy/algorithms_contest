@@ -1,0 +1,138 @@
+Color Puzzle
+----- ------
+
+You have been asked to solve puzzles involving different
+plastic creatures each with some color.
+
+A typical puzzle is:
+
+  if the mouse is blue or red, then the bear is red
+  if the mouse is blue or green, then the hawk is red
+  if the bear is green, then the squirrel is blue or red
+  if the hawk is red, then the mouse is red
+  if the squirrel is green, then the bear is green
+  if the squirrel is blue, then the hawk is green
+  if the squirrel is red, then the hawk is blue
+
+The answer to this puzzle is:
+
+  the mouse is red
+  the bear is red
+  the hawk is blue or green
+  the squirrel is blue or red
+
+
+Input
+-----
+
+For each of several test cases, first a test case name
+line.  This is followed by statement lines, and at the
+end of these, a line containing only `*'.
+
+Statement lines have the form:
+
+    if the C1 is COLORS1, then the C2 is COLORS2
+
+where C1 and C2 name creatures and COLORS1 and COLORS2
+are lists containing color names separated by `or'.
+
+You may assume that only creatures mentioned in some
+statement are given to you, there is only one of each
+kind of creature, and each creature has a color
+mentioned in some statement.  There are at most 8
+creatures, 5 colors, and 100 statements in a test case.
+
+Words are separated by whitespace or a comma (,) follow-
+ed by whitespace.  All words contain only lower case
+letters.  All lines are at most 80 columns long.
+
+Input lines are read from the standard input.  Input
+ends when an end of file is read.
+
+Output
+------
+
+For each test case, first an exact copy of the test case
+name input line, and then one creature description line
+for each creature.  Each creature description line has
+the form
+
+    the C is COLORS
+
+where C names the creature and COLORS is a list contain-
+ing color names separated by `or'.  The creature
+description lines may be in any order, and within one
+of these lines, the colors may be in any order.
+
+Notice that in the example there are two colorings that
+are compatible with the statements:
+
+			Coloring 1	Coloring 2
+
+	mouse		red		red
+	hawk		green		blue
+	bear		red		red
+	squirrel	blue		red
+
+In `the C is COLORS' lines, a color must be listed if
+and only if C can have the color in SOME compatible
+coloring.  So both green and blue must be listed for the
+hawk, and both blue and red must be listed for the
+squirrel.
+
+Output lines are printed to the standard output.  Output
+ends when the program terminates.
+
+At least one coloring is compatible with the statements
+of each test case, so every creature description line
+will have at least one color.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+if the cow is brown or white, then the sheep is white
+if the sheep is brown or white, then the cow is brown
+*
+-- SAMPLE 2 --
+if the dog is black, then the cat is orange
+if the horse is brown, then the cat is blue
+if the dog is blue, then the horse is brown
+if the cat is orange, then the dog is blue
+if the cat is blue, then the horse is black
+if the horse is orange, then the dog is black
+if the horse is orange, then the dog is brown
+if the horse is blue, then the dog is black
+if the horse is blue, then the dog is brown
+*
+-- EXAMPLE --
+[Same as example at beginning of problem description:
+ see sample.in]
+*
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+the cow is brown
+the sheep is white
+-- SAMPLE 2 --
+the dog is orange or brown
+the cat is black or brown or blue
+the horse is black
+-- EXAMPLE --
+the mouse is red
+the bear is red
+the hawk is blue or green
+the squirrel is blue or red
+
+
+File:	   colorpuzzle.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Tue Oct 11 07:51:43 EDT 2016
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

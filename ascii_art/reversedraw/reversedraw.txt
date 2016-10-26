@@ -1,0 +1,213 @@
+Reverse Draw
+------- ----
+
+Sparky, the proprietor of Sparky's Fat and Fun Eatery
+(she first named it `Slim and Slick', but that did not
+work out), has acquired a new sign making machine.  This
+treats the paper-board as having a grid of squares.  The
+machine has a head that can move over the paper board
+and a pen that can be lowered to draw a black line, or
+`stroke', while the head moves.
+
+The machine has the following commands:
+
+    pendown Put pen down to start stroke.
+    penup   Put pen up to end stroke.
+    move D  Move in direction D one square.
+
+where	     D ::= N | NE | E | SE | S | SW | W | NW
+
+meaning North, Northeast, East, ..., West, Northwest.
+Here North is up, South is down, East is right, and
+West is left.
+
+The machine always starts and ends with the head in the
+lower left corner and its pen up.  Its important that a
+stroke be drawn all at once, by putting the pen down at
+one end of the stroke and then moving along the stroke
+to its other end before putting the pen up.  Putting the
+pen down will draw a dot the size of a grid square at
+the current position, and then moving to an adjacent
+square with the pen down will not only draw a dot in the
+adjacent square, but will also connect the two dots with
+a dot-width line.
+
+Sparky finds writing programs for this machine to be
+quite a chore, and wants you to help.  She wants to
+make signs that have line drawings, and not text, but
+to control the machine she wants to input a representa-
+tion of a sign as a text file like:
+
+                                 CCC
+                               CC
+                             CC
+                            C
+                           C
+                           C
+                       AAAAAAAA
+                   AAAA        AAAA
+                 AA                AA
+               AA                    AA
+              A                        A
+             A                          A
+            A      BBB          EEE      A
+            A     B   B        E   E     A
+           A     B  F  B      E  G  E     A
+           A     B  F  B      E  G  E     A
+          A      B  F  B      E  G  E      A
+          A       B   B        E   E       A
+          A        B B          E E        A
+          A                                A
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ M  K  H  H            D      D            R  Q  P  P
+ M  K  H  H            D      D            R  Q  P  P
+ M  K  H  H           D        D           R  Q  P  P
+ M  K  H  H          D          D          R  Q  P  P
+ M  K  H  H         D            D         R  Q  P  P
+ M  K  H  H         D            D         R  Q  P  P
+  MM KK HH          D            D          RR QQ PP
+                     D          D
+                      D        D
+                       DDD  DDD
+                          DD
+
+
+which defines the ``strokes' that the machine is to
+make.  Each stroke is labeled by a different capital
+letter.  The machine repeatedly goes to one end of a
+stroke, executes a pendown, moves to the other end of
+the stroke, executes a penup, and then moves to one end
+of the next stroke, or if done with all strokes, moves
+to its starting position.  The machine never omits the
+penup at the end of a stroke, even if the next stroke
+begins in an adjacent square.
+
+Each stroke has just two ends.  The continuation of a
+stroke involves going to one of the 8-neighbors of the
+previous square in the stroke.  Each square in the
+stroke will have exactly 1 such neighbor if the square
+is a stroke end, and exactly 2 neighbors otherwise.
+There are NO strokes that have only one square, so the
+start and end of a stroke are different squares.
+
+You are to take the text file and produce a program
+for the machine that has as few instructions as pos-
+sible, and therefore executes as fast as possible.
+
+However, this task has two parts.  The first part deter-
+mines the order in which the strokes will be visited,
+and which end of each stroke will be the stroke-drawing
+start point.  The second part computes the instructions
+from the output of the first part.  In this problem, you
+are only responsible for the first part of the task.
+
+Lastly, and quite importantly, Sparky wants to have the
+computer already in the machine run your program.  But
+this computer has only 128 megabytes of memory, of which
+some is taken by its operating software.  Adding up the
+space taken by the operating software, you find there
+are 100 megabytes left over for your data.  After
+considerable thought, you have agreed that this will
+suffice if you limit the input to a maximum of 20
+strokes.
+
+Input 
+-----
+
+For each of several test cases, a line containing just
+the test case name, followed by the input text followed
+by a line containing just `*'.  The input text lines
+contain only single spaces and capital letters, and
+define strokes obeying the rules given above.
+
+Input ends with an end of file.
+
+No line is longer than 500 characters and there are no
+more than 500 input text lines (not counting the test
+case name and `*' lines) in a test case.  Input text
+lines are not necessarily the same length; they may
+or may not be padded at the end with single spaces.
+
+There are no more than 20 separate stokes in a test
+case (no more than 20 different capital letters appear
+in the input text lines).
+
+
+Output
+------
+
+For each test case, first an exact copy of the input
+test case name line, then lines describing the strokes
+to be visited in the order they are to be visited,
+and then a line containing just `*'
+
+The stroke describing lines have the form
+
+    L: (x1,y1) ---> (x2,y2)
+
+where L is the upper case letter labeling the stroke,
+(x1,y1) is the point at which drawing the stroke starts,
+and (x2,y2) is the point at which drawing the stroke
+stops.
+
+The xy-coordinates are such that (0,0) is at the lower
+left of the input text, the place where the machine head
+starts and finishes with its pen up.
+
+There is always more than one possible answer (in parti-
+cular, making the machine trace its path in reverse
+order always works).  Output only one answer.
+      
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+     A
+    A A
+   A   A
+  A  B  A
+   A B A
+    ABA
+     B
+     B
+   CCCCC
+*
+-- SAMPLE 2 --
+[text for creature as above; or see sample.in]
+*
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+A: (4,3) ---> (6,3)
+B: (5,5) ---> (5,1)
+C: (7,0) ---> (3,0)
+*
+-- SAMPLE 2 --
+M: (3,4) ---> (1,10)
+X: (0,11) ---> (53,11)
+P: (52,10) ---> (49,10)
+Q: (46,10) ---> (48,4)
+R: (45,4) ---> (43,10)
+G: (33,17) ---> (33,15)
+E: (34,13) ---> (32,13)
+D: (30,10) ---> (23,10)
+B: (21,13) ---> (19,13)
+F: (20,15) ---> (20,17)
+C: (27,26) ---> (35,31)
+A: (43,12) ---> (10,12)
+H: (10,10) ---> (7,10)
+K: (4,10) ---> (6,4)
+*
+
+
+File:	   reversedraw.txt
+Author:	      Bob Walton <walton@seas.harvard.edu>
+Date:	         Sat Oct 10 06:38:03 EDT 2015
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.

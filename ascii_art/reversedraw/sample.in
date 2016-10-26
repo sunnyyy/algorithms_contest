@@ -1,0 +1,45 @@
+-- SAMPLE 1 --
+     A
+    A A
+   A   A
+  A  B  A
+   A B A
+    ABA
+     B
+     B
+   CCCCC
+*
+-- SAMPLE 2 --
+                                 CCC
+                               CC
+                             CC
+                            C
+                           C
+                           C
+                       AAAAAAAA
+                   AAAA        AAAA
+                 AA                AA
+               AA                    AA
+              A                        A
+             A                          A
+            A      BBB          EEE      A
+            A     B   B        E   E     A
+           A     B  F  B      E  G  E     A
+           A     B  F  B      E  G  E     A
+          A      B  F  B      E  G  E      A
+          A       B   B        E   E       A
+          A        B B          E E        A
+          A                                A
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ M  K  H  H            D      D            R  Q  P  P
+ M  K  H  H            D      D            R  Q  P  P
+ M  K  H  H           D        D           R  Q  P  P
+ M  K  H  H          D          D          R  Q  P  P
+ M  K  H  H         D            D         R  Q  P  P
+ M  K  H  H         D            D         R  Q  P  P
+  MM KK HH          D            D          RR QQ PP
+                     D          D
+                      D        D
+                       DDD  DDD
+                          DD
+*

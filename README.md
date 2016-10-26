@@ -61,7 +61,6 @@ Nearly all problems have the .txt descriptions.
 - soundex (Bospre 2013)
 - stringhash (Bospre 2005)
 - tableformatter (Bospre 2008)
-- onlinestring
 
 ##Simulation
 - convoy (Bospre 2003)
@@ -106,7 +105,7 @@ Nearly all problems have the .txt descriptions.
 ##Logic and Language
 - prooflabel (Bospre 2005)
 - lambdadev (Bospre 2012)
-- combinators (Bospre 2009)s
+- combinators (Bospre 2009)
 
 ##Distributed Computing
 - paxos (Bospre 2008)

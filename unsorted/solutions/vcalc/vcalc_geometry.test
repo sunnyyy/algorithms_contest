@@ -1,0 +1,18 @@
+//
+// Distance Between Point and Infinite Line
+-- The distance from (3, 4)
+---- to the infinite line (-5, -5) -- (3, 3)
+---- is 0.70710678118655
+//
+// Distance Between Point and Finite Line Segment 
+-- The distance from (3, 4)
+---- to the finite line segment (-5, -5) -- (3, 3)
+---- is the distance from (3, 4) to (3, 3) = 1
+//
+// Sides of an Infinite Line
+-- The point (3, 4) is to the left of
+---- the infinite line (-5, -5) -- (3, 3)
+//
+// Where Does a Finite Line Intersect an Infinite Line
+-- The finite line segment (-3, 5) -- (3, -1) intersects
+---- the infinite line (-5, -5) -- (3, 3) at (1, 1)

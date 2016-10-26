@@ -1,0 +1,68 @@
+Exchanged Compare
+-----------------
+
+Often times people will mistype a word by exchanging
+adjacent letters.  You are asked to write a compare
+function which returns true if and only if a first word
+equals a second word after zero or more pairs of non-
+overlapping letters in the second word are exchanged.
+
+
+Input
+-----
+
+A sequence of test cases, each a single line containing
+two words.  The words are separated by spaces and tabs.
+The input ends with an end of file.
+
+The words contain only lower case letters, and no line
+is longer than 80 characters.
+
+
+Output
+------
+
+For each test case, one line containing `true' if the
+two input words are equal after non-adjacent letter pair
+exchanges, and `false' otherwise.
+
+
+
+Example Input
+------- -----
+
+hello hello
+hello helol
+hello heoll
+hello ehllo
+hello ehlol
+hello hleol
+hello helo
+
+
+Example Output
+------- ------
+
+true
+true
+false
+true
+true
+true
+false
+
+
+File:	   exchanged.txt
+Author:	      Bob Walton <walton@deas.harvard.edu>
+Date:	         Tue Oct 18 10:05:24 EDT 2005
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2005/10/18 14:07:33 $
+    $RCSfile: exchanged.txt,v $
+    $Revision: 1.3 $

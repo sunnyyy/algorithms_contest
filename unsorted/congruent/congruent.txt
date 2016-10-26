@@ -1,0 +1,169 @@
+Congruent Polygons
+--------- --------
+
+You have been asked to determine whether or not two
+polygons are congruent, and if so, how to transform
+the first polygon in order to make it match precisely
+the second polygon.  The permitted transformation
+consists of an optional reflection about the X-axis
+followed by a rotation counter-clockwise about the
+origin followed by a translation.
+
+
+Input
+-----
+
+For each of several test cases, a line containing just
+the test case name, followed by lines describing the
+two polygons.  Each polygon description is N+1 numbers,
+where N is the number of vertices in the polygon.
+The first number is N itself.  The rest of the numbers
+are x,y pairs for each vertex.  Thus the format of a
+polygon description is
+
+    N v1x v1y v2x v2y ... vNx vNy
+    
+except the numbers may be distributed in any fashion
+across one or more lines.
+
+The polygon vertices are always given in clockwise
+order.  The angle between successive polygon sides is
+always different from 180 degree, so no vertices are
+superfluous.  The two polygons have the SAME number of
+vertices, N.  3 <= N <= 100.
+
+To make things easier, the first vertex of the first
+polygon is always (0,0), the origin.
+
+Lastly, all XY-coordinates have exactly 6 decimal
+places.
+
+No input line is longer than 80 characters.  Input ends
+with an end of file.
+
+
+Output
+------
+
+For each test case, two lines.  First, an exact copy of
+the test case name line.  Then either a line containing
+just
+
+	not congruent
+
+or a line of the format
+
+	r angle x y
+
+which defines a transformation that carries the first
+polygon onto the second polygon.  Here
+
+	r = I	meaning do NOT reflect the first polygon
+	  = R	meaning DO reflect the first polygon
+	        about the X-axis; the reflection of
+		(x,y) is (x,-y).
+	angle	is the angle measured in DEGREES to ro-
+	        tate the first polygon counter-clock-
+		wise about the origin (the first vertex
+		of the polygon)
+	x y	are the amounts to add to the x and y
+		coordinates of the vertices to translate
+		the first polygon; thus the first vertex
+		(0,0) is translated to (0+x,0+y) = (x,y)
+
+The transformation defined consists of first an optional
+reflection about the X-axis, then a counter-clockwise
+rotation about the origin, and lastly the translation.
+
+The angle, x, and y may be printed to any number of
+decimal places, or may be printed in C++ scientific
+notation.  However, if these values are rounded to too
+few decimal places, the translation they define may
+become unacceptable (see discussion below), so we
+suggest these values be output to 6 decimal places.
+
+There is a technical problem related to the fact that
+vertex input coordinates are only accurate to + or -
+0.0000005, given that they have only 6 decimal places.
+We deal with this as follows.
+
+For any transformation we define the error of the
+transformation to be the maximum absolute value of the
+difference between any input second polynomial vertex
+coordinate and the coordinate value of the transformed
+corresponding first polynomial vertex.  We define a
+transformation to be acceptable if its error is <= 0.001
+(which is 2,000 times the input error).  We define two
+polygons to be congruent if there is an acceptable
+transformation.  Then for judging safety, the judge's
+input data are carefully chosen so that if the polygons
+are congruent there are obvious transforms with errors
+well below 0.001, and if the polygons are not congruent
+all possible transforms have errors well above 0.001.
+In other words, there are no `close calls' in the
+judging input.
+
+If the polygons are congruent you must output an accep-
+table transform.  If there is more than one, output only
+one.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+5
+    0.000000  0.000000  0.000000  8.000000
+    5.000000  6.000000  8.000000  8.000000
+    8.000000 
+        0.000000
+5
+    4.000000  5.000000 -4.000000  5.000000
+   -2.000000 10.000000 -4.000000 13.000000
+    4.000000 13.000000
+-- SAMPLE 2 --
+5
+    0.000000  0.000000  0.000000  8.000000
+    5.000000  6.000000  8.000000  8.000000
+    8.000000  0.000000
+5
+   -4.000000 13.000000  4.000000 13.000000
+    2.000000 10.000000  4.000000  5.000000
+   -4.000000  5.000000
+-- SAMPLE 3 --
+5
+    0.000000  0.000000  0.000000  8.000000
+    5.000000  6.000000  8.000000  8.000000
+    8.000000  0.000000
+5
+    4.000000  5.000000 -4.000000  5.000000
+   -6.000000 10.000000 -4.000000 13.000000
+    4.000000 13.000000
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+I 90.000000 4.000000 5.000000
+-- SAMPLE 2 --
+R 90.000000 -4.000000 5.000000
+-- SAMPLE 3 --
+not congruent
+
+
+
+File:	   congruent.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Tue Oct 12 20:28:22 EDT 2010
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2010/10/13 00:39:48 $
+    $RCSfile: congruent.txt,v $
+    $Revision: 1.11 $

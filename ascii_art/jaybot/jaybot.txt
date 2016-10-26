@@ -1,0 +1,160 @@
+Jumping Robot
+------- -----
+
+A Jumping Robot, or J-Bot, or Jaybot, is a robot that
+jumps instead of rolling or walking.  The robot has a
+current position (x,y) and a jump vector (dx,dy).  The
+robot moves by jumping from (x,y) to position
+(x+dx,y+dy).
+
+The possible commands to a jaybot whose position is
+(x,y) and whose jump vector is (dx,dy) are:
+
+			New		New
+	Command		Position 	Jump Vector
+
+	jump		(x+dx,y+dy)	(dx,dy)
+
+	turn left	(x,y)		L(dx,dy)
+
+	turn right	(x,y)		R(dx,dy)
+
+	vector b c 	(x,y)		(b,c)
+
+Here R rotates a vector 90 degrees clockwise and L
+rotates a vector 90 degrees counterclockwise.
+
+In this problem the jaybot lives on a board of MxN
+squares, each square with integer coordinates.  All
+numbers are integers.  The square in the lower left
+corner of the board has coordinates (0,0), and the
+square in the upper right corner has coordinates
+(M-1,N-1).
+
+You are asked to plot the path of the jaybot by putting
+a letter on each square the jaybot visits.  The first
+visited square (the jaybot's initial position) gets `A',
+the second visited square gets `B', etc.  Unvisited
+squares are represented by the character `.'.  If a
+square is visited several times, it only remembers the
+last letter it was given.
+
+Input
+-----
+
+Each of several test cases.  Each case consists of a
+test case name line followed by the line:
+
+	M N x y dx dy
+
+with 6 integers.  The board is MxN.  (x,y) is the ini-
+tial position of the jaybot, and (dx,dy) the initial
+jump vector.  2 <= M,N <= 40; 0 <= x < M; 0 <= y < N.
+The x-axis is horizontal (M columns) and the y-axis is
+vertical (N rows).
+
+After the first two lines there are any number of
+command lines, each containing just one command as
+specified by the above table.  Thus the `vector' command
+is a line with the word `vector' followed by two inte-
+gers, b and c, all separated by whitespace.
+
+The commands are followed by a line containing nothing
+but "end".
+
+The jaybot is guaranteed not to jump off the edge of the
+board.
+
+No input line is longer than 80 characters.  Input ends
+with an end of file.
+
+
+Output
+------
+
+For each test case, one empty line, followed by an exact
+copy of the test case name line, followed by a printout
+of the board with the path of the jaybot marked as indi-
+cated above.  Note that the first line output is an
+empty line, and there are no space characters in any
+output line except perhaps in the test case name line.
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+30 8 5 1 1 1
+jump
+turn right
+jump
+vector 2 2
+jump
+turn right
+jump
+vector 3 3
+jump
+turn right
+jump
+vector 4 4
+jump
+turn right
+jump
+end
+-- SAMPLE 2 --
+10 5 0 0 1 1
+jump
+jump
+turn left
+jump
+turn right
+jump
+vector 4 0
+jump
+turn right
+jump
+turn right
+jump
+turn right
+jump
+end
+
+
+Sample Output
+------ ------
+
+[The output below begins with an empty line.]
+
+
+-- SAMPLE 1 --
+..............................
+..............................
+.....................H........
+..............F...............
+.........D....................
+......B.......................
+.....A.C...E.....G.......I....
+..............................
+
+-- SAMPLE 2 --
+..I...F...
+.D........
+..C.......
+.B........
+A.H...G...
+
+
+
+File:	   jaybot.txt
+Author:	   Bob Walton <walton@deas.harvard.edu>
+Date:	   Wed Oct 11 10:32:51 EDT 2006
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2006/10/11 14:32:58 $
+    $RCSfile: jaybot.txt,v $
+    $Revision: 1.8 $

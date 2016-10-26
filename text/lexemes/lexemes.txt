@@ -1,0 +1,137 @@
+Lexemes
+-------
+
+You have been asked to scan lines of input text into
+lexemes.
+
+For example, given the input line
+
+    x = 5*y + "hello world";
+
+you are to output
+
+    |x| |=| |5|*|y| |+| |"hello world"|;|
+     s w o w n o s w o w qqqqqqqqqqqqq p
+
+The definitions are
+
+    <lexeme>     ::= <symbol>
+                   | <whitespace>
+                   | <operator>
+                   | <number>
+                   | <quoted-string>
+                   | <punctuation>
+                   | <illegal>
+    <symbol>     ::= <letter><letter-or-digit>*
+    <whitespace> ::= <single-space-character>+
+    <operator>   ::= `+' | `-' | `*' | `/' | `=' | `.'
+    <number>     ::= <digit>+ <fraction-option>
+    <fraction-option> ::= <empty> | `.' <digit>+
+    <quoted-string>   ::=
+        `"' <character-representative>* `"'
+    <character-representative> ::=
+        <character-except-"-or-\> | `\"' | `\\'
+    <punctuation> ::= `,' | `(' | `)' | `;'
+
+    <illegal> ::=
+        <any-character-that-starts-no-other-lexeme>
+
+Here <x>* means zero or more <x>'s, <x>+ means one or
+more <x>'s, and <empty> means the empty character
+string.
+
+Given a position in the input, the next lexeme is the
+LONGEST lexeme that can be found starting at that
+position.  E.g., `8.1' scans as one number lexeme and
+does NOT include a `.' operator.
+
+If no other lexeme can be found, the next character is a
+1-character `illegal lexeme'.  Note that this produces
+some idiosyncratic results.  For example, if you forget
+the closing " in a quoted string, there is no quoted
+string lexeme, and the " starting the string becomes a
+1-character illegal lexeme.  Similarly if you put an
+illegal character representative, such as \h, in a
+quoted string.  To be sure you implement the above rules
+precisely, you should carefully check that your solution
+gets the Sample Output below when given the Sample Input
+below.
+
+
+Input
+-----
+
+For each of several test cases two lines.  The first
+line is the test case name.  The second line is the
+line you are to scan into lexemes.
+
+There are NO tab characters in the input, so the only
+space characters in the input are single space charac-
+ters and line ending line feeds.  No line is longer
+than 80 characters (not counting line feeds).
+
+Input ends with an end of file.
+
+
+Output
+------
+
+For each test case, first an exact copy of the test case
+name line.  Then two lines.  The first is a copy of the
+input line to be scanned with `|' marks inserted at the
+beginning and end and in between scanned lexemes.  The
+next line has under each lexeme character a letter
+giving the lexeme type.  This letter is simply the first
+letter of the lexeme type name (i.e., `s' for symbol,
+`o' for operator, `i' for illegal lexeme, etc.).
+
+Remember to test your program on the Sample Input and
+be sure its output EXACTLY matches the Sample Output.
+Note that numbers and symbols can be arbitrarily long,
+and numbers CANNOT begin or end with `.'.  Also illegal
+quoted strings are NOT recognized as quoted strings, and
+their initial " is treated as an illegal lexeme.
+Lastly, illegal lexemes are all 1-character lexemes,
+like punctuation and operators.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+x  =  5y21 + 3*x+foo("hi\\n",7.8);
+-- SAMPLE 2 --
+7.8 7. 8 7 .8 01234567890123456789.x!!
+-- SAMPLE 3 --
+?"He said: \"Ha\"?\\n" + "He He\n" + "Ho"
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+|x|  |=|  |5|y21| |+| |3|*|x|+|foo|(|"hi\\n"|,|7.8|)|;|
+ s ww o ww n sss w o w n o s o sss p qqqqqqq p nnn p p 
+-- SAMPLE 2 --
+|7.8| |7|.| |8| |7| |.|8| |01234567890123456789|.|x|!|!|
+ nnn w n o w n w n w o n w nnnnnnnnnnnnnnnnnnnn o s i i 
+-- SAMPLE 3 --
+|?|"He said: \"Ha\"?\\n"| |+| |"|He| |He|\|n|" + "|Ho|"|
+ i qqqqqqqqqqqqqqqqqqqqq w o w i ss w ss i s qqqqq ss i 
+
+
+
+File:	   lexemes.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Tue Oct 12 18:39:49 EDT 2010
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2010/10/12 22:41:13 $
+    $RCSfile: lexemes.txt,v $
+    $Revision: 1.8 $

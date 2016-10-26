@@ -1,0 +1,187 @@
+Bezier Curve
+------ -----
+
+A Bezier Curve is a smooth approximation to a segmented
+line through the points P1, P2, ..., Pn.  The segmented
+line goes straight from P1 to P2, then straight on to
+P3, etc., and so is composed of a sequence of straight
+line segments.  The Bezier Curve, however, is very
+smooth, although it starts at P1, ends at Pn, and very
+roughly approximates the segmented line.
+
+The points on the Bezier Curve are designated
+
+	B(t, P1, P2, P3, ..., Pn)
+
+where t varies from 0 through 1.
+
+If there are only two points, the Bezier Curve is simply
+the straight line between them given by
+
+	B(t, P1, P2) = (1-t)*P1 + t*P2
+
+If there are n>2 points the Bezier Curve for n points is
+computed from two Bezier Curves for n-1 points as
+follows
+
+    B(t, P1, P2, P3, ..., Pn) =
+        (1-t) * B(t, P1, P2, P3, ..., P(n-1))
+	+
+	t * B(t, P2, P3, P4, ..., Pn)
+
+The points P1, P2, ..., Pn are called `control points'.
+The Bezier Curve computed from them starts at P1 and
+ends at Pn, and is tangent at its start to the straight
+line P1-P2 and at its end to the straight line P(n-1)-
+Pn.  However, the Bezier Curve often does not get close
+to non-end control points.
+
+You have been asked to compute and plot Bezier Curves
+and plot their control points.
+
+
+Input
+-----
+
+For each of several test cases, a single line containing
+the test case name, followed by one or more lines
+containing the numbers:
+
+	m X Y n P1x P1y P2x P2y P3x P3y ... Pnx Pny
+
+These numbers may be on a single line or spread out
+among several lines, and may be aligned in any columns
+of the input lines.
+
+m is the number of points of the Bezier Curve to be
+computed, the graph has X columns and Y rows, n is the
+number of control points, and (P1x,P1y), (P2x,P2y), ...
+are the control points.  1 <= m; 1 <= X <= 80;
+1 <= Y <= 40; 2 <= n <= 50; 0 <= Pjx <= X-1;
+0 <= Pjy <= Y-1.  m, X, Y, and n are integers while
+Pjx and Pjy may be floating point.
+
+No input line is longer than 80 characters.  The input
+ends with an end of file.
+
+
+Output
+------
+
+For each test case one line containing an exact copy of
+the test case name input line, followed by ceiling(m/5)
+lines containing m Bezier Curve coordinate pairs,
+followed by Y lines containing a graph of the Bezier
+Curve.
+
+The lines containing the Bezier Curve coordinates
+each have the format:
+
+ xx.x yy.y xx.x yy.y xx.x yy.y xx.x yy.y xx.x yy.y
+
+where xx.x denotes an x-coordinate value and yy.y de-
+notes a y-coordinate value, each printed in 5 columns
+with exactly one decimal place (all correct numbers will
+be >= 0 and < 100).  There are 5 (x,y) pairs per line
+(maybe less on the last line), and these are in order
+the B(t,...) values for t = 0, 1/m, 2/m, 3/m, ...,
+(m-1)/m (there is NO value for t = 1).
+
+The graph is Y lines each with X columns.  For each
+B(t,...) point (x,y), an asterisk * is placed in
+
+        row    = Y - floor ( y + 0.5 )
+        column = 1 + floor ( x + 0.5 )
+	
+where rows are numbered 1, 2, 3, ... from the top and
+columns are numbered 1, 2, 3, ... from the left.  For
+each of the initial points (Pix,Piy), a plus sign + is
+then placed in
+
+        row    = Y - floor ( Piy + 0.5 )
+        column = 1 + floor ( Pix + 0.5 )
+
+overlaying any * that is there.
+
+Thus the lower left corner of the graph corresponds to
+(x,y) = (0,0), and to compute the graph location of
+(x,y) the values of x and y are both rounded to the
+nearest integer.
+
+Note: you MUST do the rounding correctly or your graph
+will have misplaced `*'s or `+'s and your output will be
+scored as INCORRECT.  The judge's input is chosen so
+there will be no graphed x or y values extremely near
+the midpoint between two integers.
+
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+6 21 7
+   4 0 0 4 2 8 4 12 6
+-- SAMPLE 2 --
+40 41 16 16
+  20  0
+   0  5  0 10
+  10 15 14 15 15 15
+  20  6 20  5 20  5 20  6
+  25 15 26 15 30 15
+  40 10 40  5
+  20  0
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+  0.0  0.0  2.0  1.0  4.0  2.0  6.0  3.0  8.0  4.0
+ 10.0  5.0
+            +        
+          *          
+        +            
+      *              
+    +                
+  *                  
++                    
+-- SAMPLE 2 --
+ 20.0  0.0 13.7  1.9  9.7  3.7  7.3  5.5  6.2  7.1
+  6.1  8.6  6.6  9.8  7.5 10.8  8.6 11.4  9.8 11.8
+ 11.1 12.0 12.4 11.9 13.5 11.6 14.6 11.1 15.6 10.6
+ 16.5 10.0 17.3  9.5 18.1  9.0 18.7  8.6 19.4  8.4
+ 20.0  8.3 20.6  8.4 21.3  8.6 21.9  9.0 22.7  9.5
+ 23.5 10.0 24.4 10.6 25.4 11.1 26.5 11.6 27.6 11.9
+ 28.9 12.0 30.2 11.8 31.4 11.4 32.5 10.8 33.4  9.8
+ 33.9  8.6 33.8  7.1 32.7  5.5 30.3  3.7 26.3  1.9
+          +   ++         ++   +          
+                                         
+                                         
+          *** *           * ***          
+       * *     **       **     * *       
++      *         *     *         *      +
+      *          *** ***          *      
+                   ***                   
+      *                           *      
+                    +                    
++      *            +            *      +
+          *                   *          
+                                         
+              *           *              
+                                         
+                    +                    
+
+File:	   bezier.txt
+Author:	   Bob Walton <walton@seas.harvard.edu>
+Date:	   Thu Oct  7 02:54:26 EDT 2010
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2010/10/08 13:03:33 $
+    $RCSfile: bezier.txt,v $
+    $Revision: 1.8 $

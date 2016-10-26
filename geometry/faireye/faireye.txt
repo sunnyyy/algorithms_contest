@@ -1,0 +1,90 @@
+Fair Eye's Secret
+-----------------
+
+Fair Eye, the referee, is known for making correct
+calls. Scooper, the news reporter, thinks he has figured
+out the secret of Fair Eye's success.  Just before
+making a call, Fair Eye carefully positions himself
+at an equal distance from any place where an event that
+needs to be called may occur.
+
+To test his theory Scooper uses Sky Cam to measure the
+location F of Fair Eye and the locations P1, P2, P3 of
+places where events that may need to be called occur.
+For some reason there are almost always three such
+places, and Scooper ignores the cases where there are
+not three.  To test his theory Scooper wants to compute
+for every three places P1, P2, and P3 the exact location
+of the point C equidistant from these three places, so
+that C may be compared to F, where Fair Eye positions
+himself.
+
+Mathematicians call C the circumcenter of P1, P2, and
+P3, or of the triangle whose vertices are P1, P2, and
+P3.  It is the center of the circumscribed circle of
+that triangle.
+
+
+Input
+-----
+
+For each case, a single line containing the 6 numbers
+
+    x1 y1 x2 y2 x3 y3
+
+defining three points: P1 = (x1,y1), P2 = (x2,y2), and
+P3 = (x3,y3).  The 6 numbers are real numbers (and may
+be negative).
+
+An end of file terminates the input.
+
+
+Output
+------
+
+For each case, a single line containing the 2 numbers
+
+    x y
+
+defining the circumcenter C = (x,y) of the three points
+P1, P2, P3.
+
+Both x and y must be printed with exactly 3 decimal
+places.
+
+You may assume that double precision floating point
+numbers will suffice to compute C with adequate
+precision, and that the three points are not so close
+to being co-linear that there will be computation
+problems.
+
+
+Example Input
+------- -----
+
+0.0 0.0 1.0 0.0 0.0 1.0
+0.0 0.0 1.0 1.0 0.0 1.0
+0.0 0.0 1.0 2.0 2.0 0.0
+
+Example Output
+------- ------
+
+0.500 0.500
+0.500 0.500
+1.000 0.750
+
+
+File:    faireye.txt
+Author:	    Bob Walton <walton@deas.harvard.edu>
+Date:	       Tue Oct 18 11:29:13 EDT 2005
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2005/10/18 15:30:23 $
+    $RCSfile: faireye.txt,v $
+    $Revision: 1.4 $

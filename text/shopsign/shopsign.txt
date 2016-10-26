@@ -1,0 +1,166 @@
+Shop Sign
+---- ----
+
+Sparky, the proprietor of Sparky's Fat and Fun Eatery
+(she first named it `Slim and Slick', but that did not
+work out), has trouble making up signs for the front of
+her establishment.  She has a box of magnetic characters
+that she sticks on a sign board out in front.  But she
+often runs out of some character.
+
+So to help her you are to write a program that given
+the contents of a box of characters and several proposed
+messages to put on the sign, tells her which messages
+will succeed and which will run out of characters.
+
+For example, given the box contents
+
+    AAABCCCDDDEEFGHIILLMMNNOOPQRSSSSTTTTUUVWXYY,,!!
+
+and the following proposed messages:
+
+    HOT DOGS AND BUNS!
+    HOT DOGS AND SANDWICHES!
+
+you propose to output:
+
+    HOT DOGS AND BUNS! - succeed
+    HOT DOGS AND SANDWICHES! - too few H's
+
+
+The maker of magnetic characters only makes letters,
+digits, and the following special characters:
+
+	!@#$%&*():;",./?
+
+So, for example, characters such as [ and ] CANNOT be
+in the box or in a proposed message.
+
+Whitespace, of course, is free: there are no spaces
+in the box and none are needed.
+
+Sparky does not plan to put more than one message at a
+time on the board, so each message is evaluated indepen-
+dently of the other messages.
+
+
+Input 
+-----
+
+For each of several test cases, a line containing just
+the test case name, followed by a line containing the
+characters in the box (usually there are duplicates),
+followed by any number of lines each containing a
+proposed message, followed by a line containing just
+`.'.
+
+Input ends with an end of file.
+
+No line is longer than 80 characters.
+
+
+Output
+------
+
+For each test case, a copy of the input, with additions
+to the proposed message lines of the forms
+
+
+    ` - succeed'	If the message would succeed.
+    ` - too few X's'	If the message would fail
+      	    because there are too few X's
+	    	    	  in the box, where X is some
+			     	 character.
+
+Be sure you include the single spaces SURROUNDING the
+`-' in the additions.
+
+If a message would run out of several different
+characters, output any one.
+	    
+
+Sample Input
+------ -----
+
+-- SAMPLE 1 --
+AAABCCCDDDEEFGHIILLMMNNOOPQRSSSSTTTTUUVWXYY,,!!
+HOT DOGS AND BUNS!
+HOT DOGS AND SANDWICHES!
+ON VACATION
+ON VACATION TILL JULY
+ARE YOU HUNGRY?
+ALL YOU CAN EAT!
+.
+-- SAMPLE 2 --
+aaBbCcDdeeFfGHhgiiMmNnooPpQqRrSSssTuVvWwYy$.&00123456789
+Good Buns $1.00
+Hot Dogs $5.00
+Buns $1.00 Dogs $2.95
+Dogs w Buns $1.45
+Dogs and Buns $1.45
+Dogs & Buns $1.45
+Dogs & Buns $2.99
+.
+-- SAMPLE 3 --
+!@#$%&*():;",./?
+!*#
+!*#*
+($)/@.%
+.
+
+
+Sample Output
+------ ------
+
+-- SAMPLE 1 --
+AAABCCCDDDEEFGHIILLMMNNOOPQRSSSSTTTTUUVWXYY,,!!
+HOT DOGS AND BUNS! - succeed
+HOT DOGS AND SANDWICHES! - too few H's
+ON VACATION - succeed
+ON VACATION TILL JULY - too few J's
+ARE YOU HUNGRY? - too few R's
+ALL YOU CAN EAT! - succeed
+.
+-- SAMPLE 2 --
+aaBbCcDdeeFfGHhgiiMmNnooPpQqRrSSssTuVvWwYy$.&00123456789
+Good Buns $1.00 - succeed
+Hot Dogs $5.00 - too few t's
+Buns $1.00 Dogs $2.95 - too few $'s
+Dogs w Buns $1.45 - succeed
+Dogs and Buns $1.45 - too few n's
+Dogs & Buns $1.45 - succeed
+Dogs & Buns $2.99 - too few 9's
+.
+-- SAMPLE 3 --
+!@#$%&*():;",./?
+!*# - succeed
+!*#* - too few *'s
+($)/@.% - succeed
+.
+
+
+Note:
+-----
+
+The following would also be correct because the proposed
+message is short more than one character:
+
+ON VACATION TILL JULY - too few L's
+ARE YOU HUNGRY? - too few ?'s
+Buns $1.00 Dogs $2.95 - too few .'s
+
+
+File:	      shopsign.txt
+Author:	         Bob Walton <walton@seas.harvard.edu>
+Date:		    Mon Oct 13 06:46:29 EDT 2014
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2014/10/13 10:48:29 $
+    $RCSfile: shopsign.txt,v $
+    $Revision: 1.10 $

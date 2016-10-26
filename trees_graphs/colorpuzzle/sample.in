@@ -1,0 +1,24 @@
+-- SAMPLE 1 --
+if the cow is brown or white, then the sheep is white
+if the sheep is brown or white, then the cow is brown
+*
+-- SAMPLE 2 --
+if the dog is black, then the cat is orange
+if the horse is brown, then the cat is blue
+if the dog is blue, then the horse is brown
+if the cat is orange, then the dog is blue
+if the cat is blue, then the horse is black
+if the horse is orange, then the dog is black
+if the horse is orange, then the dog is brown
+if the horse is blue, then the dog is black
+if the horse is blue, then the dog is brown
+*
+-- EXAMPLE --
+if the mouse is blue or red, then the bear is red
+if the mouse is blue or green, then the hawk is red
+if the bear is green, then the squirrel is blue or red
+if the hawk is red, then the mouse is red
+if the squirrel is green, then the bear is green
+if the squirrel is blue, then the hawk is green
+if the squirrel is red, then the hawk is blue
+*

@@ -1,0 +1,110 @@
+The Overlap Game
+----------------
+
+The Overlap Game is played with a set of words that are
+used to create a string of letters.  The first player
+picks a word from the set and puts it on the board,
+creating the string.  Thereafter each player picks a
+word and puts it at the end of the string, BUT, the
+beginning of the word must overlap the end of the string
+by one or more letters.  The word is placed so its over-
+lapping letters actually overlap those at the end of the
+string.  Each move must increase the number of letters
+on the board.
+
+Thus if a game starts with the words
+
+     THE  EATEN	      ENCHANTMENT
+
+the first move could result in
+
+    THE
+
+the second move could result in
+
+    THEATEN
+
+and the third move could result in
+
+    THEATENCHANTMENT
+
+However, a second move resulting in
+
+	 THENCHANTMENT
+
+is also possible, and then there could be no third move.
+
+There are only two players in this game, and the person
+to move last loses.  Play stops only when no more words
+can be added to the string.
+
+You have been asked to assist a player by determining
+winning moves.
+
+
+
+Input
+-----
+
+For each case, a list of words followed by the mark `*'.
+The words and marks are separated by whitespace, where
+any combination of spaces, tabs, and line ends are
+considered to be whitespace.
+
+All words consist of just upper case letters.  There are
+at most 100 words in a case, and each word is at most
+20 letters.
+
+An end of file terminates the input.
+
+
+Output
+------
+
+For each case, a single line containing just the (upper
+case) words the first player can play first to force a
+win.  The words are separated by spaces.
+
+If there are no words that will result in a win, the
+single line should instead contain just lower case
+`lose'.  This indicates the first player must lose if
+the second player plays optimally.
+
+
+Example Input
+------- -----
+
+THE EATEN ENCHANTMENT *
+THE EATEN ENCHANTMENT ENTICES *
+THIS HISTORY IS YIPPING SILLY *
+AB BC CD DE EA *
+HISTORY YES SENSIBLE YEOWL ELOQUE LONG *
+THE ENVELOP OPERATES TESTING GREAT
+    EATERIES POST *
+
+
+Example Output
+------- ------
+
+lose
+EATEN ENCHANTMENT
+HISTORY SILLY
+lose
+SENSIBLE YEOWL
+THE ENVELOP OPERATES
+
+
+File:	       overlapgame.txt
+Author:	          Bob Walton <walton@deas.harvard.edu>
+Date:		     Wed Oct 19 07:24:25 EDT 2005
+
+The authors have placed this file in the public domain;
+they make no warranty and accept no liability for this
+file.
+
+RCS Info (may not be true date or author):
+
+    $Author: walton $
+    $Date: 2005/10/19 11:26:51 $
+    $RCSfile: overlapgame.txt,v $
+    $Revision: 1.6 $
