@@ -1,6 +1,7 @@
 # algorithms_contest
 My solutions to practice problems for ACM & other contests.
 Nearly all problems have the .txt descriptions.
+Todo: add problems from http://usaco.org/index.php?page=nov11problems
 
 ##Solved & accurate:
 - buffalo _(Balgorfest 2016)_
